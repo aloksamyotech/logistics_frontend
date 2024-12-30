@@ -13,8 +13,10 @@ import DeleteCustomer from './DeleteCustomer';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link as RouterLink } from 'react-router-dom';
 import { t } from 'i18next';
+import { useNavigate } from 'react-router-dom';
 
 const CustomerList = () => {
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -136,12 +138,18 @@ const CustomerList = () => {
       {t('dashboard')}
     </Link>,
     <Typography key="3" sx={{ color: 'text.primary' }}>
-      {t('list')}
+      {t('List')}
     </Typography>
   ];
 
   return (
     <>
+      <EditCustomer open={editOpen} handleClose={handleEditClose} data={selectedRow} />
+      <DeleteCustomer
+        open={deleteOpen}
+        handleClose={handleDeleteClose} // Ensure this is passed properly
+        customerid={selectedRow?._id} // Pass the selected row's ID
+      />
       <Container
         sx={{
           bgcolor: 'white',
@@ -155,7 +163,7 @@ const CustomerList = () => {
       >
         <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
           <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
-            {t('customer List')}
+            {t('Customer List')}
           </Typography>
           <Stack spacing={2}>
             <Breadcrumbs separator="›" aria-label="breadcrumb">

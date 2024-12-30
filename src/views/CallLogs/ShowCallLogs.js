@@ -16,7 +16,8 @@ import DeleteCallLog from './deleteCallLogs';
 import SearchBar from 'views/Quotes/Searchbar';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link as RouterLink } from 'react-router-dom';
-
+import { t } from 'i18next';
+import { useNavigate } from 'react-router-dom';
 // ----------------------------------------------------------------------
 
 const leadData = [
@@ -35,6 +36,7 @@ const leadData = [
 ];
 
 const ShowCallLogs = () => {
+  const nevigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -67,6 +69,7 @@ const ShowCallLogs = () => {
   const handleView = () => {
     // Implement view functionality
     console.log('View clicked for:', selectedRow);
+    // nevigate(`/admin/view_customer/${selectedRow?._id}`);
     handlePopoverClose();
   };
 
@@ -87,31 +90,31 @@ const ShowCallLogs = () => {
   const columns = [
     {
       field: 'customerdata.name',
-      headerName: 'Name',
+      headerName: t('Name'),
       flex: 1,
       cellClassName: 'name-column--cell name-column--cell--capitalize',
       renderCell: (params) => <Typography>{params.row.customerdata ? params.row.customerdata.name : 'N/A'}</Typography>
     },
     {
       field: 'companyname',
-      headerName: 'Company Name',
+      headerName: t('Company Name'),
       flex: 1,
       cellClassName: 'name-column--cell--capitalize',
       renderCell: (params) => <Typography>{params.row.customerdata ? params.row.customerdata.companyname : 'N/A'}</Typography>
     },
     {
       field: 'duration',
-      headerName: 'Duration',
+      headerName: t('Duration'),
       flex: 1
     },
     {
       field: 'feedback',
-      headerName: 'Feedback',
+      headerName: t('Feedback'),
       flex: 1
     },
     {
       field: 'action',
-      headerName: 'Action',
+      headerName: t('Action'),
       flex: 0.5,
       sortable: false,
       filterable: false,
@@ -161,10 +164,10 @@ const ShowCallLogs = () => {
       <HomeIcon color="secondary"></HomeIcon>
     </Link>,
     <Link underline="hover" key={2} color={'inherit'} to="/admin/dashboard" component={RouterLink}>
-      Dashboard
+      {t('Dashboard')}
     </Link>,
     <Link underline="hover" key={3} sx={{ color: 'text.primary' }}>
-      Logs
+      {t('Logs')}
     </Link>
   ];
 
@@ -187,7 +190,7 @@ const ShowCallLogs = () => {
         >
           <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
             <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
-              Call Logs
+              {t('Call Logs')}
             </Typography>
             <Stack spacing={2}>
               <Breadcrumbs separator="›" aria-label="breadcrumb">
@@ -210,7 +213,7 @@ const ShowCallLogs = () => {
                   startIcon={<Iconify icon="eva:plus-fill" />}
                   onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  Add Call Log
+                  {t('Add Call Log')}
                 </Button>
 
                 <Button
@@ -220,7 +223,7 @@ const ShowCallLogs = () => {
                   startIcon={<SimCardDownloadIcon />}
                   // onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  PDF
+                  {t('PDF')}
                 </Button>
 
                 <Button
@@ -229,7 +232,7 @@ const ShowCallLogs = () => {
                   startIcon={<CloudDownloadIcon />}
                   // onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  Excel
+                  {'Excel'}
                 </Button>
               </Stack>
               <DataGrid
@@ -259,15 +262,15 @@ const ShowCallLogs = () => {
         >
           <MenuItem onClick={handleEdit}>
             <EditIcon sx={{ mr: 1 }} />
-            Edit
+            {t('Edit')}
           </MenuItem>
           <MenuItem onClick={handleView}>
             <VisibilityIcon sx={{ mr: 1, color: 'green' }} />
-            View
+            {t('View')}
           </MenuItem>
           <MenuItem onClick={handleDelete}>
             <DeleteIcon sx={{ mr: 1, color: 'red' }} />
-            Delete
+            {t('Delete')}
           </MenuItem>
         </Popover>
       </Box>

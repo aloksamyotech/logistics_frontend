@@ -19,7 +19,7 @@ import { calcLength } from 'framer-motion';
 import { patchApi } from 'views/services/api.js';
 import { Switch } from '@mui/material';
 import { Divider } from '@mui/material';
-
+import { t } from 'i18next';
 const EditCustomer = (props) => {
   const { open, handleClose, data } = props;
 
@@ -27,15 +27,15 @@ const EditCustomer = (props) => {
   console.log('data in edit ==>', data);
 
   const validationSchema = yup.object({
-    name: yup.string().required('Required'),
-    companyname: yup.string().required('Required'),
-    gstno: yup.string().required('Required'),
+    name: yup.string().required(t('Required')),
+    companyname: yup.string().required(t('Required')),
+    gstno: yup.string().required(t('Required')),
     phoneno: yup
       .string()
-      .matches(/^[0-9]+$/, 'Phone number is not valid')
-      .min(10, 'Phone number should be at least 10 digits')
-      .required('Required'),
-    address: yup.string().required('Required'),
+      .matches(/^[0-9]+$/, t('Phone number is not valid'))
+      .min(10, t('Phone number should be at least 10 digits'))
+      .required(t('Required')),
+    address: yup.string().required(t('Required')),
     usernote: yup.string()
   });
 
@@ -84,7 +84,7 @@ const EditCustomer = (props) => {
             // color: "white",
           }}
         >
-          <Typography variant="h6">Edit Customer</Typography>
+          <Typography variant="h6">{t('Edit Customer')}</Typography>
           <Typography>
             <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
           </Typography>
@@ -125,7 +125,7 @@ const EditCustomer = (props) => {
                   <TextField
                     id="name"
                     name="name"
-                    label="Name"
+                    label={t('Name')}
                     size="small"
                     fullWidth
                     value={formik.values.name}
@@ -138,7 +138,7 @@ const EditCustomer = (props) => {
                   <TextField
                     id="companyname"
                     name="companyname"
-                    label="Company Name"
+                    label={t('Company Name')}
                     size="small"
                     fullWidth
                     value={formik.values.companyname}
@@ -152,7 +152,7 @@ const EditCustomer = (props) => {
                   <TextField
                     id="gstno"
                     name="gstno"
-                    label="GST No"
+                    label={t('GST No')}
                     size="small"
                     fullWidth
                     value={formik.values.gstno}
@@ -165,7 +165,7 @@ const EditCustomer = (props) => {
                   <TextField
                     id="phoneno"
                     name="phoneno"
-                    label="Phone No"
+                    label={t('Phone No')}
                     size="small"
                     fullWidth
                     value={formik.values.phoneno}
@@ -188,7 +188,7 @@ const EditCustomer = (props) => {
                     rows={3}
                     id="address"
                     name="address"
-                    label="Address"
+                    label={t('Address')}
                     size="small"
                     fullWidth
                     value={formik.values.address}
@@ -201,7 +201,7 @@ const EditCustomer = (props) => {
                   <TextField
                     id="usernote"
                     name="usernote"
-                    label="User Notes - For internal use only."
+                    label={'User Notes - For internal use only.'}
                     multiline
                     rows={3}
                     size="small"
@@ -215,7 +215,7 @@ const EditCustomer = (props) => {
 
                 <Grid item xs={12} container alignItems="center">
                   <Grid item>
-                    <Typography>Show Rates</Typography>
+                    <Typography>{t('Show Rates')}</Typography>
                   </Grid>
                   <Grid item>
                     <Switch />
@@ -227,7 +227,7 @@ const EditCustomer = (props) => {
         </DialogContent>
         <DialogActions>
           <Button type="submit" variant="contained" onClick={formik.handleSubmit} style={{ textTransform: 'capitalize' }} color="secondary">
-            Save
+            {t('Save')}
           </Button>
           <Button
             type="reset"
@@ -239,7 +239,7 @@ const EditCustomer = (props) => {
             }}
             color="error"
           >
-            Cancel
+            {t('Cancel')}
           </Button>
         </DialogActions>
       </Dialog>

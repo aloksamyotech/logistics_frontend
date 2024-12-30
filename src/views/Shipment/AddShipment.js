@@ -1,5 +1,18 @@
 import React from 'react';
-import { Box, Grid, TextField, MenuItem, Typography, Button, FormLabel, Divider, FormHelperText, Breadcrumbs, Link } from '@mui/material';
+import {
+  Card,
+  Box,
+  Grid,
+  TextField,
+  MenuItem,
+  Typography,
+  Button,
+  FormLabel,
+  Divider,
+  FormHelperText,
+  Breadcrumbs,
+  Link
+} from '@mui/material';
 import { Form, useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton } from '@mui/material';
@@ -309,10 +322,10 @@ const AddShipment = () => {
       <HomeIcon color="secondary" />
     </Link>,
     <Link underline="hover" key="2" color="inherit" to="/admin/dashboard" component={RouterLink}>
-      Dashboard
+      {t('Dashboard')}
     </Link>,
     <Typography key="3" sx={{ color: 'text.primary' }}>
-      Shipment
+      {t('Shipment')}
     </Typography>
   ];
 
@@ -327,7 +340,7 @@ const AddShipment = () => {
         insuranceData={handleAddInsurance}
         editData={insuranceDetails}
       />
-      <card>
+      <Card>
         <Container
           sx={{
             bgcolor: 'white',
@@ -350,12 +363,12 @@ const AddShipment = () => {
             </Stack>
           </Stack>
         </Container>
-      </card>
+      </Card>
       <Box mt={2} sx={{ padding: 4, borderRadius: '4px', backgroundColor: '#fff' }}>
         <form onSubmit={formik.handleSubmit}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
-              <FormLabel>Shipment Date</FormLabel>
+              <FormLabel>{t('Shipment Date')}</FormLabel>
               <TextField
                 type="date"
                 name="shipmentdate"
@@ -373,7 +386,7 @@ const AddShipment = () => {
               />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormLabel>Expected Delivery Date</FormLabel>
+              <FormLabel>{t('Expected Delivery Date')}</FormLabel>
               <TextField
                 type="date"
                 name="expecteddate"
@@ -391,7 +404,7 @@ const AddShipment = () => {
               />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormLabel>Sender Info</FormLabel>
+              <FormLabel>{t('Sender Info')}</FormLabel>
               <TextField
                 select
                 name="senderInfo"
@@ -410,7 +423,7 @@ const AddShipment = () => {
               </TextField>
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormLabel>Receiver Info</FormLabel>
+              <FormLabel>{t('Receiver Info')}</FormLabel>
               <TextField
                 select
                 name="receiverInfo"
@@ -430,17 +443,17 @@ const AddShipment = () => {
             </Grid>
             <Grid item xs={12} md={6}>
               <Button variant="contained" color="primary" onClick={handleOpenAdd}>
-                Add Sender
+                {t('Add Sender')}
               </Button>
             </Grid>
             <Grid item xs={12} md={6}>
               <Button variant="contained" color="primary" onClick={handleOpenAdd}>
-                Add Receiver
+                {t('Add Receiver')}
               </Button>
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                label="Delivery Address"
+                label={t('Delivery Address')}
                 name="deliveryAddress"
                 multiline
                 rows={4}
@@ -459,13 +472,13 @@ const AddShipment = () => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Typography variant="subtitle1" gutterBottom sx={{ fontSize: '1.3rem' }}>
-                Package Pickup Location
+                {t('Package Pickup Location')}
               </Typography>
             </Grid>
 
             <Grid item xs={12} md={4}>
               <TextField
-                label="Contact Person Name"
+                label={t('contactPersonName')} // Translated label for "Contact Person Name"
                 name="contactPersonName"
                 fullWidth
                 variant="outlined"
@@ -475,9 +488,10 @@ const AddShipment = () => {
                 helperText={formik.touched.contactPersonName && formik.errors.contactPersonName}
               />
             </Grid>
+
             <Grid item xs={12} md={4}>
               <TextField
-                label="Contact Number"
+                label={t('contactPersonNumber')} // Translated label for "Contact Number"
                 name="contactPersonNumber"
                 fullWidth
                 variant="outlined"
@@ -487,10 +501,11 @@ const AddShipment = () => {
                 helperText={formik.touched.contactPersonNumber && formik.errors.contactPersonNumber}
               />
             </Grid>
+
             <Grid item xs={12} md={4}>
               <TextField
                 select
-                label="Full Load"
+                label={t('fullLoad')} // Translated label for "Full Load"
                 name="fullLoad"
                 fullWidth
                 variant="outlined"
@@ -499,13 +514,14 @@ const AddShipment = () => {
                 error={formik.touched.fullLoad && Boolean(formik.errors.fullLoad)}
                 helperText={formik.touched.fullLoad && formik.errors.fullLoad}
               >
-                <MenuItem value="FullLoad">Full Load</MenuItem>
-                <MenuItem value="PartLoad">Part Load</MenuItem>
+                <MenuItem value="FullLoad">{t('fullLoad')}</MenuItem> {/* Translated "Full Load" */}
+                <MenuItem value="PartLoad">{t('partLoad')}</MenuItem> {/* Translated "Part Load" */}
               </TextField>
             </Grid>
+
             <Grid item xs={12} md={6}>
               <TextField
-                label="Pickup Address"
+                label={t('Pickup Address')}
                 name="pickupAddress"
                 multiline
                 rows={4}
@@ -524,13 +540,13 @@ const AddShipment = () => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Typography variant="subtitle1" gutterBottom sx={{ fontSize: '1.3rem' }}>
-                Transport Details
+                {t('Transport Details')}
               </Typography>
             </Grid>
 
             <Grid item xs={12} md={4}>
               <TextField
-                label="Driver Name"
+                label={t('Driver Name')}
                 name="driverName"
                 fullWidth
                 variant="outlined"
@@ -543,7 +559,7 @@ const AddShipment = () => {
 
             <Grid item xs={12} md={4}>
               <TextField
-                label="Driver Phone Number"
+                label={t('Driver Phone Number')}
                 name="driverNumber"
                 fullWidth
                 variant="outlined"
@@ -555,7 +571,7 @@ const AddShipment = () => {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                label="Vehicle Details"
+                label={t('Vehicle Details')}
                 name="vehicleDetails"
                 fullWidth
                 multiline
@@ -569,7 +585,7 @@ const AddShipment = () => {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                label="User Notes - For Internal use Only"
+                label={t('User Notes - For Internal use Only')}
                 name="userNotes"
                 multiline
                 rows={4}
@@ -588,13 +604,13 @@ const AddShipment = () => {
           <Grid container>
             <Grid item xs={12}>
               <Typography variant="subtitle1" gutterBottom sx={{ fontSize: '1.3rem' }}>
-                Vendor Details
+                {t('Vendor Details')} {/* Translated label for "Vendor Details" */}
               </Typography>
             </Grid>
 
             <Grid container spacing={3}>
               <Grid item xs={12} md={3}>
-                <FormLabel>Select Vendor</FormLabel>
+                <FormLabel>{t('Select Vendor')}</FormLabel> {/* Translated label for "Select Vendor" */}
                 <TextField
                   select
                   name="vendor"
@@ -614,7 +630,7 @@ const AddShipment = () => {
               </Grid>
 
               <Grid item xs={12} md={3}>
-                <FormLabel>Memo Number</FormLabel>
+                <FormLabel>{t('Memo Number')}</FormLabel> {/* Translated label for "Memo Number" */}
                 <TextField
                   name="memoNumber"
                   fullWidth
@@ -625,8 +641,9 @@ const AddShipment = () => {
                   helperText={formik.touched.memoNumber && formik.errors.memoNumber}
                 />
               </Grid>
+
               <Grid item xs={12} md={3}>
-                <FormLabel>Commission</FormLabel>
+                <FormLabel>{t('Commission')}</FormLabel>
                 <TextField
                   name="commission"
                   type="number"
@@ -638,8 +655,9 @@ const AddShipment = () => {
                   helperText={formik.touched.commission && formik.errors.commission}
                 />
               </Grid>
+
               <Grid item xs={12} md={3}>
-                <FormLabel>Cash</FormLabel>
+                <FormLabel>{t('Cash')}</FormLabel>
                 <TextField
                   name="cash"
                   type="number"
@@ -655,7 +673,7 @@ const AddShipment = () => {
 
             <Grid container spacing={3} alignItems="center">
               <Grid item xs={12} md={3}>
-                <FormLabel>Total</FormLabel>
+                <FormLabel>{t('Total')}</FormLabel>
                 <TextField
                   name="total"
                   type="number"
@@ -669,7 +687,7 @@ const AddShipment = () => {
               </Grid>
 
               <Grid item xs={12} md={3}>
-                <FormLabel>Advance</FormLabel>
+                <FormLabel>{t('Advance')}</FormLabel>
                 <TextField
                   name="advance"
                   type="number"
@@ -684,7 +702,7 @@ const AddShipment = () => {
 
               <Grid item xs={12} md={3} container alignItems="center">
                 <Button variant="contained" color="primary" onClick={handleOpenAddForVendor}>
-                  Add Vendor
+                  {t('Add Vendor')}
                 </Button>
               </Grid>
             </Grid>
@@ -695,13 +713,13 @@ const AddShipment = () => {
           <Grid container>
             <Grid item xs={12}>
               <Typography variant="subtitle1" gutterBottom sx={{ fontSize: '1.3rem' }}>
-                Additional Expenses
+                {t('Additional Expenses')}
               </Typography>
             </Grid>
 
             <Grid container spacing={3}>
               <Grid item xs={12} md={2}>
-                <FormLabel>Transportation</FormLabel>
+                <FormLabel>{t('Transportation')}</FormLabel>
                 <TextField
                   name="transportation"
                   type="number"
@@ -715,7 +733,7 @@ const AddShipment = () => {
               </Grid>
 
               <Grid item xs={12} md={2}>
-                <FormLabel>Handling</FormLabel>
+                <FormLabel>{t('Handling')}</FormLabel>
                 <TextField
                   name="handling"
                   type="number"
@@ -729,7 +747,7 @@ const AddShipment = () => {
               </Grid>
 
               <Grid item xs={12} md={2}>
-                <FormLabel>Halting</FormLabel>
+                <FormLabel>{t('Halting')}</FormLabel>
                 <TextField
                   name="halting"
                   type="number"
@@ -743,7 +761,7 @@ const AddShipment = () => {
               </Grid>
 
               <Grid item xs={12} md={2}>
-                <FormLabel>Insurance</FormLabel>
+                <FormLabel>{t('Insurance')}</FormLabel>
                 <TextField
                   name="insurance"
                   type="number"
@@ -757,7 +775,7 @@ const AddShipment = () => {
               </Grid>
 
               <Grid item xs={12} md={2}>
-                <FormLabel>Cartage</FormLabel>
+                <FormLabel>{t('Cartage')}</FormLabel>
                 <TextField
                   name="cartage"
                   type="number"
@@ -771,7 +789,7 @@ const AddShipment = () => {
               </Grid>
 
               <Grid item xs={12} md={2}>
-                <FormLabel>Over weight</FormLabel>
+                <FormLabel>{t('Over weight')}</FormLabel>
                 <TextField
                   name="overweight"
                   type="number"
@@ -787,7 +805,7 @@ const AddShipment = () => {
 
             <Grid container spacing={3}>
               <Grid item xs={12} md={2}>
-                <FormLabel>ODC Charges</FormLabel>
+                <FormLabel>{t('ODC Charges')}</FormLabel>
                 <TextField
                   name="odcCharges"
                   type="number"
@@ -801,7 +819,7 @@ const AddShipment = () => {
               </Grid>
 
               <Grid item xs={12} md={2}>
-                <FormLabel>Tax Percent (%)</FormLabel>
+                <FormLabel>{t('Tax Percent (%)')}</FormLabel>
                 <TextField
                   name="taxPercent"
                   type="number"
@@ -815,7 +833,7 @@ const AddShipment = () => {
               </Grid>
 
               <Grid item xs={12} md={2}>
-                <FormLabel>Advance Paid</FormLabel>
+                <FormLabel>{t('Advance Paid')}</FormLabel>
                 <TextField
                   name="advancePaid"
                   type="number"
@@ -829,7 +847,7 @@ const AddShipment = () => {
               </Grid>
 
               <Grid item xs={12} md={2}>
-                <FormLabel>Discount</FormLabel>
+                <FormLabel>{t('Discount')}</FormLabel>
                 <TextField
                   name="discount"
                   type="number"
@@ -849,35 +867,35 @@ const AddShipment = () => {
           <Grid container>
             <Grid item xs={12}>
               <Typography variant="subtitle1" gutterBottom sx={{ fontSize: '1.3rem' }}>
-                Package Details
+                {t('Package Details')}
               </Typography>
             </Grid>
 
             <Grid item xs={12}>
               <TableContainer component={Paper}>
-                <Table aria-label="Package Details">
+                <Table aria-label={t('Package Details')}>
                   <TableHead>
                     <TableRow>
                       {/* <TableCell>#</TableCell> */}
-                      <TableCell>Description</TableCell>
-                      <TableCell>Invoice No</TableCell>
-                      <TableCell>Size</TableCell>
-                      <TableCell>Weight</TableCell>
-                      <TableCell>Quantity</TableCell>
-                      <TableCell>Cost</TableCell>
-                      <TableCell>Action</TableCell>
+                      <TableCell>{t('Description')}</TableCell>
+                      <TableCell>{t('Invoice No')}</TableCell>
+                      <TableCell>{t('Size')}</TableCell>
+                      <TableCell>{t('Weight')}</TableCell>
+                      <TableCell>{t('Quantity')}</TableCell>
+                      <TableCell>{t('Cost')}</TableCell>
+                      <TableCell>{t('Action')}</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {mode ? (
                       <>
                         <TableRow>
-                          <TableCell>{shipment?.packagedata?.description || 'N/A'}</TableCell>
-                          <TableCell>{shipment?.packagedata?.invoiceNumber || 'N/A'}</TableCell>
-                          <TableCell>{shipment?.packagedata?.size || 'N/A'}</TableCell>
-                          <TableCell>{shipment?.packagedata?.weight || 'N/A'}</TableCell>
-                          <TableCell>{shipment?.packagedata?.quantity || 'N/A'}</TableCell>
-                          <TableCell>{shipment?.packagedata?.value || 'N/A'}</TableCell>
+                          <TableCell>{shipment?.packagedata?.description || t('N/A')}</TableCell>
+                          <TableCell>{shipment?.packagedata?.invoiceNumber || t('N/A')}</TableCell>
+                          <TableCell>{shipment?.packagedata?.size || t('N/A')}</TableCell>
+                          <TableCell>{shipment?.packagedata?.weight || t('N/A')}</TableCell>
+                          <TableCell>{shipment?.packagedata?.quantity || t('N/A')}</TableCell>
+                          <TableCell>{shipment?.packagedata?.value || t('N/A')}</TableCell>
                           {packageDetails ? (
                             <>
                               <TableCell>
@@ -890,32 +908,32 @@ const AddShipment = () => {
                               </TableCell>
                             </>
                           ) : (
-                            <TableCell>No Action Available</TableCell>
+                            <TableCell>{t('No Action Available')}</TableCell>
                           )}
                         </TableRow>
                       </>
                     ) : (
                       <>
                         <TableRow>
-                          <TableCell>{packageDetails?.description || 'N/A'}</TableCell>
-                          <TableCell>{packageDetails?.invoiceNumber || 'N/A'}</TableCell>
-                          <TableCell>{packageDetails?.size || 'N/A'}</TableCell>
-                          <TableCell>{packageDetails?.weight || 'N/A'}</TableCell>
-                          <TableCell>{packageDetails?.quantity || 'N/A'}</TableCell>
-                          <TableCell>{packageDetails?.declaredValue || 'N/A'}</TableCell>
+                          <TableCell>{packageDetails?.description || t('N/A')}</TableCell>
+                          <TableCell>{packageDetails?.invoiceNumber || t('N/A')}</TableCell>
+                          <TableCell>{packageDetails?.size || t('N/A')}</TableCell>
+                          <TableCell>{packageDetails?.weight || t('N/A')}</TableCell>
+                          <TableCell>{packageDetails?.quantity || t('N/A')}</TableCell>
+                          <TableCell>{packageDetails?.declaredValue || t('N/A')}</TableCell>
                           {packageDetails ? (
                             <>
                               <TableCell>
                                 <IconButton aria-label="edit">
                                   <EditIcon />
                                 </IconButton>
-                                <IconButton aria-label="edit">
+                                <IconButton aria-label="clear">
                                   <ClearIcon />
                                 </IconButton>
                               </TableCell>
                             </>
                           ) : (
-                            <TableCell>No Action Available</TableCell>
+                            <TableCell>{t('No Action Available')}</TableCell>
                           )}
                         </TableRow>
                       </>
@@ -923,7 +941,7 @@ const AddShipment = () => {
                     <TableRow>
                       <TableCell colSpan={8}>
                         <Button variant="contained" onClick={handleOpenAddForPackage}>
-                          Add
+                          {t('Add')}
                         </Button>
                       </TableCell>
                     </TableRow>
@@ -938,64 +956,64 @@ const AddShipment = () => {
           <Grid container>
             <Grid item xs={12}>
               <Typography variant="subtitle1" gutterBottom sx={{ fontSize: '1.3rem' }}>
-                Insurance Details
+                {t('Insurance Details')}
               </Typography>
             </Grid>
 
             <Grid item xs={12}>
               <TableContainer component={Paper}>
-                <Table aria-label="Package Details">
+                <Table aria-label={t('Package Details')}>
                   <TableHead>
                     <TableRow>
                       {/* <TableCell>#</TableCell> */}
-                      <TableCell>Eway Bill</TableCell>
-                      <TableCell>Insurance No</TableCell>
-                      <TableCell>Insurance Agent</TableCell>
-                      <TableCell>Action</TableCell>
+                      <TableCell>{t('Eway Bill')}</TableCell>
+                      <TableCell>{t('Insurance No')}</TableCell>
+                      <TableCell>{t('Insurance Agent')}</TableCell>
+                      <TableCell>{t('Action')}</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {mode ? (
                       <>
                         <TableRow>
-                          <TableCell>{shipment.insurancedata.eway_bill || 'N/A'}</TableCell>
-                          <TableCell>{shipment.insurancedata.insurance_no || 'N/A'}</TableCell>
-                          <TableCell>{shipment.insurancedata.insurance_agent || 'N/A'}</TableCell>
+                          <TableCell>{shipment.insurancedata.eway_bill || t('N/A')}</TableCell>
+                          <TableCell>{shipment.insurancedata.insurance_no || t('N/A')}</TableCell>
+                          <TableCell>{shipment.insurancedata.insurance_agent || t('N/A')}</TableCell>
                           {insuranceDetails ? (
                             <>
                               <TableCell>
                                 <IconButton aria-label="edit" onClick={handleEditClickForInsurance}>
                                   <EditIcon />
                                 </IconButton>
-                                <IconButton aria-label="edit">
+                                <IconButton aria-label="clear">
                                   <ClearIcon />
                                 </IconButton>
                               </TableCell>
                             </>
                           ) : (
-                            <TableCell>No Action Available</TableCell>
+                            <TableCell>{t('No Action Available')}</TableCell>
                           )}
                         </TableRow>
                       </>
                     ) : (
                       <>
                         <TableRow>
-                          <TableCell>{insuranceDetails?.ewayBill || 'N/A'}</TableCell>
-                          <TableCell>{insuranceDetails?.insuranceNo || 'N/A'}</TableCell>
-                          <TableCell>{insuranceDetails?.insuranceAgent || 'N/A'}</TableCell>
+                          <TableCell>{insuranceDetails?.ewayBill || t('N/A')}</TableCell>
+                          <TableCell>{insuranceDetails?.insuranceNo || t('N/A')}</TableCell>
+                          <TableCell>{insuranceDetails?.insuranceAgent || t('N/A')}</TableCell>
                           {insuranceDetails ? (
                             <>
                               <TableCell>
                                 <IconButton aria-label="edit">
                                   <EditIcon />
                                 </IconButton>
-                                <IconButton aria-label="edit">
+                                <IconButton aria-label="clear">
                                   <ClearIcon />
                                 </IconButton>
                               </TableCell>
                             </>
                           ) : (
-                            <TableCell>No Action Available</TableCell>
+                            <TableCell>{t('No Action Available')}</TableCell>
                           )}
                         </TableRow>
                       </>
@@ -1003,7 +1021,7 @@ const AddShipment = () => {
                     <TableRow>
                       <TableCell colSpan={8}>
                         <Button variant="contained" onClick={handleOpenAddForInsurance}>
-                          Add
+                          {t('Add')}
                         </Button>
                       </TableCell>
                     </TableRow>
@@ -1018,18 +1036,18 @@ const AddShipment = () => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Typography variant="subtitle1" gutterBottom sx={{ fontSize: '1.3rem' }}>
-                Text Details
+                {t('Text Details')}
               </Typography>
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography variant="subtitle1" align="left" sx={{ mb: 2, fontSize: '1rem' }}>
-                Total Taxes
+                {t('Total Taxes')}
               </Typography>
               <Typography variant="subtitle1" align="left" sx={{ mb: 2, fontSize: '1rem' }}>
-                Total
+                {t('Total')}
               </Typography>
               <Typography variant="subtitle1" align="left" sx={{ mb: 2, fontSize: '1rem' }}>
-                Balance
+                {t('Balance')}
               </Typography>
             </Grid>
 
@@ -1068,7 +1086,7 @@ const AddShipment = () => {
           <Grid container>
             <Grid item xs={12} md={6}>
               <TextField
-                label="remarks"
+                label={t('Remarks')}
                 name="remarks"
                 multiline
                 rows={4}
@@ -1085,7 +1103,7 @@ const AddShipment = () => {
             <Grid item xs={12} md={2}>
               <FormControl component="fieldset">
                 <FormLabel id="demo-controlled-radio-buttons-group" sx={{ fontSize: '1rem' }} variant="subtitle1">
-                  Bill To
+                  {t('Bill To')}
                 </FormLabel>
                 <RadioGroup
                   aria-labelledby="demo-controlled-radio-buttons-group"
@@ -1093,8 +1111,8 @@ const AddShipment = () => {
                   value={formik.values.billToOption}
                   onChange={formik.handleChange}
                 >
-                  <FormControlLabel value="Consignor" control={<Radio />} label="Consignor" />
-                  <FormControlLabel value="Consignee" control={<Radio />} label="Consignee" />
+                  <FormControlLabel value="Consignor" control={<Radio />} label={t('Consignor')} />
+                  <FormControlLabel value="Consignee" control={<Radio />} label={t('Consignee')} />
                 </RadioGroup>
               </FormControl>
             </Grid>
@@ -1103,10 +1121,10 @@ const AddShipment = () => {
           <Grid container>
             <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-start', gap: 3, mt: 2 }}>
               <Button variant="contained" color="primary" type="submit">
-                Save
+                {t('Save')}
               </Button>
               <Button variant="outlined" color="secondary" type="reset">
-                Reset
+                {t('Reset')}
               </Button>
             </Grid>
           </Grid>

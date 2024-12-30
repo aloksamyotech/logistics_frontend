@@ -17,6 +17,7 @@ import { FormLabel } from '@mui/material';
 import { useState } from 'react';
 import { postApi } from 'views/services/api';
 import { useEffect } from 'react';
+import { t } from 'i18next';
 
 const AddInsurance = (props) => {
   const { open, handleClose, insuranceData, editData } = props;
@@ -83,7 +84,7 @@ const AddInsurance = (props) => {
             // color: "white",
           }}
         >
-          <Typography variant="h6">Insurance Details</Typography>
+          <Typography variant="h6">{t('Insurance Details')}</Typography>
           <Typography>
             <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
           </Typography>
@@ -97,7 +98,7 @@ const AddInsurance = (props) => {
                   <TextField
                     id="ewayBill"
                     name="ewayBill"
-                    label="Eway Bill"
+                    label={t('Eway Bill')}
                     size="small"
                     fullWidth
                     value={formik.values.ewayBill}
@@ -111,7 +112,7 @@ const AddInsurance = (props) => {
                   <TextField
                     id="insuranceNo"
                     name="insuranceNo"
-                    label="Insurance No"
+                    label={t('Insurance No')}
                     size="small"
                     fullWidth
                     value={formik.values.insuranceNo}
@@ -125,7 +126,7 @@ const AddInsurance = (props) => {
                   <TextField
                     id="insuranceAgent"
                     name="insuranceAgent"
-                    label="Insurance Agent"
+                    label={t('Insurance Agent')}
                     size="small"
                     fullWidth
                     value={formik.values.insuranceAgent}
@@ -140,7 +141,7 @@ const AddInsurance = (props) => {
         </DialogContent>
         <DialogActions>
           <Button type="submit" variant="contained" onClick={formik.handleSubmit} style={{ textTransform: 'capitalize' }} color="secondary">
-            Save
+            {'Save'}
           </Button>
           <Button
             type="reset"
@@ -152,7 +153,7 @@ const AddInsurance = (props) => {
             }}
             color="error"
           >
-            Cancel
+            {t('Cancel')}
           </Button>
         </DialogActions>
       </Dialog>

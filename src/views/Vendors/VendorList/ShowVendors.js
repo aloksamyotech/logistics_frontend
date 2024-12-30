@@ -16,6 +16,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import SearchBar from 'views/Quotes/Searchbar';
 import { Link as RouterLink } from 'react-router-dom';
 import { t } from 'i18next';
+import { useNavigate } from 'react-router-dom';
 // ----------------------------------------------------------------------
 
 const leadData = [
@@ -35,6 +36,7 @@ const leadData = [
 ];
 
 const VendorList = () => {
+  const nevigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
   // State to manage the popover
   const [anchorEl, setAnchorEl] = useState(null);
@@ -67,6 +69,7 @@ const VendorList = () => {
   const handleView = () => {
     // Implement view functionality
     console.log('View clicked for:', selectedRow);
+    nevigate(`/admin/view_customer/${selectedRow?._id}`);
     handlePopoverClose();
   };
 
@@ -106,24 +109,24 @@ const VendorList = () => {
   const columns = [
     {
       field: 'name',
-      headerName: 'Name',
+      headerName: t('Name'),
       flex: 1,
       cellClassName: 'name-column--cell name-column--cell--capitalize'
     },
     {
       field: 'email',
-      headerName: 'Email',
+      headerName: t('Email'),
       flex: 1,
       cellClassName: 'name-column--cell--capitalize'
     },
     {
       field: 'phoneno',
-      headerName: 'Phone',
+      headerName: t('Phone'),
       flex: 1
     },
     {
       field: 'status',
-      headerName: 'Status',
+      headerName: t('Status'),
       flex: 1,
       renderCell: (params) => {
         return (
@@ -151,7 +154,7 @@ const VendorList = () => {
     },
     {
       field: 'action',
-      headerName: 'Action',
+      headerName: t('Action'),
       flex: 0.5,
       sortable: false,
       filterable: false,
@@ -182,10 +185,10 @@ const VendorList = () => {
       <HomeIcon color="secondary" />
     </Link>,
     <Link underline="hover" key="2" color="inherit" to="/admin/dashboard" component={RouterLink}>
-      Dashboard
+      {t('Dashboard')}
     </Link>,
     <Typography key="3" sx={{ color: 'text.primary' }}>
-      List
+      {t('List')}
     </Typography>
   ];
 
@@ -233,7 +236,7 @@ const VendorList = () => {
                   startIcon={<Iconify icon="eva:plus-fill" />}
                   onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  Add Vendor
+                  {t('Add Vendor')}
                 </Button>
                 <Stack direction="row" alignItems="center" justifyContent="flex-end" spacing={2}>
                   <Button
@@ -242,7 +245,7 @@ const VendorList = () => {
                     startIcon={<CloudDownloadIcon />}
                     // onClick={handleOpenAdd} // Uncomment if needed
                   >
-                    Excel
+                    {t('Excel')}
                   </Button>
                 </Stack>
               </Stack>
@@ -267,15 +270,15 @@ const VendorList = () => {
         >
           <MenuItem onClick={handleEdit}>
             <EditIcon sx={{ mr: 1 }} />
-            Edit
+            {t('Edit')}
           </MenuItem>
           <MenuItem onClick={handleView}>
             <VisibilityIcon sx={{ mr: 1, color: 'green' }} />
-            View
+            {t('View')}
           </MenuItem>
           <MenuItem onClick={handleDelete}>
             <DeleteIcon sx={{ mr: 1, color: 'red' }} />
-            Delete
+            {t('Delete')}
           </MenuItem>
         </Popover>
       </Box>

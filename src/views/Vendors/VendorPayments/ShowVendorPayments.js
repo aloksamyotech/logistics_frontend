@@ -73,28 +73,28 @@ const ShowVendorPayments = () => {
   const columns = [
     {
       field: 'id',
-      headerName: 'Id'
+      headerName: t('Id') // Use translation for "Id"
     },
     {
       field: 'name',
-      headerName: 'Name',
+      headerName: t('Name'), // Use translation for "Name"
       flex: 1,
       cellClassName: 'name-column--cell name-column--cell--capitalize'
     },
     {
       field: 'email',
-      headerName: 'Email',
+      headerName: t('Email'), // Use translation for "Email"
       flex: 1,
       cellClassName: 'name-column--cell--capitalize'
     },
     {
       field: 'phone',
-      headerName: 'Phone',
+      headerName: t('Phone'), // Use translation for "Phone"
       flex: 1
     },
     {
       field: 'action',
-      headerName: 'Action',
+      headerName: t('Action'), // Use translation for "Action"
       flex: 0.5,
       sortable: false,
       filterable: false,
@@ -112,15 +112,16 @@ const ShowVendorPayments = () => {
       )
     }
   ];
+
   const breadcrumbs = [
     <Link underline="hover" key="1" color="inherit">
       <HomeIcon color="secondary" />
     </Link>,
     <Link underline="hover" key="2" color="inherit" to="/admin/dashboard" component={RouterLink}>
-      Dashboard
+      {t('Dashboard')} {/* Use translation for "Dashboard" */}
     </Link>,
     <Typography key="3" sx={{ color: 'text.primary' }}>
-      Payment
+      {t('Payment')} {/* Use translation for "Payment" */}
     </Typography>
   ];
 
@@ -148,7 +149,7 @@ const ShowVendorPayments = () => {
         >
           <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
             <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
-              {t('Vendor Payment')}
+              {t('Vendor Payment')} {/* Use translation for "Vendor Payment" */}
             </Typography>
             <Stack spacing={2}>
               <Breadcrumbs separator="›" aria-label="breadcrumb">
@@ -169,9 +170,8 @@ const ShowVendorPayments = () => {
                   variant="contained"
                   sx={{ backgroundColor: '#e02d1b', width: 10, height: 25 }}
                   startIcon={<SimCardDownloadIcon />}
-                  // onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  PDF
+                  {t('PDF')} {/* Use translation for "PDF" */}
                 </Button>
 
                 <Button
@@ -179,19 +179,11 @@ const ShowVendorPayments = () => {
                   variant="contained"
                   sx={{ backgroundColor: '#1cc88a', width: 10, height: 25 }}
                   startIcon={<CloudDownloadIcon />}
-                  // onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  Excel
+                  {t('Excel')}
                 </Button>
               </Stack>
-              <DataGrid
-                rows={leadData}
-                columns={columns}
-                // checkboxSelection
-                getRowId={(row) => row.id}
-                // components={{ Toolbar: GridToolbar }}
-                // componentsProps={{ toolbar: { showQuickFilter: true } }}
-              />
+              <DataGrid rows={leadData} columns={columns} getRowId={(row) => row.id} />
             </Card>
           </Box>
         </TableStyle>
@@ -212,15 +204,15 @@ const ShowVendorPayments = () => {
         >
           <MenuItem onClick={handleEdit}>
             <EditIcon sx={{ mr: 1 }} />
-            Edit
+            {t('Edit')} {/* Use translation for "Edit" */}
           </MenuItem>
           <MenuItem onClick={handleView}>
             <VisibilityIcon sx={{ mr: 1, color: 'green' }} />
-            View
+            {t('View')} {/* Use translation for "View" */}
           </MenuItem>
           <MenuItem onClick={handleDelete}>
             <DeleteIcon sx={{ mr: 1, color: 'red' }} />
-            Delete
+            {t('Delete')} {/* Use translation for "Delete" */}
           </MenuItem>
         </Popover>
       </Box>

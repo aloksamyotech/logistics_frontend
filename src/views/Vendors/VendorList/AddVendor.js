@@ -14,23 +14,24 @@ import * as yup from 'yup';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { postApi, patchApi } from 'views/services/api';
+import { t } from 'i18next'; // Importing the translation function
 
 const AddVendor = (props) => {
   const { open, handleClose, data } = props;
   console.log('props ====>', props);
 
   const validationSchemaForAdd = yup.object({
-    email: yup.string().email().required('Email is Required'),
-    password: yup.string().required('Password is Required'),
-    name: yup.string().required('Name is Required'),
-    phoneno: yup.string().required('Phone is Required'),
-    usernote: yup.string().required('usernote is Required'),
+    email: yup.string().email().required(t('Email is Required')), // Using translation
+    password: yup.string().required(t('Password is Required')),
+    name: yup.string().required(t('Name is Required')),
+    phoneno: yup.string().required(t('Phone is Required')),
+    usernote: yup.string().required(t('Usernote is Required'))
   });
 
   const validationSchemaForEdit = yup.object({
-    name: yup.string().required('Name is Required'),
-    phoneno: yup.string().required('Phone is Required'),
-    usernote: yup.string().required('usernote is Required'),
+    name: yup.string().required(t('Name is Required')),
+    phoneno: yup.string().required(t('Phone is Required')),
+    usernote: yup.string().required(t('Usernote is Required'))
   });
 
   const initialValuesForAdd = {
@@ -39,29 +40,29 @@ const AddVendor = (props) => {
     name: '',
     phoneno: '',
     usernote: '',
-    role: 'Vendor',
+    role: 'Vendor'
   };
 
   const initialValuesForEdit = {
     name: '',
     phoneno: '',
-    usernote: '',
+    usernote: ''
   };
 
   const formik = useFormik({
     initialValues: data ? initialValuesForEdit : initialValuesForAdd,
     validationSchema: data ? validationSchemaForEdit : validationSchemaForAdd,
     enableReinitialize: true,
-    
+
     onSubmit: async (values, { resetForm }) => {
       console.log('values ===========>', values);
       try {
         values.created_by = JSON.parse(localStorage.getItem('user'))._id;
-        
+
         if (data) {
           patchApi(`/user/updateone/${data._id}`, values)
             .then((response) => {
-              toast.success('Data Updated Successfully');
+              toast.success(t('Data Updated Successfully')); // Translated success message
               resetForm();
               handleClose();
             })
@@ -71,7 +72,7 @@ const AddVendor = (props) => {
         } else {
           postApi('/user/add', values)
             .then((response) => {
-              toast.success('Data Added Successfully');
+              toast.success(t('Data Added Successfully')); // Translated success message
               resetForm();
               handleClose();
             })
@@ -90,20 +91,16 @@ const AddVendor = (props) => {
       formik.setValues({
         name: data?.name || '',
         phoneno: data?.phoneno || '',
-        usernote: data?.usernote || '',
+        usernote: data?.usernote || ''
       });
     }
   }, [open, data]);
 
-
   return (
     <Dialog open={open} aria-labelledby="scroll-dialog-title" aria-describedby="scroll-dialog-description">
       <form onSubmit={formik.handleSubmit}>
-        <DialogTitle
-          id="scroll-dialog-title"
-          style={{ display: 'flex', justifyContent: 'space-between' }}
-        >
-          <Typography variant="h6">{data ? 'Edit Vendor' : 'Create Vendor'}</Typography>
+        <DialogTitle id="scroll-dialog-title" style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Typography variant="h6">{data ? t('Edit Vendor') : t('Create Vendor')}</Typography> {/* Translated title */}
           <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
         </DialogTitle>
 
@@ -115,7 +112,7 @@ const AddVendor = (props) => {
                   <TextField
                     id="email"
                     name="email"
-                    label="Email"
+                    label={t('Email')} // Translated label
                     size="small"
                     fullWidth
                     value={formik.values.email}
@@ -131,7 +128,7 @@ const AddVendor = (props) => {
                   <TextField
                     id="password"
                     name="password"
-                    label="Password"
+                    label={t('Password')} // Translated label
                     size="small"
                     fullWidth
                     value={formik.values.password}
@@ -147,7 +144,7 @@ const AddVendor = (props) => {
                   id="name"
                   name="name"
                   size="small"
-                  label="Name"
+                  label={t('Name')} // Translated label
                   fullWidth
                   value={formik.values.name}
                   onChange={formik.handleChange}
@@ -161,7 +158,7 @@ const AddVendor = (props) => {
                   id="phoneno"
                   name="phoneno"
                   size="small"
-                  label="Phone Number"
+                  label={t('Phone Number')} // Translated label
                   fullWidth
                   value={formik.values.phoneno}
                   onChange={formik.handleChange}
@@ -172,7 +169,7 @@ const AddVendor = (props) => {
 
               <Grid item xs={12}>
                 <TextField
-                  label="User Notes - For Internal use Only"
+                  label={t('User Notes - For Internal use Only')} // Translated label
                   name="usernote"
                   multiline
                   rows={4}
@@ -190,7 +187,7 @@ const AddVendor = (props) => {
 
         <DialogActions>
           <Button type="submit" variant="contained" style={{ textTransform: 'capitalize' }} color="secondary">
-            Save
+            {t('Save')} {/* Translated button text */}
           </Button>
           <Button
             type="button"
@@ -202,7 +199,7 @@ const AddVendor = (props) => {
             }}
             color="error"
           >
-            Cancel
+            {t('Cancel')} {/* Translated button text */}
           </Button>
         </DialogActions>
       </form>
@@ -211,4 +208,3 @@ const AddVendor = (props) => {
 };
 
 export default AddVendor;
-

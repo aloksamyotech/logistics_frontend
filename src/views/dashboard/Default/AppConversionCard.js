@@ -6,6 +6,7 @@ import { Box, Card, CardHeader } from '@mui/material';
 import { fNumber } from '../../../utils/formatNumber';
 // components
 import { useChart } from '../../../ui-component/chart';
+import { t } from 'i18next';
 
 // ----------------------------------------------------------------------
 

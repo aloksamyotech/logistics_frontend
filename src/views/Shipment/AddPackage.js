@@ -13,23 +13,23 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
 import { FormLabel } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { postApi, patchApi } from 'views/services/api';
-import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { t } from 'i18next'; // Importing i18next hook
 
 const AddPackage = (props) => {
   const { open, handleClose, packageData, editData } = props;
+
   console.log('props : ', props);
   console.log('editData for package  : ', editData);
 
   const validationSchema = yup.object({
-    description: yup.string().required('Description is required'),
-    invoiceNumber: yup.string().required('Invoice Number is required'),
-    size: yup.string().required('Size is required'),
-    weight: yup.string().required('Weight is required'),
-    quantity: yup.number().required('Quantity is required'),
-    declaredValue: yup.number().required('Declared Value is required')
+    description: yup.string().required(t('Description is required')),
+    invoiceNumber: yup.string().required(t('Invoice Number is required')),
+    size: yup.string().required(t('Size is required')),
+    weight: yup.string().required(t('Weight is required')),
+    quantity: yup.number().required(t('Quantity is required')),
+    declaredValue: yup.number().required(t('Declared Value is required'))
   });
 
   // -----------   initialValues
@@ -89,11 +89,9 @@ const AddPackage = (props) => {
           style={{
             display: 'flex',
             justifyContent: 'space-between'
-            // backgroundColor: "#2b4054",
-            // color: "white",
           }}
         >
-          <Typography variant="h6">Package Details</Typography>
+          <Typography variant="h6">{t('Package Details')}</Typography>
           <Typography>
             <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
           </Typography>
@@ -104,11 +102,10 @@ const AddPackage = (props) => {
             <DialogContentText id="scroll-dialog-description" tabIndex={-1}>
               <Grid container rowSpacing={2} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
                 <Grid item xs={12} sm={12} md={12}>
-                  {/* <FormLabel>Description</FormLabel> */}
                   <TextField
                     id="description"
                     name="description"
-                    label="Description"
+                    label={t('Description')}
                     size="small"
                     multiline
                     rows={4}
@@ -121,11 +118,10 @@ const AddPackage = (props) => {
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={4}>
-                  {/* <FormLabel>Invoice Number</FormLabel> */}
                   <TextField
                     id="invoiceNumber"
                     name="invoiceNumber"
-                    label="Invoice Number"
+                    label={t('Invoice Number')}
                     size="small"
                     fullWidth
                     value={formik.values.invoiceNumber}
@@ -135,12 +131,11 @@ const AddPackage = (props) => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={4}>
-                  {/* <FormLabel>Size</FormLabel> */}
                   <TextField
                     id="size"
                     name="size"
                     size="small"
-                    label="Size"
+                    label={t('Size')}
                     fullWidth
                     value={formik.values.size}
                     onChange={formik.handleChange}
@@ -149,12 +144,11 @@ const AddPackage = (props) => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={4}>
-                  {/* <FormLabel>Weight</FormLabel> */}
                   <TextField
                     id="weight"
                     name="weight"
                     size="small"
-                    label="Weight"
+                    label={t('Weight')}
                     fullWidth
                     value={formik.values.weight}
                     onChange={formik.handleChange}
@@ -164,11 +158,10 @@ const AddPackage = (props) => {
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={4}>
-                  {/* <FormLabel>Quantity</FormLabel> */}
                   <TextField
                     id="quantity"
                     name="quantity"
-                    label="Quantity"
+                    label={t('Quantity')}
                     size="small"
                     fullWidth
                     value={formik.values.quantity}
@@ -178,12 +171,11 @@ const AddPackage = (props) => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={4}>
-                  {/* <FormLabel>Declared Value</FormLabel> */}
                   <TextField
                     id="declaredValue"
                     name="declaredValue"
                     size="small"
-                    label="Declared Value"
+                    label={t('Declared Value')}
                     fullWidth
                     value={formik.values.declaredValue}
                     onChange={formik.handleChange}
@@ -197,7 +189,7 @@ const AddPackage = (props) => {
         </DialogContent>
         <DialogActions>
           <Button type="submit" variant="contained" onClick={formik.handleSubmit} style={{ textTransform: 'capitalize' }} color="secondary">
-            Save
+            {t('Save')}
           </Button>
           <Button
             type="reset"
@@ -209,7 +201,7 @@ const AddPackage = (props) => {
             }}
             color="error"
           >
-            Cancel
+            {t('Cancel')}
           </Button>
         </DialogActions>
       </Dialog>

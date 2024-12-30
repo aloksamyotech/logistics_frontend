@@ -20,6 +20,7 @@ import DeleteAdmin from './DeleteAdmin';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchBar from 'views/Quotes/Searchbar';
 import { Link as RouterLink } from 'react-router-dom';
+import { t } from 'i18next';
 
 // ----------------------------------------------------------------------
 
@@ -95,30 +96,30 @@ const SuperAdmin = () => {
   const columns = [
     {
       field: 'companyname',
-      headerName: 'Company Name',
+      headerName: t('Company Name'),
       flex: 1,
       cellClassName: 'name-column--cell--capitalize'
     },
     {
       field: 'name',
-      headerName: 'Name',
+      headerName: t('Name'),
       flex: 1,
       cellClassName: 'name-column--cell--capitalize'
     },
     {
       field: 'email',
-      headerName: 'Email',
+      headerName: t('Email'),
       flex: 1,
       cellClassName: 'name-column--cell--capitalize'
     },
     {
       field: 'phoneno',
-      headerName: 'Phone No',
+      headerName: t('Phone No'),
       flex: 1
     },
     {
       field: 'status',
-      headerName: 'Status',
+      headerName: t('Status'),
       flex: 1,
       renderCell: (params) => {
         return (
@@ -198,10 +199,10 @@ const SuperAdmin = () => {
       <HomeIcon color="secondary" />
     </Link>,
     <Link underline="hover" key="2" color="inherit" to="/admin/dashboard" component={RouterLink}>
-      Dashboard
+      {t('Dashboard')}
     </Link>,
     <Typography key="3" sx={{ color: 'text.primary' }}>
-      Admin List
+      {t('Admin List')}
     </Typography>
   ];
 
@@ -224,7 +225,7 @@ const SuperAdmin = () => {
         >
           <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
             <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
-              Admin List
+              {t('Admin List')}
             </Typography>
             <Stack spacing={2}>
               <Breadcrumbs separator="›" aria-label="breadcrumb">
@@ -247,7 +248,7 @@ const SuperAdmin = () => {
                   startIcon={<Iconify icon="eva:plus-fill" />}
                   onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  Add Admin
+                  {t('Add Admin')}
                 </Button>
               </Stack>
               <DataGrid
@@ -277,15 +278,15 @@ const SuperAdmin = () => {
         >
           <MenuItem onClick={handleEdit}>
             <EditIcon sx={{ mr: 1 }} />
-            Edit
+            {t('Edit')}
           </MenuItem>
           <MenuItem onClick={handleView}>
             <VisibilityIcon sx={{ mr: 1, color: 'green' }} />
-            View
+            {t('View')}
           </MenuItem>
           <MenuItem onClick={handleDelete}>
             <DeleteIcon sx={{ mr: 1, color: 'red' }} />
-            Delete
+            {t('Delete')}
           </MenuItem>
         </Popover>
       </Box>

@@ -19,6 +19,7 @@ import { MenuItem } from '@mui/material';
 import { Divider } from '@mui/material';
 import { postApi, getApi, patchApi } from 'views/services/api';
 import { useEffect } from 'react';
+import { t } from 'i18next';
 
 const AddCallLog = (props) => {
   const { open, handleClose, editData } = props;
@@ -43,9 +44,9 @@ const AddCallLog = (props) => {
   }, [editData]);
 
   const validationSchema = yup.object({
-    customer: yup.string().required('customer is required'),
-    duration: yup.string().required('Duration is required'),
-    feedback: yup.string().required('Feedback is required')
+    customer: yup.string().required(t('customer is required')),
+    duration: yup.string().required(t('Duration is required')),
+    feedback: yup.string().required(t('Feedback is required'))
   });
 
   // -----------   initialValues
@@ -77,8 +78,6 @@ const AddCallLog = (props) => {
         console.log('values===>', values);
 
         if (editData) {
-          
-
           patchApi(`/call/updatecalls/${editData._id}`, values)
             .then((response) => {
               console.log('response ==>', response);
@@ -116,7 +115,7 @@ const AddCallLog = (props) => {
             // color: "white",
           }}
         >
-          <Typography variant="h6">Create Call</Typography>
+          <Typography variant="h6">{t('Create Call')}</Typography>
           <Typography>
             <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
           </Typography>
@@ -127,7 +126,7 @@ const AddCallLog = (props) => {
             <DialogContentText id="scroll-dialog-description" tabIndex={-1}>
               <Grid container rowSpacing={2} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
                 <Grid item xs={12} sm={12} md={12}>
-                  <FormLabel>Select Customer</FormLabel>
+                  <FormLabel>{t('Select Customer')}</FormLabel>
                   <TextField
                     select
                     id="customer"
@@ -150,7 +149,7 @@ const AddCallLog = (props) => {
                   <TextField
                     id="duration"
                     name="duration"
-                    label="Duration"
+                    label={t('Duration')}
                     size="small"
                     fullWidth
                     value={formik.values.duration}
@@ -163,7 +162,7 @@ const AddCallLog = (props) => {
                   <TextField
                     id="feedback"
                     name="feedback"
-                    label="Feedback..."
+                    label={t('Feedback...')}
                     size="small"
                     multiline
                     rows={4}
@@ -180,10 +179,10 @@ const AddCallLog = (props) => {
         </DialogContent>
         <DialogActions>
           <Button type="submit" variant="contained" onClick={formik.handleSubmit} style={{ textTransform: 'capitalize' }} color="primary">
-            Save
+            {t('Save')}
           </Button>
           <Button type="submit" variant="contained" onClick={formik.handleSubmit} style={{ textTransform: 'capitalize' }} color="secondary">
-            Reset
+            {t('Reset')}
           </Button>
           <Button
             type="reset"
@@ -195,7 +194,7 @@ const AddCallLog = (props) => {
             }}
             color="error"
           >
-            Cancel
+            {t('Cancel')}
           </Button>
         </DialogActions>
       </Dialog>

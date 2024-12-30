@@ -16,7 +16,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { text } from '@fortawesome/fontawesome-svg-core';
 import SearchBar from 'views/Quotes/Searchbar';
 import { Link as RouterLink } from 'react-router-dom';
-
+import { t } from 'i18next';
 // ----------------------------------------------------------------------
 
 const StaffList = () => {
@@ -99,33 +99,33 @@ const StaffList = () => {
   const columns = [
     {
       field: 'role',
-      headerName: 'Role',
+      headerName: t('Role'),
       flex: 1
     },
     {
       field: 'name',
-      headerName: 'Name',
+      headerName: t('Name'),
       flex: 1,
       cellClassName: 'name-column--cell name-column--cell--capitalize'
     },
     {
       field: 'email',
-      headerName: 'Email',
+      headerName: t('Email'),
       flex: 1
     },
     {
       field: 'phoneno',
-      headerName: 'Phone Number',
+      headerName: t('Phone Number'),
       flex: 1
     },
     {
       field: 'usernote',
-      headerName: 'User Note',
+      headerName: t('User Note'),
       flex: 1
     },
     {
       field: 'action',
-      headerName: 'Action',
+      headerName: t('Action'),
       flex: 0.5,
       sortable: false,
       filterable: false,
@@ -143,15 +143,16 @@ const StaffList = () => {
       )
     }
   ];
+
   const breadcrumbs = [
     <Link underline="hover" key={1} color={'inherit'}>
-      <HomeIcon color="secondary"></HomeIcon>
+      <HomeIcon color="secondary" />
     </Link>,
     <Link underline="hover" key={2} color={'inherit'} to="/admin/dashboard" component={RouterLink}>
-      Dashboard
+      {t('Dashboard')}
     </Link>,
     <Link underline="hover" key={3} sx={{ color: 'text.primary' }}>
-      StaffList
+      {t('StaffList')}
     </Link>
   ];
 
@@ -174,7 +175,7 @@ const StaffList = () => {
         >
           <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
             <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
-              Staff List
+              {t('Staff List')}
             </Typography>
             <Stack spacing={2}>
               <Breadcrumbs separator="›" aria-label="breadcrumb">
@@ -184,35 +185,27 @@ const StaffList = () => {
           </Stack>
         </Container>
       </card>
+
       <Box mt={2}>
         <TableStyle>
           <Box width="100%">
             <Card sx={{ height: 600 }}>
               <Stack direction="row" alignItems="center" justifyContent="flex-end" spacing={2}>
-                <SearchBar></SearchBar>
+                <SearchBar />
                 <Button
                   size="small"
                   variant="contained"
                   sx={{ backgroundColor: '#1cc88a', width: 10, height: 25 }}
                   startIcon={<CloudDownloadIcon />}
-                  // onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  Excel
+                  {t('Excel')}
                 </Button>
               </Stack>
-              <DataGrid
-                rows={staffData}
-                columns={columns}
-                checkboxSelection
-                getRowId={(row) => row._id}
-                // components={{ Toolbar: GridToolbar }}
-                // componentsProps={{ toolbar: { showQuickFilter: true } }}
-              />
+              <DataGrid rows={staffData} columns={columns} checkboxSelection getRowId={(row) => row._id} />
             </Card>
           </Box>
         </TableStyle>
 
-        {/* Popover for Action Menu */}
         <Popover
           open={Boolean(anchorEl)}
           anchorEl={anchorEl}
@@ -228,15 +221,15 @@ const StaffList = () => {
         >
           <MenuItem onClick={handleEdit}>
             <EditIcon sx={{ mr: 1 }} />
-            Edit
+            {t('Edit')}
           </MenuItem>
           <MenuItem onClick={handleView}>
             <VisibilityIcon sx={{ mr: 1, color: 'green' }} />
-            View
+            {t('View')}
           </MenuItem>
           <MenuItem onClick={handleDelete}>
             <DeleteIcon sx={{ mr: 1, color: 'red' }} />
-            Delete
+            {t('Delete')}
           </MenuItem>
         </Popover>
       </Box>

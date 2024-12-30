@@ -8,6 +8,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import ClearIcon from '@mui/icons-material/Clear';
 import { postApi } from 'views/services/api';
+import { t } from 'i18next';
 
 const CreateCustomer = (props) => {
   const { open, handleClose } = props;
@@ -63,7 +64,7 @@ const CreateCustomer = (props) => {
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
       <DialogTitle>
-        <Typography variant="h6">Create Customer</Typography>
+        <Typography variant="h6">{t('Create Customer')}</Typography>
         <ClearIcon onClick={handleClose} style={{ cursor: 'pointer', float: 'right' }} />
       </DialogTitle>
       <DialogContent dividers>
@@ -71,7 +72,7 @@ const CreateCustomer = (props) => {
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
               <TextField
-                label="Email"
+                label={t('Email')}
                 name="email"
                 fullWidth
                 variant="outlined"
@@ -83,7 +84,7 @@ const CreateCustomer = (props) => {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                label="Password"
+                label={t('Password')}
                 name="password"
                 type="password"
                 fullWidth
@@ -97,7 +98,7 @@ const CreateCustomer = (props) => {
 
             <Grid item xs={12} md={6}>
               <TextField
-                label="Name"
+                label={t('Name')}
                 name="name"
                 fullWidth
                 variant="outlined"
@@ -109,7 +110,7 @@ const CreateCustomer = (props) => {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                label="Company Name"
+                label={t('Company Name')}
                 name="companyName"
                 fullWidth
                 variant="outlined"
@@ -122,7 +123,7 @@ const CreateCustomer = (props) => {
 
             <Grid item xs={12} md={6}>
               <TextField
-                label="GST No"
+                label={t('GST No')}
                 name="gstNo"
                 fullWidth
                 variant="outlined"
@@ -134,7 +135,7 @@ const CreateCustomer = (props) => {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                label="PhoneNo Number"
+                label={t('Phone No')}
                 name="phoneno"
                 fullWidth
                 variant="outlined"
@@ -149,7 +150,7 @@ const CreateCustomer = (props) => {
 
             <Grid item xs={12} md={6}>
               <TextField
-                label="Enter pincode to fetch address automatically"
+                label={t('Enter pincode to fetch address automatically')}
                 name="pincode"
                 fullWidth
                 variant="outlined"
@@ -162,7 +163,7 @@ const CreateCustomer = (props) => {
 
             <Grid item xs={12} md={6}>
               <TextField
-                label="Address"
+                label={t('Address')}
                 name="address"
                 multiline
                 rows={4}
@@ -177,7 +178,7 @@ const CreateCustomer = (props) => {
 
             <Grid item xs={12} md={6}>
               <TextField
-                label="User Notes - For internal use only."
+                label={t('User Notes - For internal use only.')}
                 name="userNotes"
                 multiline
                 rows={4}
@@ -190,7 +191,7 @@ const CreateCustomer = (props) => {
 
             <Grid item xs={12} container alignItems="center">
               <Grid item>
-                <Typography>Show Rates</Typography>
+                <Typography>{t('Show Rates')}</Typography>
               </Grid>
               <Grid item>
                 <Switch checked={formik.values.showRates} onChange={(e) => formik.setFieldValue('showRates', e.target.checked)} />
@@ -201,10 +202,10 @@ const CreateCustomer = (props) => {
       </DialogContent>
       <DialogActions>
         <Button type="submit" variant="contained" color="primary" onClick={formik.handleSubmit}>
-          Add Customer
+          {t('Add Customer')}
         </Button>
         <Button variant="outlined" color="secondary" onClick={handleClose}>
-          Cancel
+          {t('Cancel')}
         </Button>
       </DialogActions>
     </Dialog>

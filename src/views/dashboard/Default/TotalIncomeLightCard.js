@@ -10,7 +10,7 @@ import TotalIncomeCard from 'ui-component/cards/Skeleton/TotalIncomeCard';
 
 // assets
 import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
-
+import { t } from 'i18next';
 // styles
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   position: 'relative',
@@ -78,7 +78,7 @@ const TotalIncomeLightCard = ({ isLoading }) => {
                         mt: 0.5
                       }}
                     >
-                      Total Tasks
+                      {t('Total Tasks')}
                     </Typography>
                   }
                 />

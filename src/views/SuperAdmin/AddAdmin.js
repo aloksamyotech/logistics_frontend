@@ -17,7 +17,7 @@ import { FormLabel } from '@mui/material';
 import { useState } from 'react';
 import { postApi } from 'views/services/api.js';
 import { calcLength } from 'framer-motion';
-
+import { t } from 'i18next';
 const AddAdmin = (props) => {
   const { open, handleClose } = props;
   const validationSchema = yup.object({
@@ -52,7 +52,6 @@ const AddAdmin = (props) => {
         console.log('values.created_by ==>', values.created_by);
 
         postApi('/user/add', values)
-          
           .then((response) => {
             console.log('response ', response);
             resetForm();
@@ -83,7 +82,7 @@ const AddAdmin = (props) => {
             // color: "white",
           }}
         >
-          <Typography variant="h6">Create Admin</Typography>
+          <Typography variant="h6">{t('Create Admin')}</Typography>
           <Typography>
             <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
           </Typography>
@@ -98,7 +97,7 @@ const AddAdmin = (props) => {
                   <TextField
                     id="email"
                     name="email"
-                    label="Email"
+                    label={t('Email')}
                     size="small"
                     fullWidth
                     value={formik.values.email}
@@ -112,7 +111,7 @@ const AddAdmin = (props) => {
                   <TextField
                     id="password"
                     name="password"
-                    label="Password"
+                    label={t('Password')}
                     size="small"
                     fullWidth
                     value={formik.values.password}
@@ -128,7 +127,7 @@ const AddAdmin = (props) => {
                     id="name"
                     name="name"
                     size="small"
-                    label="Name"
+                    label={t('Name')}
                     fullWidth
                     value={formik.values.name}
                     onChange={formik.handleChange}
@@ -142,7 +141,7 @@ const AddAdmin = (props) => {
                     id="phoneno"
                     name="phoneno"
                     size="small"
-                    label="PhoneNumber"
+                    label={t('PhoneNumber')}
                     fullWidth
                     value={formik.values.phoneno}
                     onChange={formik.handleChange}
@@ -171,7 +170,7 @@ const AddAdmin = (props) => {
                     id="companyname"
                     name="companyname"
                     size="small"
-                    label="Company Name"
+                    label={t('Company Name')}
                     fullWidth
                     value={formik.values.companyname}
                     onChange={formik.handleChange}
@@ -184,7 +183,7 @@ const AddAdmin = (props) => {
                     id="address"
                     name="address"
                     size="small"
-                    label="Address"
+                    label={t('Address')}
                     fullWidth
                     multiline
                     rows={3}
@@ -200,7 +199,7 @@ const AddAdmin = (props) => {
         </DialogContent>
         <DialogActions>
           <Button type="submit" variant="contained" onClick={formik.handleSubmit} style={{ textTransform: 'capitalize' }} color="secondary">
-            Save
+            {t('Save')}
           </Button>
           <Button
             type="reset"
@@ -212,7 +211,7 @@ const AddAdmin = (props) => {
             }}
             color="error"
           >
-            Cancel
+            {t('Cancel')}
           </Button>
         </DialogActions>
       </Dialog>

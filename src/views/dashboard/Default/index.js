@@ -36,6 +36,7 @@ import FinancialEarning from './FinancialEarning';
 import LastFinancialEarning from './LastFinancialEarning';
 import ShipmentsOverview from './ShipmentOverview';
 import PaymentReceived from './PaymentReceived';
+import { t } from 'i18next';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
@@ -50,7 +51,7 @@ const Dashboard = () => {
     <Grid container spacing={gridSpacing}>
       <Grid container item xs={12}>
         <Grid item xs={6} spacing={gridSpacing}>
-          <Typography sx={{ fontSize: '2.3rem', fontFamily: 'inherit',color : '#5a5c69' }}>Dashboard</Typography>
+          <Typography sx={{ fontSize: '2.3rem', fontFamily: 'inherit', color: '#5a5c69' }}>{t('Dashboard')}</Typography>
         </Grid>
         {/* <Grid item xs={6}>
           <Grid sx={{ display: 'flex', mt: 2 }}>
@@ -107,7 +108,7 @@ const Dashboard = () => {
                 size="large"
                 sx={{ fontSize: '1rem', backgroundColor: '#e74a3b' }}
               >
-                Create Shipment
+                {t('Create Shipment')}
               </Button>
             </Grid>
             <Grid item xs={6}>
@@ -118,7 +119,7 @@ const Dashboard = () => {
                 size="large"
                 sx={{ fontSize: '1rem', backgroundColor: '#33ff74' }}
               >
-                Create Customer
+                {t('Create Customer')}
               </Button>
             </Grid>
             <Grid item xs={6}>
@@ -129,7 +130,7 @@ const Dashboard = () => {
                 size="large"
                 sx={{ fontSize: '1rem', backgroundColor: '#4169E1' }}
               >
-                Create Quotes
+                {t(' Create Quotes')}
               </Button>
             </Grid>
             <Grid item xs={6}>
@@ -140,7 +141,7 @@ const Dashboard = () => {
                 size="large"
                 sx={{ fontSize: '1rem', backgroundColor: '#2a96a5' }}
               >
-                Create Staff
+                {t(' Create Staff ')}
               </Button>
             </Grid>
           </Grid>
@@ -193,11 +194,11 @@ const Dashboard = () => {
         <Grid container spacing={gridSpacing}>
           <Grid item xs={12} md={8}>
             {/* <TotalGrowthBarChart isLoading={isLoading} /> */}
-            <ShipmentsOverview/>
+            <ShipmentsOverview />
           </Grid>
           <Grid item xs={12} md={4}>
             {/* <PopularCard isLoading={isLoading} /> */}
-            <PaymentReceived/>
+            <PaymentReceived />
           </Grid>
         </Grid>
       </Grid>

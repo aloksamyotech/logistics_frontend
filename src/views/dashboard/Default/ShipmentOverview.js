@@ -1,6 +1,7 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Label } from 'recharts';
 import { Card, CardContent, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const data = [
   { day: 'Sun', business: 0 },
@@ -13,20 +14,27 @@ const data = [
 ];
 
 const ShipmentsOverview = () => {
+  const { t } = useTranslation();
+
+  const translatedData = data.map((item) => ({
+    ...item,
+    day: t(item.day)
+  }));
+
   return (
     <Card>
       <CardContent>
         <Typography variant="subtitle1" gutterBottom sx={{ fontSize: '1.2rem', mb: 3 }}>
-          Shipments Overview
+          {t('Shipments Overview')}
         </Typography>
         <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={data}>
+          <LineChart data={translatedData}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} />
             <XAxis dataKey="day">
-              <Label value="Days" offset={-2} position="insideBottom"/>
+              <Label value={t('Days')} offset={-2} position="insideBottom" />
             </XAxis>
             <YAxis>
-              <Label value="Business" angle={-90} position="insideLeft" style={{ textAnchor: 'middle' }} />
+              <Label value={t('Business')} angle={-90} position="insideLeft" style={{ textAnchor: 'middle' }} />
             </YAxis>
             <Tooltip />
             <Line

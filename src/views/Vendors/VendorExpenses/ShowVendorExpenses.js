@@ -114,29 +114,29 @@ const ShowVendorExpenses = () => {
   const columns = [
     {
       field: 'vendordata.name',
-      headerName: 'Vendor Name',
+      headerName: t('Vendor Name'),
       flex: 1,
       cellClassName: 'name-column--cell name-column--cell--capitalize',
       renderCell: (params) => <Typography>{params.row.vendordata ? params.row.vendordata.name : 'N/A'}</Typography>
     },
     {
       field: 'name',
-      headerName: 'Name',
+      headerName: t('Name'),
       flex: 1
     },
     {
       field: 'amount',
-      headerName: 'Amount',
+      headerName: t('Amount'),
       flex: 1
     },
     {
       field: 'note',
-      headerName: 'note',
+      headerName: t('Note'),
       flex: 1
     },
     {
       field: 'action',
-      headerName: 'Action',
+      headerName: t('Action'),
       flex: 0.5,
       sortable: false,
       filterable: false,
@@ -167,10 +167,10 @@ const ShowVendorExpenses = () => {
       <HomeIcon color="secondary" />
     </Link>,
     <Link underline="hover" key="2" color="inherit" to="/admin/dashboard" component={RouterLink}>
-      Dashboard
+      {t('Dashboard')}
     </Link>,
     <Typography key="3" sx={{ color: 'text.primary' }}>
-      Expenses
+      {t('Expenses')}
     </Typography>
   ];
 
@@ -217,7 +217,7 @@ const ShowVendorExpenses = () => {
                   startIcon={<Iconify icon="eva:plus-fill" />}
                   onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  Add Expenses
+                  {t('Add Expenses')}
                 </Button>
 
                 <Button
@@ -227,7 +227,7 @@ const ShowVendorExpenses = () => {
                   startIcon={<SimCardDownloadIcon />}
                   // onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  PDF
+                  {t('PDF')}
                 </Button>
 
                 <Button
@@ -237,7 +237,7 @@ const ShowVendorExpenses = () => {
                   startIcon={<CloudDownloadIcon />}
                   // onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  Excel
+                  {t('Excel')}
                 </Button>
               </Stack>
               {/* </Stack> */}
@@ -269,15 +269,15 @@ const ShowVendorExpenses = () => {
         >
           <MenuItem onClick={handleEdit}>
             <EditIcon sx={{ mr: 1 }} />
-            Edit
+            {t('Edit')}
           </MenuItem>
           <MenuItem onClick={handleView}>
             <VisibilityIcon sx={{ mr: 1, color: 'green' }} />
-            View
+            {t('View')}
           </MenuItem>
           <MenuItem onClick={handleDelete}>
             <DeleteIcon sx={{ mr: 1, color: 'red' }} />
-            Delete
+            {t('Delete')}
           </MenuItem>
         </Popover>
       </Box>

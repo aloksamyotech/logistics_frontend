@@ -16,24 +16,28 @@ import { FormLabel } from '@mui/material';
 import { postApi } from 'views/services/api';
 import { useEffect, useState } from 'react';
 import { patchApi } from 'views/services/api';
-
+import AddQuotationDetails from 'views/Quotes/AddQuotetionDetails';
+import { t } from 'i18next';
 const AddPrice = (props) => {
   const { open, handleClose, editData } = props;
   console.log('editData ==>', editData);
 
   const validationSchema = yup.object({
-    from: yup.number().required('Location is required').min(0, 'should min from 0').max(0, 'should not gratter than 0'),
+    from: yup.number().required(t('Location is required')).min(0, t('Should min from 0')).max(0, t('Should not be greater than 0')),
+
     to: yup
       .number()
-      .required('Distance is required')
-      .min(1, 'Distance must be greater than 0')
-      .max(1000, 'distance can not be gratter than'),
-    lcv: yup.number().required('LCV Price is required').max(100000, 'should not gratter than amount 100000'),
+      .required(t('Distance is required'))
+      .min(1, t('Distance must be greater than 0'))
+      .max(1000, t('Distance cannot be greater than 1000')),
+
+    lcv: yup.number().required(t('LCV Price is required')).max(100000, t('Should not be greater than amount 100000')),
+
     openTruck: yup
       .number()
-      .required('Open Truck Price is required')
-      .min(1, 'gratter than 1 is required')
-      .max(1000, 'not should gratter than 1000')
+      .required(t('Open Truck Price is required'))
+      .min(1, t('Greater than 1 is required'))
+      .max(1000, t('Should not be greater than 1000'))
   });
 
   const initialValues = {
@@ -116,6 +120,7 @@ const AddPrice = (props) => {
 
   return (
     <div>
+      {/* <AddQuotationDetails></AddQuotationDetails> */}
       <Dialog open={open} aria-labelledby="scroll-dialog-title" aria-describedby="scroll-dialog-description" maxWidth="xs">
         <DialogTitle
           id="scroll-dialog-title"
@@ -124,7 +129,7 @@ const AddPrice = (props) => {
             justifyContent: 'space-between'
           }}
         >
-          <Typography variant="h6">Add Price </Typography>
+          <Typography variant="h6">{t('Add Price')} </Typography>
           <Typography>
             <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
           </Typography>
@@ -135,7 +140,7 @@ const AddPrice = (props) => {
             <DialogContentText id="scroll-dialog-description" tabIndex={-1}>
               <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
                 <Grid item xs={12} sm={12}>
-                  <FormLabel>From</FormLabel>
+                  <FormLabel>{t('From')}</FormLabel>
                   <TextField
                     id="from"
                     name="from"
@@ -148,7 +153,7 @@ const AddPrice = (props) => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={12}>
-                  <FormLabel>To (Distance in km)</FormLabel>
+                  <FormLabel>{t('To (Distance in km)')}</FormLabel>
                   <TextField
                     id="to"
                     name="to"
@@ -163,7 +168,7 @@ const AddPrice = (props) => {
                 </Grid>
 
                 <Grid item xs={12} sm={12}>
-                  <FormLabel>LCV Price</FormLabel>
+                  <FormLabel>{t('LCV Price')}</FormLabel>
                   <TextField
                     id="lcv"
                     name="lcv"
@@ -178,7 +183,7 @@ const AddPrice = (props) => {
                 </Grid>
 
                 <Grid item xs={12} sm={12}>
-                  <FormLabel>28Fit Open Truck Price</FormLabel>
+                  <FormLabel>{t('28Fit Open Truck Price')}</FormLabel>
                   <TextField
                     id="openTruck"
                     name="openTruck"
@@ -197,7 +202,7 @@ const AddPrice = (props) => {
         </DialogContent>
         <DialogActions>
           <Button type="submit" variant="contained" onClick={formik.handleSubmit} style={{ textTransform: 'capitalize' }} color="secondary">
-            Save
+            {t('Save')}
           </Button>
           <Button
             type="reset"
@@ -209,7 +214,7 @@ const AddPrice = (props) => {
             }}
             color="error"
           >
-            Cancel
+            {t('Cancel')}
           </Button>
         </DialogActions>
       </Dialog>

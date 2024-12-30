@@ -7,7 +7,7 @@ import SkeletonTotalOrderCard from 'ui-component/cards/Skeleton/EarningCard';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import CurrencyRupeeTwoToneIcon from '@mui/icons-material/CurrencyRupeeTwoTone';
 import TextSnippetRoundedIcon from '@mui/icons-material/TextSnippetRounded';
-
+import { t } from 'i18next';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: '#fff',
@@ -32,19 +32,19 @@ const TotalQuotation = ({ isLoading }) => {
       ) : (
         <CardWrapper border={false} content={false}>
           <Box>
-            <Grid container direction="column" sx={{ marginY : 2}}>
+            <Grid container direction="column" sx={{ marginY: 2 }}>
               <Grid item>
                 <Typography variant="h6" sx={{ color: '#36b9cc', fontSize: '0.9rem', fontWeight: 'bold' }}>
-                  TOTAL QUOTATIONS
+                  {t('TOTAL QUOTATIONS')}
                 </Typography>
               </Grid>
               <Grid item>
                 <Grid container alignItems="center">
-                  <Grid item xs={6} container >
-                    <Typography variant="h6" sx={{display : 'flex', alignItems: 'center'}}>
+                  <Grid item xs={6} container>
+                    <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center' }}>
                       {/* <CurrencyRupeeIcon fontSize="small" sx={{ color: '#5D3FD3' }} /> */}
                       <Typography variant="h6" sx={{ display: 'inline-block', fontSize: '1.2rem', fontWeight: 400, color: '#5a5c69' }}>
-                       0
+                        0
                       </Typography>
                     </Typography>
                   </Grid>
@@ -73,4 +73,3 @@ TotalQuotation.propTypes = {
 };
 
 export default TotalQuotation;
-

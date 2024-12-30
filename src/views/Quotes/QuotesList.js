@@ -15,7 +15,7 @@ import DeleteQuote from './DeleteQuote';
 import SearchBar from './Searchbar';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link as RouterLink } from 'react-router-dom';
-
+import { t } from 'i18next';
 // ----------------------------------------------------------------------
 
 const QuotesList = () => {
@@ -99,36 +99,36 @@ const QuotesList = () => {
   const columns = [
     {
       field: 'quotationNo',
-      headerName: 'Quotation Number',
+      headerName: t('Quotation Number'),
       flex: 1,
       cellClassName: 'name-column--cell name-column--cell--capitalize'
     },
     {
       field: 'customerdata.name',
-      headerName: 'Customer Name',
+      headerName: t('Customer Name'),
       flex: 1,
       renderCell: (params) => <Typography>{params.row.customerdata ? params.row.customerdata.name : 'N/A'}</Typography>
     },
     {
       field: 'from',
-      headerName: 'From',
+      headerName: t('From'),
       flex: 1,
       renderCell: (params) => <Typography>{params.row.quotedata ? params.row.quotedata.from : 'N/A'}</Typography>
     },
     {
       field: 'to',
-      headerName: 'To',
+      headerName: t('To'),
       flex: 1,
       renderCell: (params) => <Typography>{params.row.quotedata ? params.row.quotedata.to : 'N/A'}</Typography>
     },
     {
       field: 'status',
-      headerName: 'Status',
+      headerName: t('Status'),
       flex: 1
     },
     {
       field: 'action',
-      headerName: 'Action',
+      headerName: t('Action'),
       flex: 0.5,
       sortable: false,
       filterable: false,
@@ -146,15 +146,17 @@ const QuotesList = () => {
       )
     }
   ];
+
+  // Breadcrumbs with dynamic translations
   const breadcrumbs = [
     <Link underline="hover" key="1" color="inherit">
       <HomeIcon color="secondary" />
     </Link>,
     <Link underline="hover" key="2" color="inherit" to="/admin/dashboard" component={RouterLink}>
-      Dashboard
+      {t('Dashboard')}
     </Link>,
     <Typography key="3" sx={{ color: 'text.primary' }}>
-      List
+      {t('List')}
     </Typography>
   ];
 
@@ -177,7 +179,7 @@ const QuotesList = () => {
         >
           <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
             <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
-              Quotation List
+              {t('Quotation List')}
             </Typography>
             <Stack spacing={2}>
               <Breadcrumbs separator="›" aria-label="breadcrumb">
@@ -198,19 +200,12 @@ const QuotesList = () => {
                   variant="contained"
                   sx={{ backgroundColor: '#1cc88a', width: 10, height: 25 }}
                   startIcon={<CloudDownloadIcon />}
-                  // onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  Excel
+                  {t('Excel')}
                 </Button>
               </Stack>
             </Stack>
-            <DataGrid
-              rows={quotesData}
-              columns={columns}
-              getRowId={(row) => row._id}
-              // components={{ Toolbar: GridToolbar }}
-              // componentsProps={{ toolbar: { showQuickFilter: true } }}
-            />
+            <DataGrid rows={quotesData} columns={columns} getRowId={(row) => row._id} />
           </Card>
         </Box>
       </TableStyle>
@@ -231,15 +226,15 @@ const QuotesList = () => {
       >
         <MenuItem onClick={handleEdit}>
           <EditIcon sx={{ mr: 1 }} />
-          Edit
+          {t('Edit')}
         </MenuItem>
         <MenuItem onClick={handleView}>
           <VisibilityIcon sx={{ mr: 1, color: 'green' }} />
-          View
+          {t('View')}
         </MenuItem>
         <MenuItem onClick={handleDelete}>
           <DeleteIcon sx={{ mr: 1, color: 'red' }} />
-          Delete
+          {t('Delete')}
         </MenuItem>
       </Popover>
     </>

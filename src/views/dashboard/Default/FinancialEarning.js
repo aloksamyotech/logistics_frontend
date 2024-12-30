@@ -336,7 +336,7 @@ import MainCard from 'ui-component/cards/MainCard';
 import SkeletonTotalOrderCard from 'ui-component/cards/Skeleton/EarningCard';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import CurrencyRupeeTwoToneIcon from '@mui/icons-material/CurrencyRupeeTwoTone';
-
+import { t } from 'i18next';
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: '#fff',
   color: theme.palette.text.primary,
@@ -363,15 +363,15 @@ const FinancialEarning = ({ isLoading }) => {
             <Grid container direction="column" sx={{ marginY: 2 }}>
               <Grid item>
                 <Typography variant="h6" sx={{ color: '#008000', fontSize: '0.9rem', fontWeight: 'bold' }}>
-                 FINANCIAL YEAR EARNING
+                  {t('FINANCIAL YEAR EARNING')}
                 </Typography>
               </Grid>
               <Grid item>
                 <Grid container alignItems="center">
                   <Grid item xs={6} container direction="column">
-                    <Typography variant="h6" sx={{display: 'flex', alignItems: 'center'}}>
-                      <CurrencyRupeeIcon fontSize="small" sx={{ color: '#5a5c69' }}  />
-                      <Typography variant="h6" sx={{ display: 'inline-block', fontSize: '1.2rem', fontWeight: 400, color: '#5a5c69'  }}>
+                    <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center' }}>
+                      <CurrencyRupeeIcon fontSize="small" sx={{ color: '#5a5c69' }} />
+                      <Typography variant="h6" sx={{ display: 'inline-block', fontSize: '1.2rem', fontWeight: 400, color: '#5a5c69' }}>
                         100
                       </Typography>
                     </Typography>

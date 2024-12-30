@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SendIcon from '@mui/icons-material/Send';
 import { getApi } from 'views/services/api';
-
+import { t } from 'i18next';
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -24,7 +24,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function ViewAdmin() {
   const navigate = useNavigate();
-  const [adminData, setAdminData] = useState([]); 
+  const [adminData, setAdminData] = useState([]);
   const { id } = useParams();
   console.log('id ==>', id);
 
@@ -53,38 +53,38 @@ export default function ViewAdmin() {
                 alignItems: 'center'
               }}
             >
-              <Typography variant="h4">Admin Basic Information</Typography>
+              <Typography variant="h4">{t('Admin Basic Information')}</Typography>
               <Button variant="outlined" startIcon={<ArrowBackIcon />} color="primary" sx={{ marginLeft: 2 }} onClick={() => navigate(-1)}>
-                Back
+                {t('Back')}
               </Button>
             </Grid>
             <hr />
 
             <Grid container spacing={3} sx={{ justifyContent: 'between', alignItems: 'center', marginTop: '1px' }}>
               <Grid item xs={6} md={6}>
-                <Typography variant="h5">Company Name</Typography>
+                <Typography variant="h5">{t('Company Name')}</Typography>
                 <Typography style={{ color: 'black' }}>{adminData?.companyname ? adminData?.companyname : 'N/A'}</Typography>
               </Grid>
               <Grid item xs={6} md={6}>
-                <Typography variant="h5">Email Id</Typography>
+                <Typography variant="h5">{t('Email Id')}</Typography>
                 <Typography style={{ color: 'black' }}>{adminData?.email ? adminData?.email : 'N/A'}</Typography>
               </Grid>
             </Grid>
 
             <Grid container spacing={3} sx={{ justifyContent: 'between', alignItems: 'center', marginTop: '1px' }}>
               <Grid item xs={6} md={6}>
-                <Typography variant="h5">Name</Typography>
+                <Typography variant="h5">{t('Name')}</Typography>
                 <Typography style={{ color: 'black' }}>{adminData?.name ? adminData?.name : 'N/A'}</Typography>
               </Grid>
               <Grid item xs={6} md={6}>
-                <Typography variant="h5">Phone Number</Typography>
+                <Typography variant="h5">{t('Phone Number')}</Typography>
                 <Typography style={{ color: 'black' }}>{adminData?.phoneno ? adminData?.phoneno : 'N/A'}</Typography>
               </Grid>
             </Grid>
 
             <Grid container spacing={3} sx={{ justifyContent: 'between', alignItems: 'center', marginTop: '1px' }}>
               <Grid item xs={6} md={6}>
-                <Typography variant="h5">Address</Typography>
+                <Typography variant="h5">{t('Address')}</Typography>
                 <Typography style={{ color: 'black' }}>{adminData?.address ? adminData?.address : 'N/A'}</Typography>
               </Grid>
             </Grid>

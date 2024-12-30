@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SendIcon from '@mui/icons-material/Send';
 import { getApi } from 'views/services/api';
-
+import { t } from 'i18next';
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -24,7 +24,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function ViewVendorDetails() {
   const navigate = useNavigate();
-  const [vendorData, setVendorData] = useState({}); 
+  const [vendorData, setVendorData] = useState({});
   const { id } = useParams();
   console.log('id found in view leads ==>', id);
 
@@ -33,7 +33,6 @@ export default function ViewVendorDetails() {
       const response = await getApi(`/vendor/getvendor_expensedata/${id}`);
       console.log('response    =====> fetchVendorDetails  =====>', response);
       setVendorData(response?.data?.data[0]);
-      
     } catch (error) {
       console.log(error);
     }
@@ -41,8 +40,7 @@ export default function ViewVendorDetails() {
   useEffect(() => {
     fetchVendorDetails();
   }, []);
-  console.log("vendorData ====>",vendorData);
-  
+  console.log('vendorData ====>', vendorData);
 
   return (
     <>
@@ -56,51 +54,47 @@ export default function ViewVendorDetails() {
                 alignItems: 'center'
               }}
             >
-              <Typography variant="h4">Vendor Basic Information</Typography>
+              <Typography variant="h4">{t('Vendor Basic Information')}</Typography>
               <Button variant="outlined" startIcon={<ArrowBackIcon />} color="primary" sx={{ marginLeft: 2 }} onClick={() => navigate(-1)}>
-                Back
+                {t('Back')}
               </Button>
             </Grid>
             <hr />
 
             <Grid container spacing={3} sx={{ justifyContent: 'between', alignItems: 'center', marginTop: '1px' }}>
               <Grid item xs={6} md={6}>
-                <Typography variant="h5">Name</Typography>
+                <Typography variant="h5">{t('Name')}</Typography>
                 <Typography style={{ color: 'black' }}>{vendorData?.name ? vendorData?.name : 'N/A'}</Typography>
               </Grid>
               <Grid item xs={6} md={6}>
-                <Typography variant="h5">Amount</Typography>
+                <Typography variant="h5">{t('Amount')}</Typography>
                 <Typography style={{ color: 'black' }}>{vendorData?.amount ? vendorData?.amount : 'N/A'}</Typography>
               </Grid>
             </Grid>
 
             <Grid container spacing={3} sx={{ justifyContent: 'between', alignItems: 'center', marginTop: '1px' }}>
               <Grid item xs={6} md={6}>
-                <Typography variant="h5">Vendor Name</Typography>
+                <Typography variant="h5">{t('Vendor Name')}</Typography>
                 <Typography style={{ color: 'black' }}>{vendorData?.vendordata?.name ? vendorData?.vendordata?.name : 'N/A'}</Typography>
               </Grid>
               <Grid item xs={6} md={6}>
-                <Typography variant="h5">Email Id</Typography>
+                <Typography variant="h5">{t('Email Id')}</Typography>
                 <Typography style={{ color: 'black' }}>{vendorData?.vendordata?.email ? vendorData?.vendordata?.email : 'N/A'}</Typography>
               </Grid>
             </Grid>
 
             <Grid container spacing={3} sx={{ justifyContent: 'between', alignItems: 'center', marginTop: '1px' }}>
               <Grid item xs={6} md={6}>
-                <Typography variant="h5">Phone Number</Typography>
-                <Typography style={{ color: 'black' }}>{vendorData?.vendordata?.phoneno ? vendorData?.vendordata?.phoneno : 'N/A'}</Typography>
+                <Typography variant="h5">{t('Phone Number')}</Typography>
+                <Typography style={{ color: 'black' }}>
+                  {vendorData?.vendordata?.phoneno ? vendorData?.vendordata?.phoneno : 'N/A'}
+                </Typography>
               </Grid>
               <Grid item xs={6} md={6}>
-                <Typography variant="h5">Note</Typography>
+                <Typography variant="h5">{t('Note')}</Typography>
                 <Typography style={{ color: 'black' }}>{vendorData?.note ? vendorData?.note : 'N/A'}</Typography>
               </Grid>
             </Grid>
-
-           
-
-
-
-           
           </Item>
         </Grid>
       </Box>

@@ -18,21 +18,20 @@ import { useState } from 'react';
 import { postApi } from 'views/services/api.js';
 import { calcLength } from 'framer-motion';
 import { patchApi } from 'views/services/api.js';
+import { t } from 'i18next';
 
 const EditAdmin = (props) => {
   const { open, handleClose, data } = props;
 
-  console.log("props ==>",props);
-  console.log("data ==>",data);
-  
+  console.log('props ==>', props);
+  console.log('data ==>', data);
+
   const validationSchema = yup.object({
     name: yup.string().required('Name is required'),
     phoneno: yup.number().required('Number is required'),
     companyname: yup.string().required('Company Name is required'),
     address: yup.string().required('Address is required')
   });
-
-  
 
   const formik = useFormik({
     initialValues: {
@@ -42,7 +41,7 @@ const EditAdmin = (props) => {
       address: data?.address || ''
     },
     validationSchema,
-    enableReinitialize: true, 
+    enableReinitialize: true,
     onSubmit: async (values, { resetForm }) => {
       console.log('values===>', values);
 
@@ -50,10 +49,8 @@ const EditAdmin = (props) => {
         // values.created_by = JSON.parse(localStorage.getItem('user'))._id;
         // console.log('values.created_by ==>', values.created_by);
 
-        console.log("/user/updateone/${data._id}==>",`/user/updateone/${data._id}`);
+        console.log('/user/updateone/${data._id}==>', `/user/updateone/${data._id}`);
         patchApi(`/user/updateone/${data._id}`, values)
-        
-        
           .then((response) => {
             console.log('response ', response);
             resetForm();
@@ -71,9 +68,6 @@ const EditAdmin = (props) => {
     }
   });
 
-
- 
-
   return (
     <div>
       <Dialog open={open} aria-labelledby="scroll-dialog-title" aria-describedby="scroll-dialog-description">
@@ -86,7 +80,7 @@ const EditAdmin = (props) => {
             // color: "white",
           }}
         >
-          <Typography variant="h6">Edit Admin</Typography>
+          <Typography variant="h6">{t('Edit Admin')}</Typography>
           <Typography>
             <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
           </Typography>
@@ -129,7 +123,7 @@ const EditAdmin = (props) => {
                     id="name"
                     name="name"
                     size="small"
-                    label="Name"
+                    label={t('Name')}
                     fullWidth
                     value={formik.values.name}
                     onChange={formik.handleChange}
@@ -143,7 +137,7 @@ const EditAdmin = (props) => {
                     id="phoneno"
                     name="phoneno"
                     size="small"
-                    label="PhoneNumber"
+                    label={t('PhoneNumber')}
                     fullWidth
                     value={formik.values.phoneno}
                     onChange={formik.handleChange}
@@ -157,7 +151,7 @@ const EditAdmin = (props) => {
                     id="companyname"
                     name="companyname"
                     size="small"
-                    label="Company Name"
+                    label={t('Company Name')}
                     fullWidth
                     value={formik.values.companyname}
                     onChange={formik.handleChange}
@@ -170,7 +164,7 @@ const EditAdmin = (props) => {
                     id="address"
                     name="address"
                     size="small"
-                    label="Address"
+                    label={t('Address')}
                     fullWidth
                     multiline
                     rows={3}
@@ -186,7 +180,7 @@ const EditAdmin = (props) => {
         </DialogContent>
         <DialogActions>
           <Button type="submit" variant="contained" onClick={formik.handleSubmit} style={{ textTransform: 'capitalize' }} color="secondary">
-            Save
+            {t('Save')}
           </Button>
           <Button
             type="reset"
@@ -198,7 +192,7 @@ const EditAdmin = (props) => {
             }}
             color="error"
           >
-            Cancel
+            {t('Cancel')}
           </Button>
         </DialogActions>
       </Dialog>

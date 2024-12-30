@@ -7,6 +7,7 @@ import { Card, Stack, Divider, Popover, Checkbox, MenuItem, IconButton, CardHead
 // components
 
 import Iconify from '../../../ui-component/iconify';
+import { t } from 'i18next';
 
 // ----------------------------------------------------------------------
 
@@ -130,24 +131,24 @@ function TaskItem({ task, checked, onChange }) {
       >
         <MenuItem onClick={handleMarkComplete}>
           <Iconify icon={'eva:checkmark-circle-2-fill'} sx={{ mr: 2 }} />
-          Mark Complete
+          {t('Mark Complete')}
         </MenuItem>
 
         <MenuItem onClick={handleEdit}>
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-          Edit
+          {t('Edit')}
         </MenuItem>
 
         <MenuItem onClick={handleShare}>
           <Iconify icon={'eva:share-fill'} sx={{ mr: 2 }} />
-          Share
+          {t('Share')}
         </MenuItem>
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         <MenuItem onClick={handleDelete} sx={{ color: 'error.main' }}>
           <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
-          Delete
+          {t('Delete')}
         </MenuItem>
       </Popover>
     </Stack>

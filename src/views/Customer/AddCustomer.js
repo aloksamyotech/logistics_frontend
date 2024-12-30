@@ -21,6 +21,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { Link as RouterLink } from 'react-router-dom';
 import { t } from 'i18next';
 
+import { toast } from 'react-toastify';
 const AddCustomer = () => {
   const formik = useFormik({
     initialValues: {
@@ -51,6 +52,7 @@ const AddCustomer = () => {
       try {
         values.created_by = JSON.parse(localStorage.getItem('user'))._id;
         await postApi('/user/add', values);
+        toast.success('user added Successfully');
         resetForm();
       } catch (error) {
         console.error(error);
@@ -85,7 +87,7 @@ const AddCustomer = () => {
       >
         <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
           <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
-            {t('customer Info')}
+            {t('Customer Info')}
           </Typography>
           <Breadcrumbs separator="›" aria-label="breadcrumb">
             {breadcrumbs}
@@ -224,7 +226,7 @@ const AddCustomer = () => {
             <Grid item xs={12} container spacing={2}>
               <Grid item>
                 <Button variant="contained" color="primary" type="submit">
-                  {t('add Customer')}
+                  {t('Add Customer')}
                 </Button>
               </Grid>
             </Grid>

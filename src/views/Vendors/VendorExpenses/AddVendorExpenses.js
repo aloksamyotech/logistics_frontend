@@ -18,11 +18,12 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { options } from 'numeral';
 import { patch } from '@mui/system';
+import { t } from 'i18next';
 
 const AddVendorExpenses = (props) => {
   const { open, handleClose, editData } = props;
-  console.log("props ====>",props);
-  
+  console.log('props ====>', props);
+
   const user = JSON.parse(localStorage.getItem('user'));
   console.log('user =====>', user);
 
@@ -58,18 +59,16 @@ const AddVendorExpenses = (props) => {
     fetchVendorData();
   }, []);
 
-  useEffect(()=>{
-    if(open && editData){
+  useEffect(() => {
+    if (open && editData) {
       formik.setValues({
         vendorId: editData.vendordata._id || '',
         name: editData.name || '',
-        amount : editData.amount || '',
-        note: editData.note || '',
+        amount: editData.amount || '',
+        note: editData.note || ''
       });
-
     }
-
-  },[open, editData]);
+  }, [open, editData]);
 
   const formik = useFormik({
     initialValues,
@@ -81,27 +80,25 @@ const AddVendorExpenses = (props) => {
 
       console.log('values ======>', values);
       try {
-        if(editData){
-          patchApi(`/vendor/update_expensedata/${editData._id}`,values)
-          .then((response) => {
-            console.log('response ==>', response);
-            handleClose();
-          })
-          .catch((error) => {
-            console.log('error ==>', error);
-          });
-
-        }else{
-          postApi('/vendor/addexpense',values)
-          .then((response) => {
-            console.log('response ==>', response);
-            handleClose();
-          })
-          .catch((error) => {
-            console.log('error ==>', error);
-          });
+        if (editData) {
+          patchApi(`/vendor/update_expensedata/${editData._id}`, values)
+            .then((response) => {
+              console.log('response ==>', response);
+              handleClose();
+            })
+            .catch((error) => {
+              console.log('error ==>', error);
+            });
+        } else {
+          postApi('/vendor/addexpense', values)
+            .then((response) => {
+              console.log('response ==>', response);
+              handleClose();
+            })
+            .catch((error) => {
+              console.log('error ==>', error);
+            });
         }
-        
       } catch (error) {
         console.log('error ==>', error);
       }
@@ -120,100 +117,99 @@ const AddVendorExpenses = (props) => {
             justifyContent: 'space-between'
           }}
         >
-          <Typography variant="h6">Add Expenses</Typography>
+          <Typography variant="h6">{t('Add Expenses')}</Typography>
           <Typography>
             <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
           </Typography>
         </DialogTitle>
 
         <DialogContent dividers>
-  <form onSubmit={formik.handleSubmit}>
-    <DialogContentText id="scroll-dialog-description" tabIndex={-1}>
-      <Grid container rowSpacing={2} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
-        <Grid item xs={12} sm={12} md={12}>
-          <FormLabel>Select Vendor</FormLabel>
-          <TextField
-            select
-            name="vendorId"
-            fullWidth
-            variant="outlined"
-            value={formik.values.vendorId}
-            onChange={formik.handleChange}
-            error={formik.touched.vendorId && Boolean(formik.errors.vendorId)}
-            helperText={formik.touched.vendorId && formik.errors.vendorId}
-          >
-            {vendorData.map((option) => (
-              <MenuItem key={option._id} value={option._id}>
-                {option.name}
-              </MenuItem>
-            ))}
-          </TextField>
-        </Grid>
-        <Grid item xs={12} sm={12} md={12}>
-          <TextField
-            id="name"
-            name="name"
-            label="Name"
-            size="small"
-            fullWidth
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            error={formik.touched.name && Boolean(formik.errors.name)}
-            helperText={formik.touched.name && formik.errors.name}
-          />
-        </Grid>
+          <form onSubmit={formik.handleSubmit}>
+            <DialogContentText id="scroll-dialog-description" tabIndex={-1}>
+              <Grid container rowSpacing={2} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
+                <Grid item xs={12} sm={12} md={12}>
+                  <FormLabel>{t('Select Vendor')}</FormLabel>
+                  <TextField
+                    select
+                    name="vendorId"
+                    fullWidth
+                    variant="outlined"
+                    value={formik.values.vendorId}
+                    onChange={formik.handleChange}
+                    error={formik.touched.vendorId && Boolean(formik.errors.vendorId)}
+                    helperText={formik.touched.vendorId && formik.errors.vendorId}
+                  >
+                    {vendorData.map((option) => (
+                      <MenuItem key={option._id} value={option._id}>
+                        {option.name}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </Grid>
+                <Grid item xs={12} sm={12} md={12}>
+                  <TextField
+                    id="name"
+                    name="name"
+                    label={t('Name')}
+                    size="small"
+                    fullWidth
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
+                    error={formik.touched.name && Boolean(formik.errors.name)}
+                    helperText={formik.touched.name && formik.errors.name}
+                  />
+                </Grid>
 
-        <Grid item xs={12} sm={12} md={12}>
-          <TextField
-            id="amount"
-            name="amount"
-            label="Amount"
-            type="number"
-            size="small"
-            fullWidth
-            value={formik.values.amount}
-            onChange={formik.handleChange}
-            error={formik.touched.amount && Boolean(formik.errors.amount)}
-            helperText={formik.touched.amount && formik.errors.amount}
-          />
-        </Grid>
+                <Grid item xs={12} sm={12} md={12}>
+                  <TextField
+                    id="amount"
+                    name="amount"
+                    label={t('Amount')}
+                    type="number"
+                    size="small"
+                    fullWidth
+                    value={formik.values.amount}
+                    onChange={formik.handleChange}
+                    error={formik.touched.amount && Boolean(formik.errors.amount)}
+                    helperText={formik.touched.amount && formik.errors.amount}
+                  />
+                </Grid>
 
-        <Grid item xs={12} sm={12} md={12}>
-          <TextField
-            label="Note"
-            name="note"
-            multiline
-            rows={4}
-            fullWidth
-            variant="outlined"
-            value={formik.values.note}
-            onChange={formik.handleChange}
-            error={formik.touched.note && Boolean(formik.errors.note)}
-            helperText={formik.touched.note && formik.errors.note}
-          />
-        </Grid>
-      </Grid>
-    </DialogContentText>
-    <DialogActions>
-      <Button type="submit" variant="contained" style={{ textTransform: 'capitalize' }} color="secondary">
-        Save
-      </Button>
-      <Button
-        type="reset"
-        variant="outlined"
-        style={{ textTransform: 'capitalize' }}
-        onClick={() => {
-          formik.resetForm();
-          handleClose();
-        }}
-        color="error"
-      >
-        Reset
-      </Button>
-    </DialogActions>
-  </form>
-</DialogContent>
-
+                <Grid item xs={12} sm={12} md={12}>
+                  <TextField
+                    label={t('Note')}
+                    name="note"
+                    multiline
+                    rows={4}
+                    fullWidth
+                    variant="outlined"
+                    value={formik.values.note}
+                    onChange={formik.handleChange}
+                    error={formik.touched.note && Boolean(formik.errors.note)}
+                    helperText={formik.touched.note && formik.errors.note}
+                  />
+                </Grid>
+              </Grid>
+            </DialogContentText>
+            <DialogActions>
+              <Button type="submit" variant="contained" style={{ textTransform: 'capitalize' }} color="secondary">
+                {t('Save')}
+              </Button>
+              <Button
+                type="reset"
+                variant="outlined"
+                style={{ textTransform: 'capitalize' }}
+                onClick={() => {
+                  formik.resetForm();
+                  handleClose();
+                }}
+                color="error"
+              >
+                {t('Reset')}
+              </Button>
+            </DialogActions>
+          </form>
+        </DialogContent>
 
         {/* <DialogActions>
           <Button type="submit" variant="contained" onClick={formik.handleSubmit} style={{ textTransform: 'capitalize' }} color="secondary">

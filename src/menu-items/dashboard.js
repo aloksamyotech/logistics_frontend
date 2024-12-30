@@ -28,6 +28,7 @@ const icons = {
   IconPhoneCheck,
   IconUsers
 };
+import i18n from 'i18n';
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
@@ -181,7 +182,7 @@ const dashboard = {
   children: [
     {
       id: 'default',
-      title: 'Dashboard',
+      title: i18n.t('Dashboard'),
       type: 'item',
       url: '/admin/dashboard',
       icon: icons.IconHome,
@@ -189,7 +190,7 @@ const dashboard = {
     },
     {
       id: '01',
-      title: 'Create Shipment',
+      title: i18n.t('Create Shipment'),
       type: 'item',
       url: '/admin/shipment/add',
       icon: icons.IconAntennaBars5,
@@ -199,12 +200,12 @@ const dashboard = {
 };
 
 const customer = {
-  title: 'customer',
+  title: i18n.t('Customer'),
   type: 'group',
   children: [
     {
       id: '02',
-      title: 'Add Customer',
+      title: i18n.t('Add Customer'),
       type: 'item',
       url: '/admin/customer/add',
       icon: icons.IconPhoneCheck,
@@ -212,7 +213,7 @@ const customer = {
     },
     {
       id: '03',
-      title: 'Customer List',
+      title: i18n.t('Customer List'),
       type: 'item',
       url: '/admin/customers',
       icon: icons.IconNotebook,
@@ -222,12 +223,12 @@ const customer = {
 };
 
 const quotes = {
-  title: 'quotes',
+  title: i18n.t('Quotes'),
   type: 'group',
   children: [
     {
       id: '04',
-      title: 'Create Quotes',
+      title: i18n.t('Create Quotes'),
       type: 'item',
       url: '/admin/quotes/add',
       icon: icons.IconChecklist,
@@ -235,7 +236,7 @@ const quotes = {
     },
     {
       id: '05',
-      title: 'Quotes List',
+      title: i18n.t('Quotes List'),
       type: 'item',
       url: '/admin/quotes',
       icon: icons.IconUsers,
@@ -245,12 +246,12 @@ const quotes = {
 };
 
 const shipment = {
-  title: 'shipment',
+  title: i18n.t('Shipment'),
   type: 'group',
   children: [
     {
       id: '06',
-      title: 'Shipment List',
+      title: i18n.t('Shipment List'),
       type: 'item',
       url: '/admin/shipments',
       icon: icons.IconPhoneCall,
@@ -258,7 +259,7 @@ const shipment = {
     },
     {
       id: '07',
-      title: 'Price List',
+      title: i18n.t('Price List'),
       type: 'item',
       url: '/admin/price',
       icon: icons.IconMail,
@@ -268,12 +269,12 @@ const shipment = {
 };
 
 const vendor = {
-  title: 'vendor',
+  title: i18n.t('Vendor'),
   type: 'group',
   children: [
     {
       id: '08',
-      title: 'Vendors List',
+      title: i18n.t('Vendors List'),
       type: 'item',
       url: '/admin/vendors',
       icon: icons.IconCalendarEvent,
@@ -281,7 +282,7 @@ const vendor = {
     },
     {
       id: '09',
-      title: 'Vendors Expenses',
+      title: i18n.t('Vendors Expenses'),
       type: 'item',
       url: '/admin/vendor/expenses',
       icon: icons.IconFileUpload,
@@ -289,7 +290,7 @@ const vendor = {
     },
     {
       id: '10',
-      title: 'Vendors Payments',
+      title: i18n.t('Vendors Payments'),
       type: 'item',
       url: '/admin/vendor/payments',
       icon: icons.IconFileInvoice,
@@ -299,12 +300,12 @@ const vendor = {
 };
 
 const staff = {
-  title: 'staff',
+  title: i18n.t('Staff'),
   type: 'group',
   children: [
     {
       id: '11',
-      title: 'Create Staff',
+      title: i18n.t('Create Staff'),
       type: 'item',
       url: '/admin/staff/add',
       icon: icons.IconFileUpload,
@@ -312,7 +313,7 @@ const staff = {
     },
     {
       id: '12',
-      title: 'Staff List',
+      title: i18n.t('Staff List'),
       type: 'item',
       url: '/admin/staff',
       icon: icons.IconFileInvoice,
@@ -322,12 +323,12 @@ const staff = {
 };
 
 const reports = {
-  title: 'reports',
+  title: i18n.t('Reports'),
   type: 'group',
   children: [
     {
       id: '13',
-      title: 'Leads',
+      title: i18n.t('Leads'),
       type: 'item',
       url: '/admin/leads',
       icon: icons.IconFileUpload,
@@ -335,7 +336,7 @@ const reports = {
     },
     {
       id: '14',
-      title: 'Call Logs',
+      title: i18n.t('Call Logs'),
       type: 'item',
       url: '/admin/call_logs',
       icon: icons.IconFileInvoice,
@@ -343,7 +344,7 @@ const reports = {
     },
     {
       id: '15',
-      title: 'Expenses',
+      title: i18n.t('Expenses'),
       type: 'item',
       url: '/admin/expenses',
       icon: icons.IconFileUpload,
@@ -351,7 +352,7 @@ const reports = {
     },
     {
       id: '16',
-      title: 'General Reports',
+      title: i18n.t('General Reports'),
       type: 'item',
       url: '/admin/reports',
       icon: icons.IconFileInvoice,
@@ -361,12 +362,12 @@ const reports = {
 };
 
 const superadmin = {
-  title: 'Super Admin Dashboard',
+  title: i18n.t('Super Admin Dashboard'),
   type: 'group',
   children: [
     {
       id: '01',
-      title: 'Dashboard',
+      title: i18n.t('Dashboard'),
       type: 'item',
       url: '/admin/dashboard',
       icon: icons.IconPhoneCall,
@@ -374,7 +375,7 @@ const superadmin = {
     },
     {
       id: '02',
-      title: 'Create Admin',
+      title: i18n.t('Create Admin'),
       type: 'item',
       url: '/admin/add_admin',
       icon: icons.IconMail,
@@ -384,12 +385,12 @@ const superadmin = {
 };
 
 const employee = {
-  title: 'Employee Dashboard',
+  title: i18n.t('Employee Dashboard'),
   type: 'group',
   children: [
     {
       id: '01',
-      title: 'Dashboard',
+      title: i18n.t('Dashboard'),
       type: 'item',
       url: '/admin/dashboard',
       icon: icons.IconHome,
@@ -397,7 +398,7 @@ const employee = {
     },
     {
       id: '02',
-      title: 'Create Shipment',
+      title: i18n.t('Create Shipment'),
       type: 'item',
       url: '/admin/shipment/add',
       icon: icons.IconAntennaBars5,
@@ -405,7 +406,7 @@ const employee = {
     },
     {
       id: '03',
-      title: 'Add Customer',
+      title: i18n.t('Add Customer'),
       type: 'item',
       url: '/admin/customer/add',
       icon: icons.IconPhoneCheck,
@@ -413,7 +414,7 @@ const employee = {
     },
     {
       id: '04',
-      title: 'Customer List',
+      title: i18n.t('Customer List'),
       type: 'item',
       url: '/admin/customers',
       icon: icons.IconNotebook,
@@ -421,7 +422,7 @@ const employee = {
     },
     {
       id: '05',
-      title: 'Create Quotes',
+      title: i18n.t('Create Quotes'),
       type: 'item',
       url: '/admin/quotes/add',
       icon: icons.IconChecklist,
@@ -429,7 +430,7 @@ const employee = {
     },
     {
       id: '06',
-      title: 'Quotes List',
+      title: i18n.t('Quotes List'),
       type: 'item',
       url: '/admin/quotes',
       icon: icons.IconUsers,
@@ -437,7 +438,7 @@ const employee = {
     },
     {
       id: '07',
-      title: 'Shipment List',
+      title: i18n.t('Shipment List'),
       type: 'item',
       url: '/admin/shipments',
       icon: icons.IconPhoneCall,
@@ -445,7 +446,7 @@ const employee = {
     },
     {
       id: '08',
-      title: 'Price List',
+      title: i18n.t('Price List'),
       type: 'item',
       url: '/admin/price',
       icon: icons.IconMail,
@@ -453,7 +454,7 @@ const employee = {
     },
     {
       id: '09',
-      title: 'Vendors List',
+      title: i18n.t('Vendors List'),
       type: 'item',
       url: '/admin/vendors',
       icon: icons.IconCalendarEvent,
@@ -461,7 +462,7 @@ const employee = {
     },
     {
       id: '10',
-      title: 'Vendors Expenses',
+      title: i18n.t('Vendors Expenses'),
       type: 'item',
       url: '/admin/vendor/expenses',
       icon: icons.IconFileUpload,
@@ -469,7 +470,7 @@ const employee = {
     },
     {
       id: '11',
-      title: 'Vendors Payments',
+      title: i18n.t('Vendors Payments'),
       type: 'item',
       url: '/admin/vendor/payments',
       icon: icons.IconFileInvoice,

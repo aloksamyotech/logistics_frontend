@@ -20,11 +20,12 @@ import { Divider } from '@mui/material';
 import { postApi } from 'views/services/api';
 import { useEffect } from 'react';
 import { patchApi } from 'views/services/api';
+import { t } from 'i18next';
 
 const AddLeads = (props) => {
   const { open, handleClose, editData } = props;
-  console.log("props ====>",props);
-  
+  console.log('props ====>', props);
+
   const validationSchema = yup.object({});
 
   // -----------   initialValues
@@ -67,7 +68,7 @@ const AddLeads = (props) => {
         deliverypincode: editData.deliverypincode || '',
         consignmentDescription: editData.consignmentDescription || '',
         weight: editData.weight || '',
-        dimension: editData.dimension || '',
+        dimension: editData.dimension || ''
       });
     }
   }, [open, editData]);
@@ -122,7 +123,7 @@ const AddLeads = (props) => {
             // color: "white",
           }}
         >
-          <Typography variant="h6">Create Lead</Typography>
+          <Typography variant="h6">{t('Create Lead')}</Typography>
           <Typography>
             <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
           </Typography>
@@ -137,7 +138,7 @@ const AddLeads = (props) => {
                   <TextField
                     id="name"
                     name="name"
-                    label="Name"
+                    label={t('Name')}
                     size="small"
                     fullWidth
                     value={formik.values.name}
@@ -151,7 +152,7 @@ const AddLeads = (props) => {
                   <TextField
                     id="email"
                     name="email"
-                    label="Email"
+                    label={t('Email')}
                     size="small"
                     fullWidth
                     value={formik.values.email}
@@ -162,7 +163,7 @@ const AddLeads = (props) => {
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={6}>
-                  <FormLabel>Type</FormLabel>
+                  <FormLabel>{t('Type')}</FormLabel>
                   <TextField
                     select
                     id="type"
@@ -174,13 +175,13 @@ const AddLeads = (props) => {
                     error={formik.touched.type && Boolean(formik.errors.type)}
                     helperText={formik.touched.type && formik.errors.type}
                   >
-                    <MenuItem value="sender1">Hot Lead</MenuItem>
-                    <MenuItem value="sender1">Warm Lead</MenuItem>
-                    <MenuItem value="sender1">Cold Lead</MenuItem>
+                    <MenuItem value="sender1">{t('Hot Lead')}</MenuItem>
+                    <MenuItem value="sender1">{t('Warm Lead')}</MenuItem>
+                    <MenuItem value="sender1">{t('Cold Lead')}</MenuItem>
                   </TextField>
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
-                  <FormLabel>ForeCast Close</FormLabel>
+                  <FormLabel>{t('ForeCast Close')}</FormLabel>
                   <TextField
                     select
                     id="forecastclose"
@@ -203,7 +204,7 @@ const AddLeads = (props) => {
                   <TextField
                     id="contact"
                     name="contact"
-                    label="Contact"
+                    label={t('Contact')}
                     size="small"
                     fullWidth
                     value={formik.values.contact}
@@ -217,7 +218,7 @@ const AddLeads = (props) => {
                   <TextField
                     id="source"
                     name="source"
-                    label="Source"
+                    label={t('Source')}
                     size="small"
                     fullWidth
                     value={formik.values.source}
@@ -232,7 +233,7 @@ const AddLeads = (props) => {
                   <TextField
                     id="region"
                     name="region"
-                    label="Region"
+                    label={t('Region')}
                     size="small"
                     fullWidth
                     value={formik.values.region}
@@ -246,7 +247,7 @@ const AddLeads = (props) => {
                   <TextField
                     id="country"
                     name="country"
-                    label="Country"
+                    label={t('Country')}
                     size="small"
                     fullWidth
                     value={formik.values.country}
@@ -257,7 +258,7 @@ const AddLeads = (props) => {
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={6}>
-                  <FormLabel>Potential Opportunity</FormLabel>
+                  <FormLabel>{t('Potential Opportunity')}</FormLabel>
                   <TextField
                     id="potentialopportunity"
                     name="potentialopportunity"
@@ -271,7 +272,7 @@ const AddLeads = (props) => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
-                  <FormLabel>Chance of Sale</FormLabel>
+                  <FormLabel>{t('Chance of Sale')}</FormLabel>
                   <TextField
                     id="chancesale"
                     name="chancesale"
@@ -286,7 +287,7 @@ const AddLeads = (props) => {
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={12}>
-                  <FormLabel>Weighted forecast</FormLabel>
+                  <FormLabel>{t('Weighted forecast')}</FormLabel>
                   <TextField
                     id="weightedforecast"
                     name="weightedforecast"
@@ -303,7 +304,7 @@ const AddLeads = (props) => {
                 <Divider sx={{ my: 4 }} />
 
                 <Grid item xs={12} sm={12} md={12}>
-                  <FormLabel>Query Form</FormLabel>
+                  <FormLabel>{t('Query Form')}</FormLabel>
                   <TextField
                     id="query"
                     name="query"
@@ -321,7 +322,7 @@ const AddLeads = (props) => {
                   <TextField
                     id="pickuppincode"
                     name="pickuppincode"
-                    label="Pickup Pincode"
+                    label={t('Pickup Pincode')}
                     size="small"
                     fullWidth
                     value={formik.values.pickuppincode}
@@ -335,7 +336,7 @@ const AddLeads = (props) => {
                   <TextField
                     id="deliverypincode"
                     name="deliverypincode"
-                    label="Delivery Pincode"
+                    label={t('Delivery Pincode')}
                     size="small"
                     fullWidth
                     value={formik.values.deliverypincode}
@@ -348,7 +349,7 @@ const AddLeads = (props) => {
                 <Grid item xs={12} sm={12} md={12}>
                   <TextField
                     id="consignmentDescription"
-                    label="Consignment Description"
+                    label={t('Consignment Description')}
                     name="consignmentDescription"
                     multiline
                     rows={4}
@@ -366,7 +367,7 @@ const AddLeads = (props) => {
                   <TextField
                     id="weight"
                     name="weight"
-                    label="Weight"
+                    label={t('Weight')}
                     size="small"
                     fullWidth
                     value={formik.values.weight}
@@ -380,7 +381,7 @@ const AddLeads = (props) => {
                   <TextField
                     id="dimension"
                     name="dimension"
-                    label="Dimension/Truck Size"
+                    label={t('Dimension/Truck Size')}
                     size="small"
                     fullWidth
                     value={formik.values.dimension}
@@ -395,10 +396,10 @@ const AddLeads = (props) => {
         </DialogContent>
         <DialogActions>
           <Button type="submit" variant="contained" onClick={formik.handleSubmit} style={{ textTransform: 'capitalize' }} color="primary">
-            Save
+            {t('Save')}
           </Button>
           <Button type="submit" variant="contained" onClick={formik.handleSubmit} style={{ textTransform: 'capitalize' }} color="secondary">
-            Reset
+            {t('Reset')}
           </Button>
           <Button
             type="reset"
@@ -410,7 +411,7 @@ const AddLeads = (props) => {
             }}
             color="error"
           >
-            Cancel
+            {t('Cancel')}
           </Button>
         </DialogActions>
       </Dialog>

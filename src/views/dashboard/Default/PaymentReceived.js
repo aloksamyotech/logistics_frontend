@@ -80,9 +80,10 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import { Typography, Stack } from '@mui/material';
 import { Card, CardContent } from '@mui/material';
 import { Box, Grid } from '@mui/material';
+import { t } from 'i18next';
 
 const data = [
-  { value: 5,  label: 'Sun', color: '#5D3FD3' },
+  { value: 5, label: 'Sun', color: '#5D3FD3' },
   { value: 10, label: 'Mon', color: '#008000' },
   { value: 15, label: 'Tue', color: '#C70039' },
   { value: 20, label: 'Wed', color: '#36b9cc' },
@@ -96,7 +97,7 @@ export default function PaymentReceived() {
     <Card>
       <CardContent>
         <Typography variant="subtitle1" gutterBottom sx={{ fontSize: '1.2rem', mb: 3 }}>
-          Payment Received
+          {t('Payment Received')}
         </Typography>
         <Stack direction="row" justifyContent="center">
           <PieChart

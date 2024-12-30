@@ -25,6 +25,7 @@ import { patchApi } from 'views/services/api';
 import { useEffect } from 'react';
 import { getApi } from 'views/services/api';
 import moment from 'moment';
+import { t } from 'i18next';
 
 const AddExpenses = (props) => {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -73,9 +74,9 @@ const AddExpenses = (props) => {
 
         if (tabValue === '2') {
           if (editData) {
-            console.log("---->",`/expense/updateexpense_category/${editData.expenseCategory._id}`);
-            console.log("values ===>",values);
-            
+            console.log('---->', `/expense/updateexpense_category/${editData.expenseCategory._id}`);
+            console.log('values ===>', values);
+
             patchApi(`/expense/updateexpense_category/${editData.expenseCategory._id}`, values)
               .then((response) => {
                 if (response) {
@@ -170,7 +171,7 @@ const AddExpenses = (props) => {
             justifyContent: 'space-between'
           }}
         >
-          <Typography variant="h6">Create Expenses</Typography>
+          <Typography variant="h6">{t('Create Expenses')}</Typography>
           <Typography>
             <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
           </Typography>
@@ -180,15 +181,15 @@ const AddExpenses = (props) => {
           <TabContext value={tabValue}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <TabList onChange={handleTabChange} aria-label="dialog tabs">
-                <Tab label="Expense" value="1" />
-                <Tab label="Expense Category" value="2" />
+                <Tab label={t('Expense')} value="1" />
+                <Tab label={t('Expense Category')} value="2" />
               </TabList>
             </Box>
             <TabPanel value="1" sx={{ p: 0, mt: 2 }}>
               <form>
                 <Grid container rowSpacing={2}>
                   <Grid item xs={12} md={12}>
-                    <FormLabel>Select Expenses Category</FormLabel>
+                    <FormLabel>{t('Select Expenses Category')}</FormLabel>
                     <TextField
                       select
                       id="category"
@@ -208,7 +209,7 @@ const AddExpenses = (props) => {
                     </TextField>
                   </Grid>
                   <Grid item xs={12}>
-                    <FormLabel>Date</FormLabel>
+                    <FormLabel>{t('Date')}</FormLabel>
                     <TextField
                       id="date"
                       type="date"
@@ -226,7 +227,7 @@ const AddExpenses = (props) => {
                     <TextField
                       id="name"
                       name="name"
-                      label="Name"
+                      label={t('Name')}
                       size="small"
                       fullWidth
                       value={formik.values.name}
@@ -240,7 +241,7 @@ const AddExpenses = (props) => {
                     <TextField
                       id="amount"
                       name="amount"
-                      label="Amount"
+                      label={t('Amount')}
                       size="small"
                       fullWidth
                       value={formik.values.amount}
@@ -254,7 +255,7 @@ const AddExpenses = (props) => {
                     <TextField
                       id="note"
                       name="note"
-                      label="note"
+                      label={t('Note')}
                       multiline
                       rows={4}
                       size="small"
@@ -275,7 +276,7 @@ const AddExpenses = (props) => {
                     <TextField
                       id="expenseCategoryName"
                       name="expenseCategoryName"
-                      label="Name"
+                      label={t('Name')}
                       size="small"
                       fullWidth
                       value={formik.values.expenseCategoryName}
@@ -307,10 +308,10 @@ const AddExpenses = (props) => {
 
         <DialogActions>
           <Button type="submit" variant="contained" onClick={formik.handleSubmit} style={{ textTransform: 'capitalize' }} color="primary">
-            Save
+            {t('Save')}
           </Button>
           <Button type="submit" variant="contained" onClick={formik.handleSubmit} style={{ textTransform: 'capitalize' }} color="secondary">
-            Reset
+            {t('Reset')}
           </Button>
           <Button
             type="reset"
@@ -322,7 +323,7 @@ const AddExpenses = (props) => {
             }}
             color="error"
           >
-            Cancel
+            {t('Cancel')}
           </Button>
         </DialogActions>
       </Dialog>

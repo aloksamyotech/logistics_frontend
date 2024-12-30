@@ -2,16 +2,11 @@ import React from 'react';
 import { Box, Grid, TextField, MenuItem, Typography, Button, FormLabel, Divider, Link, Breadcrumbs, Container } from '@mui/material';
 import { Form, useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import Radio from '@mui/material/Radio';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControl from '@mui/material/FormControl';
-import { postApi } from 'views/services/api';
 import HomeIcon from '@mui/icons-material/Home';
 import { Stack } from '@mui/system';
 import { Link as RouterLink } from 'react-router-dom';
-
+import { postApi } from 'views/services/api';
+import { t } from 'i18next';
 const AddStaff = () => {
   const formik = useFormik({
     initialValues: {
@@ -23,24 +18,24 @@ const AddStaff = () => {
       usernote: ''
     },
     validationSchema: Yup.object({
-      email: Yup.string().required('Email is Required'),
-      password: Yup.string().required('Password is Required'),
-      name: Yup.string().required('Name is Required'),
-      phoneno: Yup.string().required('Phone is Required'),
-      role: Yup.string().required('Role is Required'),
-      usernote: Yup.string().required('usernote is Required')
+      email: Yup.string().required(t('Email is Required')),
+      password: Yup.string().required(t('Password is Required')),
+      name: Yup.string().required(t('Name is Required')),
+      phoneno: Yup.string().required(t('Phone is Required')),
+      role: Yup.string().required(t('Role is Required')),
+      usernote: Yup.string().required(t('Usernote is Required'))
     }),
     onSubmit: (values, { resetForm }) => {
       console.log('values ==========>', values);
 
       try {
         values.created_by = JSON.parse(localStorage.getItem('user'))._id;
-        console.log('values.created_by ==>', values.created_by);
+        console.log('values.created_by ==>', values);
 
         postApi('/user/add', values)
           .then((response) => {
             console.log('response ==>', response);
-            toast.success('Deleted Successfully');
+            toast.success(t('Staff added successfully!!'));
             resetForm();
           })
           .catch((error) => {
@@ -50,19 +45,18 @@ const AddStaff = () => {
         console.error(error);
       }
       formik.resetForm();
-      toast.success('Staff added successfully!!');
-      resetForm();
     }
   });
+
   const breadcrumbs = [
     <Link underline="hover" key="1" color="inherit">
       <HomeIcon color="secondary" />
     </Link>,
     <Link underline="hover" key="2" color="inherit" to="/admin/dashboard" component={RouterLink}>
-      Dashboard
+      {t('Dashboard')}
     </Link>,
     <Typography key="3" sx={{ color: 'text.primary' }}>
-      Info
+      {t('Info')}
     </Typography>
   ];
 
@@ -82,7 +76,7 @@ const AddStaff = () => {
         >
           <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
             <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
-              Staff Info
+              {t('Staff Info')}
             </Typography>
             <Stack spacing={2}>
               <Breadcrumbs separator="›" aria-label="breadcrumb">
@@ -99,7 +93,7 @@ const AddStaff = () => {
             <Grid item xs={12} md={6}>
               <TextField
                 name="email"
-                placeholder="Email"
+                placeholder={t('Email')}
                 fullWidth
                 value={formik.values.email}
                 onChange={formik.handleChange}
@@ -113,7 +107,7 @@ const AddStaff = () => {
             <Grid item xs={12} md={6}>
               <TextField
                 name="password"
-                placeholder="Password"
+                placeholder={t('Password')}
                 fullWidth
                 value={formik.values.password}
                 onChange={formik.handleChange}
@@ -128,7 +122,7 @@ const AddStaff = () => {
             <Grid item xs={12} md={6}>
               <TextField
                 name="name"
-                placeholder="Name"
+                placeholder={t('Name')}
                 fullWidth
                 value={formik.values.name}
                 onChange={formik.handleChange}
@@ -143,7 +137,7 @@ const AddStaff = () => {
             <Grid item xs={12} md={6}>
               <TextField
                 name="phoneno"
-                placeholder="Phone"
+                placeholder={t('Phone')}
                 fullWidth
                 value={formik.values.phoneno}
                 onChange={formik.handleChange}
@@ -156,11 +150,11 @@ const AddStaff = () => {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <FormLabel>Select Role</FormLabel>
+              <FormLabel>{t('Select Role')}</FormLabel>
               <TextField
                 select
                 name="role"
-                placeholder="Employee"
+                placeholder={t('Employee')}
                 fullWidth
                 variant="outlined"
                 value={formik.values.role}
@@ -168,18 +162,16 @@ const AddStaff = () => {
                 error={formik.touched.role && Boolean(formik.errors.role)}
                 helperText={formik.touched.role && formik.errors.role}
               >
-                <MenuItem value="">Roles</MenuItem>
-                <MenuItem value="Customer">Customer</MenuItem>
-                <MenuItem value="Employee">Employee</MenuItem>
-                <MenuItem value="Vendor">Vendor</MenuItem>
+                <MenuItem value="">{t('Roles')}</MenuItem>
+                <MenuItem value="Customer">{t('Customer')}</MenuItem>
+                <MenuItem value="Employee">{t('Employee')}</MenuItem>
+                <MenuItem value="Vendor">{t('Vendor')}</MenuItem>
               </TextField>
             </Grid>
 
-            {/* <Grid item xs={12} md={6} /> */}
-
             <Grid item xs={12} md={6}>
               <TextField
-                label="User Notes - For Internal use Only"
+                label={t('User Notes - For Internal use Only')}
                 name="usernote"
                 multiline
                 rows={4}
@@ -196,7 +188,7 @@ const AddStaff = () => {
           <Grid container>
             <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-start', gap: 3, mt: 2 }}>
               <Button variant="contained" color="primary" type="submit">
-                Add Staff
+                {t('Add Staff')}
               </Button>
             </Grid>
           </Grid>

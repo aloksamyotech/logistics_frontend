@@ -10,6 +10,7 @@ import TotalIncomeCard from 'ui-component/cards/Skeleton/TotalIncomeCard';
 
 // assets
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
+import { t } from 'i18next';
 
 // styles
 const CardWrapper = styled(MainCard)(({ theme }) => ({
@@ -79,7 +80,7 @@ const TotalIncomeDarkCard = ({ isLoading }) => {
                   }
                   secondary={
                     <Typography variant="subtitle2" sx={{ color: 'primary.light', mt: 0.25 }}>
-                      Total Policies
+                      {t(' Total Policies')}
                     </Typography>
                   }
                 />

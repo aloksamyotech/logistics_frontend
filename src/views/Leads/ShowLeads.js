@@ -16,7 +16,7 @@ import DeleteLead from './deleteLead';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchBar from 'views/Quotes/Searchbar';
 import { Link as RouterLink } from 'react-router-dom';
-
+import { t } from 'i18next';
 // ----------------------------------------------------------------------
 
 const leadData = [
@@ -91,34 +91,34 @@ const ShowLeads = () => {
   const columns = [
     {
       field: 'name',
-      headerName: 'Name',
+      headerName: t('Name'),
       flex: 1,
       cellClassName: 'name-column--cell name-column--cell--capitalize'
     },
     {
       field: 'email',
-      headerName: 'Email',
+      headerName: t('Email'),
       flex: 1,
       cellClassName: 'name-column--cell--capitalize'
     },
     {
       field: 'contact',
-      headerName: 'Phone',
+      headerName: t('Phone'),
       flex: 1
     },
     {
       field: 'source',
-      headerName: 'Source',
+      headerName: t('Source'),
       flex: 1
     },
     {
       field: 'potentialopportunity',
-      headerName: 'Potential Opportunity',
+      headerName: t('Potential Opportunity'),
       flex: 1
     },
     {
       field: 'action',
-      headerName: 'Action',
+      headerName: t('Action'),
       flex: 0.5,
       sortable: false,
       filterable: false,
@@ -168,10 +168,10 @@ const ShowLeads = () => {
       <HomeIcon color="secondary" />
     </Link>,
     <Link underline="hover" key="2" color="inherit" to="/admin/dashboard" component={RouterLink}>
-      Dashboard
+      {t('Dashboard')}
     </Link>,
     <Typography key="3" sx={{ color: 'text.primary' }}>
-      Leads
+      {t('Leads')}
     </Typography>
   ];
 
@@ -193,7 +193,7 @@ const ShowLeads = () => {
         >
           <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
             <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
-              Leads
+              {t('Leads')}
             </Typography>
             <Stack spacing={2}>
               <Breadcrumbs separator="›" aria-label="breadcrumb">
@@ -216,7 +216,7 @@ const ShowLeads = () => {
                   startIcon={<Iconify icon="eva:plus-fill" />}
                   onClick={handleOpenAdd}
                 >
-                  Add Lead
+                  {t('Add Lead')}
                 </Button>
                 <Stack direction="row" alignItems="center" justifyContent="flex-end" spacing={2}>
                   <Button
@@ -226,7 +226,7 @@ const ShowLeads = () => {
                     startIcon={<CloudDownloadIcon />}
                     // onClick={handleOpenAdd} // Uncomment if needed
                   >
-                    Excel
+                    {t('Excel')}
                   </Button>
                 </Stack>
               </Stack>
@@ -258,15 +258,15 @@ const ShowLeads = () => {
         >
           <MenuItem onClick={handleEdit}>
             <EditIcon sx={{ mr: 1 }} />
-            Edit
+            {t('Edit')}
           </MenuItem>
           <MenuItem onClick={handleView}>
             <VisibilityIcon sx={{ mr: 1, color: 'green' }} />
-            View
+            {t('View')}
           </MenuItem>
           <MenuItem onClick={handleDelete}>
             <DeleteIcon sx={{ mr: 1, color: 'red' }} />
-            Delete
+            {t('Delete')}
           </MenuItem>
         </Popover>
       </Box>

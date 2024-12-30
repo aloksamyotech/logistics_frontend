@@ -17,6 +17,9 @@ import { icon } from '@fortawesome/fontawesome-svg-core';
 import { Link as RouterLink } from 'react-router-dom';
 import { Try } from '@mui/icons-material';
 import axios from 'axios';
+import EditShipmentDialog from './EditShipmentDialog'; // Import EditShipmentDialog
+import DeleteShipment from './Deleteshipment';
+import { t } from 'i18next';
 const ShipmentList = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const navigate = useNavigate();
@@ -24,29 +27,28 @@ const ShipmentList = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedRow, setSelectedRow] = useState([{}]);
   const [shipments, setShipments] = useState([]);
-  const [userMapping, setUserMapping] = useState({});
-
+  const [editOpen, setEditOpen] = useState(false);
+  const [openDelete, setDeleteOpen] = useState(false);
   // Function to handle opening the popover
   const handlePopoverOpen = (event, row) => {
     setAnchorEl(event.currentTarget);
     setSelectedRow(row);
   };
 
-  // Function to handle closing the popover
   const handlePopoverClose = () => {
     setAnchorEl(null);
-    // setSelectedRow(null);
   };
 
   const handleEdit = () => {
-    console.log('when click on edit ==========>', selectedRow);
     if (selectedRow) {
-      navigate(`/admin/shipment/add`, { state: { shipment: selectedRow, mode: 'edit' } });
+      setEditOpen(true);
     }
-
     handlePopoverClose();
   };
 
+  const handleUpdate = (updatedShipment) => {
+    setShipments((prevShipments) => prevShipments.map((shipment) => (shipment._id === updatedShipment._id ? updatedShipment : shipment)));
+  };
   const handleView = () => {
     console.log('View clicked for:', selectedRow);
     if (selectedRow) {
@@ -56,30 +58,16 @@ const ShipmentList = () => {
   };
 
   const handleDelete = () => {
-    // Implement delete functionality
     console.log('Delete clicked for:', selectedRow);
+    if (selectedRow) {
+      setDeleteOpen(true);
+    }
     handlePopoverClose();
   };
-  // const fetchUserMapping = async () => {
-  //   try {
-  //     const response = await axios.get(`http://localhost:5000/user/getalluser`);
-  //     if (response) {
-  //       console.log('User mapping response:', response);
-  //     }
 
-  //     if (response?.data?.data) {
-  //       const map = {};
-  //       response.data.data.forEach((user) => {
-  //         map[user._id] = user.name;
-  //       });
-  //       setUserMapping(map);
-  //       console.log('coming', userMapping);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error while fetching user mapping:', error);
-  //   }
-  // };
-
+  const handleDeleteClose = () => {
+    setDeleteOpen(false);
+  };
   const fetchShipmentData = async () => {
     try {
       getApi(`/shipment/allshipments_details/${user._id}`)
@@ -101,79 +89,39 @@ const ShipmentList = () => {
 
   // Columns definition for DataGrid
   const columns = [
-    {
-      field: 'sender_name',
-      headerName: 'Sender Name',
-      flex: 1,
-      renderCell: (params) => <Typography>{params.row.sender_name || 'N/A'}</Typography>
-    },
-    {
-      field: 'receiver_name',
-
-      headerName: 'Receiver Name',
-      flex: 1,
-      renderCell: (params) => <Typography>{params.row.receiver_name || 'N/A'}</Typography>
-    },
-    {
-      field: 'shipmentdate',
-      headerName: 'Shipment Date',
-      flex: 1,
-      renderCell: (params) => (
-        <Typography>{params.row.shipmentdate ? moment(params.row.shipmentdate).format('YYYY-MM-DD') : 'N/A'}</Typography>
-      )
-    },
-    {
-      field: 'expectedDeliveryDate',
-      headerName: 'Expected Date',
-      flex: 1,
-      renderCell: (params) => (
-        <Typography>{params.row.expectedDeliveryDate ? moment(params.row.expectedDeliveryDate).format('YYYY-MM-DD') : 'N/A'}</Typography>
-      )
-    },
-    {
-      field: 'package_pickup_address',
-      headerName: 'Pickup Address',
-      flex: 1
-    },
-    {
-      field: 'deliveryAddress',
-      headerName: 'Delivery Address',
-      flex: 1
-    },
+    { field: 'sender_name', headerName: 'Sender Name', flex: 1 },
+    { field: 'receiver_name', headerName: 'Receiver Name', flex: 1 },
+    { field: 'shipmentdate', headerName: 'Shipment Date', flex: 1 },
+    { field: 'expectedDeliveryDate', headerName: 'Expected Date', flex: 1 },
+    { field: 'package_pickup_address', headerName: 'Pickup Address', flex: 1 },
+    { field: 'deliveryAddress', headerName: 'Delivery Address', flex: 1 },
     {
       field: 'action',
       headerName: 'Action',
       flex: 0.5,
-      sortable: false,
-      filterable: false,
       renderCell: (params) => (
-        <>
-          <IconButton
-            aria-label="more"
-            aria-controls="long-menu"
-            aria-haspopup="true"
-            onClick={(event) => handlePopoverOpen(event, params.row)}
-          >
-            <MoreVertIcon />
-          </IconButton>
-        </>
+        <IconButton onClick={(event) => handlePopoverOpen(event, params.row)}>
+          <MoreVertIcon />
+        </IconButton>
       )
     }
   ];
+
   const breadcrumbs = [
     <Link underline="hover" key="1" color="inherit">
       <HomeIcon color="secondary" />
     </Link>,
     <Link underline="hover" key="2" color="inherit" component={RouterLink} to="/admin/dashboard">
-      Dashboard
+      {t('Dashboard')}
     </Link>,
     <Typography key="3" sx={{ color: 'text.primary' }}>
-      List
+      {t('List')}
     </Typography>
   ];
 
   return (
     <>
+      <DeleteShipment open={openDelete} handleClose={handleDeleteClose} shipmentid={selectedRow?._id}></DeleteShipment>
       <Card>
         <Container
           sx={{
@@ -188,7 +136,7 @@ const ShipmentList = () => {
         >
           <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
             <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
-              Shipment List
+              {t('Shipment List')}
             </Typography>
             <Stack spacing={2}>
               <Breadcrumbs separator="›" aria-label="breadcrumb">
@@ -241,6 +189,9 @@ const ShipmentList = () => {
           </MenuItem>
         </Popover>
       </Box>
+      {selectedRow && (
+        <EditShipmentDialog open={editOpen} onClose={() => setEditOpen(false)} shipmentData={selectedRow} onUpdate={handleUpdate} />
+      )}
     </>
   );
 };

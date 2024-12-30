@@ -9,26 +9,26 @@ import Delete from '@mui/icons-material/Delete';
 import { deleteApi } from 'views/services/api';
 
 const DeleteQuote = (props) => {
-    const { open, handleClose, quoteid} = props;
+  const { open, handleClose, quoteid } = props;
   console.log('props ==>', props);
 
   //handle delete function-------------
-    const handleDelete = async () => {
-      try {
-        console.log(`/quote/deletequotedetails/${quoteid}`);
-        let result = await deleteApi(`/quote/deletequotedetails/${quoteid}`);
-        console.log("result ===>",result);
-        if (result) {
-          toast.success('Deleted Successfully');
-          handleClose();
-        } else {
-          toast.error('Cannot delete call');
-        }
-      } catch (error) {
-        console.log(error);
+  const handleDelete = async () => {
+    try {
+      console.log(`/quote/deletequotedetails/${quoteid}`);
+      let result = await deleteApi(`/quote/deletequotedetails/${quoteid}`);
+      console.log('result ===>', result);
+      if (result) {
+        toast.success('Deleted Successfully');
+        handleClose();
+      } else {
         toast.error('Cannot delete call');
       }
-    };
+    } catch (error) {
+      console.log(error);
+      toast.error('Cannot delete call');
+    }
+  };
 
   return (
     <Dialog open={open} onClose={handleClose}>

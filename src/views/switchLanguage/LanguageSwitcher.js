@@ -24,6 +24,7 @@ const LanguageSwitcher = () => {
           >
             <MenuItem value="en">English</MenuItem>
             <MenuItem value="es">Chines</MenuItem>
+            <MenuItem value="hi">Hindi</MenuItem>
           </Select>
         </FormControl>
       </Box>

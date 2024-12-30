@@ -18,7 +18,7 @@ import { useNavigate } from 'react-router';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchBar from 'views/Quotes/Searchbar';
 import { Link as RouterLink } from 'react-router-dom';
-
+import { t } from 'i18next';
 // ----------------------------------------------------------------------
 
 const ShowExpenses = () => {
@@ -79,31 +79,31 @@ const ShowExpenses = () => {
   const columns = [
     {
       field: 'expenseCategory',
-      headerName: 'Expense Category Name',
+      headerName: t('Expense Category Name'),
       flex: 1,
       cellClassName: 'name-column--cell name-column--cell--capitalize',
       renderCell: (params) => <Typography>{params.row.expenseCategory ? params.row.expenseCategory.name : 'N/A'}</Typography>
     },
     {
       field: 'name',
-      headerName: 'Name',
+      headerName: t('Name'),
       flex: 1
     },
     {
       field: 'date',
-      headerName: 'Date',
+      headerName: t('Date'),
       flex: 1,
       renderCell: (params) => <Typography>{params.row.date ? moment(params.row.date).format('DD/MM/YYYY') : 'N/A'}</Typography>
     },
 
     {
       field: 'amount',
-      headerName: 'Amount',
+      headerName: t('Amount'),
       flex: 1
     },
     {
       field: 'action',
-      headerName: 'Action',
+      headerName: t('Action'),
       flex: 0.5,
       sortable: false,
       filterable: false,
@@ -153,10 +153,10 @@ const ShowExpenses = () => {
       <HomeIcon color="secondary"></HomeIcon>
     </Link>,
     <Link underline=" hover" key={2} color={'inherit'} to="/admin/dashboard">
-      Dashboard
+      {t('Dashboard')}
     </Link>,
     <Link underline="hover" key={3} sx={{ color: 'text.primary' }}>
-      Exprenses
+      {t('Exprenses')}
     </Link>
   ];
 
@@ -178,7 +178,7 @@ const ShowExpenses = () => {
         >
           <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
             <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
-              Exprenses
+              {t('Exprenses')}
             </Typography>
             <Stack spacing={2}>
               <Breadcrumbs separator="›" aria-label="breadcrumb">
@@ -201,7 +201,7 @@ const ShowExpenses = () => {
                   startIcon={<Iconify icon="eva:plus-fill" />}
                   onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  Add Expenses
+                  {t('Add Expenses')}
                 </Button>
 
                 <Button
@@ -210,7 +210,7 @@ const ShowExpenses = () => {
                   startIcon={<SimCardDownloadIcon />}
                   // onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  PDF
+                  {t('PDF')}
                 </Button>
 
                 <Button
@@ -219,7 +219,7 @@ const ShowExpenses = () => {
                   startIcon={<CloudDownloadIcon />}
                   // onClick={handleOpenAdd} // Uncomment if needed
                 >
-                  Excel
+                  {t('Excel')}
                 </Button>
               </Stack>
               <DataGrid
@@ -250,15 +250,15 @@ const ShowExpenses = () => {
         >
           <MenuItem onClick={handleEdit}>
             <EditIcon sx={{ mr: 1 }} />
-            Edit
+            {'Edit'}
           </MenuItem>
           <MenuItem onClick={handleView}>
             <VisibilityIcon sx={{ mr: 1, color: 'green' }} />
-            View
+            {t('View')}
           </MenuItem>
           <MenuItem onClick={handleDelete}>
             <DeleteIcon sx={{ mr: 1, color: 'red' }} />
-            Delete
+            {t('Delete')}
           </MenuItem>
         </Popover>
       </Box>

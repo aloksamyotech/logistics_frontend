@@ -25,6 +25,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link as RouterLink } from 'react-router-dom';
+import { t } from 'i18next';
 
 const leadData = [
   {
@@ -76,27 +77,27 @@ const GeneralReport = () => {
   const columns = [
     {
       field: 'id',
-      headerName: 'Id',
+      headerName: t('Id'),
       width: 90
     },
     {
       field: 'name',
-      headerName: 'Name',
+      headerName: t('Name'),
       flex: 1
     },
     {
       field: 'email',
-      headerName: 'Email',
+      headerName: t('Email'),
       flex: 1
     },
     {
       field: 'phone',
-      headerName: 'Phone',
+      headerName: t('Phone'),
       flex: 1
     },
     {
       field: 'action',
-      headerName: 'Action',
+      headerName: t('Action'),
       flex: 0.5,
       sortable: false,
       filterable: false,
@@ -131,10 +132,10 @@ const GeneralReport = () => {
       <HomeIcon color="primary"></HomeIcon>
     </Link>,
     <Link underline="hover" key={2} color={'inherit'} to="/admin/dashboard" component={RouterLink}>
-      Dashboard
+      {t('Dashboard')}
     </Link>,
     <Link underline="hover" key={3} sx={{ color: 'text.primary' }}>
-      Reports
+      {t('Reports')}
     </Link>
   ];
   return (
@@ -153,7 +154,7 @@ const GeneralReport = () => {
         >
           <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
             <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
-              Exprenses
+              {t('Exprenses')}
             </Typography>
             <Stack spacing={2}>
               <Breadcrumbs separator="›" aria-label="breadcrumb">
@@ -166,8 +167,8 @@ const GeneralReport = () => {
       <Box mt={2} sx={{ p: 2, backgroundColor: '#fff', borderRadius: '5px', boxShadow: 'inherit' }}>
         <TabContext value={tabValue}>
           <TabList onChange={handleChange} aria-label="report tabs">
-            <Tab label="Reports" value="1" />
-            <Tab label="Payment Log" value="2" />
+            <Tab label={t('Reports')} value="1" />
+            <Tab label={t('Payment Log')} value="2" />
           </TabList>
           <TabPanel value="1">
             {/* Design from the image in the first tab */}
@@ -175,33 +176,33 @@ const GeneralReport = () => {
               <Box p={2}>
                 <Stack direction="row" spacing={1} justifyContent="right">
                   <Button variant="contained" color="error">
-                    PDF
+                    {t('PDF')}
                   </Button>
                   <Button variant="contained" color="success">
-                    Excel
+                    {t('Excel')}
                   </Button>
                 </Stack>
 
                 <Stack direction="row" spacing={1} justifyContent="right" sx={{ pt: 3, m: 0 }}>
                   <FormControl sx={{ minWidth: 120 }}>
-                    <InputLabel>Time</InputLabel>
+                    <InputLabel>{t('Time')}</InputLabel>
                     <Select label="Time" defaultValue="This year Finar">
-                      <MenuItem value="This year Finar">This year Finar</MenuItem>
+                      <MenuItem value="This year Finar">{t('This year Finar')}</MenuItem>
                       {/* Add more options as needed */}
                     </Select>
                   </FormControl>
                   <FormControl sx={{ minWidth: 120 }}>
-                    <InputLabel>Status</InputLabel>
+                    <InputLabel>{t('Status')}</InputLabel>
                     <Select label="Status" defaultValue="All">
-                      <MenuItem value="All">All</MenuItem>
+                      <MenuItem value="All">{t('All')}</MenuItem>
                       {/* Add more options as needed */}
                     </Select>
                   </FormControl>
                   <FormControl sx={{ minWidth: 150 }}>
-                    <InputLabel>sender</InputLabel>
+                    <InputLabel>{t('Sender')}</InputLabel>
                     <Select label="Sender" defaultValue="All">
-                      <MenuItem value="sender 1">ender 1</MenuItem>
-                      <MenuItem value="sender 2">ender 2</MenuItem>
+                      <MenuItem value="sender 1">{t('ender 1')}</MenuItem>
+                      <MenuItem value="sender 2">{t('ender 2')}</MenuItem>
                       {/* Add more options as needed */}
                     </Select>
                   </FormControl>
