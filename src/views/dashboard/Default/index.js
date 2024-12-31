@@ -37,15 +37,28 @@ import LastFinancialEarning from './LastFinancialEarning';
 import ShipmentsOverview from './ShipmentOverview';
 import PaymentReceived from './PaymentReceived';
 import { t } from 'i18next';
-
+import { useNavigate } from 'react-router';
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const Dashboard = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(false);
   }, []);
+  const handleButtonClick = () => {
+    navigate('/admin/shipment/add'); // Navigate to CreateShipment component
+  };
+  const handelecreatcustomer = () => {
+    navigate('/admin/customer/add');
+  };
+  const handelcreateQuate = () => {
+    navigate('/admin/quotes/add');
+  };
+  const handelcreatestaff = () => {
+    navigate('/admin/staff/add');
+  };
 
   return (
     <Grid container spacing={gridSpacing}>
@@ -107,6 +120,7 @@ const Dashboard = () => {
                 fullWidth
                 size="large"
                 sx={{ fontSize: '1rem', backgroundColor: '#e74a3b' }}
+                onClick={handleButtonClick}
               >
                 {t('Create Shipment')}
               </Button>
@@ -118,6 +132,7 @@ const Dashboard = () => {
                 fullWidth
                 size="large"
                 sx={{ fontSize: '1rem', backgroundColor: '#33ff74' }}
+                onClick={handelecreatcustomer}
               >
                 {t('Create Customer')}
               </Button>
@@ -129,6 +144,7 @@ const Dashboard = () => {
                 fullWidth
                 size="large"
                 sx={{ fontSize: '1rem', backgroundColor: '#4169E1' }}
+                onClick={handelcreateQuate}
               >
                 {t(' Create Quotes')}
               </Button>
@@ -140,6 +156,7 @@ const Dashboard = () => {
                 fullWidth
                 size="large"
                 sx={{ fontSize: '1rem', backgroundColor: '#2a96a5' }}
+                onClick={handelcreatestaff}
               >
                 {t(' Create Staff ')}
               </Button>

@@ -47,6 +47,15 @@ export const patchApi = async (path, data) => {
     return error;
   }
 };
+export const putApi = async (path, data) => {
+  try {
+    let result = await axios.put(constant.baseurl + path, data);
+    return result;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
 
 export const deleteApi = async (path, id) => {
   try {

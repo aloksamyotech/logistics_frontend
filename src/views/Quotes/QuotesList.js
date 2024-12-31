@@ -165,30 +165,29 @@ const QuotesList = () => {
       <EditQuote open={openEdit} handleClose={handleEditClose} data={selectedRow} />
       <DeleteQuote open={openDelete} handleClose={handleDeleteClose} quoteid={selectedRow?._id} />
 
-      <Card>
-        <Container
-          sx={{
-            bgcolor: 'white',
-            borderRadius: 2,
-            height: 50,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: 0.5
-          }}
-        >
-          <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
-            <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
-              {t('Quotation List')}
-            </Typography>
-            <Stack spacing={2}>
-              <Breadcrumbs separator="›" aria-label="breadcrumb">
-                {breadcrumbs}
-              </Breadcrumbs>
-            </Stack>
+      <Container
+        sx={{
+          bgcolor: 'white',
+          borderRadius: 2,
+          height: 50,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: 0.5
+        }}
+      >
+        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
+          <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
+            {t('Quotation List')}
+          </Typography>
+          <Stack spacing={2}>
+            <Breadcrumbs separator="›" aria-label="breadcrumb">
+              {breadcrumbs}
+            </Breadcrumbs>
           </Stack>
-        </Container>
-      </Card>
+        </Stack>
+      </Container>
+
       <TableStyle>
         <Box width="100%" mt={2}>
           <Card sx={{ height: 600 }}>

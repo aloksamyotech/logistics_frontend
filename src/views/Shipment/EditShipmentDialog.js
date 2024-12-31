@@ -110,19 +110,13 @@ const EditShipmentDialog = ({ open, onClose, shipmentData, onUpdate }) => {
             label="Receiver Name"
             fullWidth
             value={formData.receiverId || ''}
-            onChange={handleInputChange}
-            margin="normal"
-            variant="outlined"
+            onChange={(e) => setFormData({ ...formData, receiverId: e.target.value })}
           >
-            {Array.isArray(customers) && customers.length > 0 ? (
-              customers.map((customer) => (
-                <MenuItem key={customer._id} value={customer._id}>
-                  {customer.name}
-                </MenuItem>
-              ))
-            ) : (
-              <MenuItem disabled>No customers available</MenuItem>
-            )}
+            {customers.map((customer) => (
+              <MenuItem key={customer._id} value={customer._id}>
+                {customer.name}
+              </MenuItem>
+            ))}
           </TextField>
         </Box>
 

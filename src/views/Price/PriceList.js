@@ -124,20 +124,18 @@ const PriceList = () => {
       <AddPrice open={openAdd} handleClose={handleCloseAdd} editData={selectedRow} />
       <DeletePrice open={openDelete} handleClose={handleCloseDelete} priceid={selectedRow?._id} />
 
-      <Card>
-        <Container sx={{ bgcolor: 'white', borderRadius: 2, height: 50, marginTop: 0.5 }}>
-          <Stack direction="row" alignItems="center" justifyContent="space-between">
-            <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
-              {t('Price List')}
-            </Typography>
-            <Stack spacing={2}>
-              <Breadcrumbs separator="›" aria-label="breadcrumb">
-                {breadcrumbs}
-              </Breadcrumbs>
-            </Stack>
+      <Container sx={{ bgcolor: 'white', borderRadius: 2, height: 50, marginTop: 0.5 }}>
+        <Stack direction="row" alignItems="center" justifyContent="space-between">
+          <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
+            {t('Price List')}
+          </Typography>
+          <Stack spacing={2}>
+            <Breadcrumbs separator="›" aria-label="breadcrumb">
+              {breadcrumbs}
+            </Breadcrumbs>
           </Stack>
-        </Container>
-      </Card>
+        </Stack>
+      </Container>
 
       <Box mt={2}>
         <TableStyle>
