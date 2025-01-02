@@ -4,6 +4,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import axios from 'axios';
 import { t } from 'i18next';
 import { postApi } from 'views/services/api';
+import MapWithDistanceCalculator from './googlemap.js'; // Import the MapWithDistanceCalculator component
 
 const AddQuotationDetails = (props) => {
   const { open, handleClose, setMoreDetails } = props;
@@ -21,6 +22,7 @@ const AddQuotationDetails = (props) => {
   const [km, setKm] = useState(null);
   const [error, setError] = useState('');
   const [errors, setErrors] = useState({});
+  const [showMap, setShowMap] = useState(false); // State to control map visibility
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -72,6 +74,7 @@ const AddQuotationDetails = (props) => {
       setFormValues((prev) => ({ ...prev, distance: null })); // Reset distance in form state
     }
   };
+
   useEffect(() => {
     calculateDistance(formValues.from, formValues.to);
   }, [formValues.from, formValues.to]);
@@ -81,6 +84,7 @@ const AddQuotationDetails = (props) => {
     if (validateForm()) {
       console.log('Submitted values:', formValues);
       setMoreDetails(formValues); // Save all data including distance
+      setShowMap(true); // Show the map after form submission
       handleClose();
     }
   };
@@ -233,6 +237,9 @@ const AddQuotationDetails = (props) => {
           </DialogActions>
         </form>
       </DialogContent>
+
+      {/* Render MapWithDistanceCalculator immediately after form submission */}
+      {showMap && <MapWithDistanceCalculator from={formValues.from} to={formValues.to} />}
     </Dialog>
   );
 };

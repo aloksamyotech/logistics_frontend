@@ -31,6 +31,7 @@ export default function MapDistanceCalculator() {
   const [currentLocation, setCurrentLocation] = useState(null);
   const [destination, setDestination] = useState(null);
   const [distance, setDistance] = useState(null);
+  const [loading, setLoading] = useState(true); // Add loading state to manage map loading
 
   // Fetch the user's current location
   useEffect(() => {
@@ -41,13 +42,16 @@ export default function MapDistanceCalculator() {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           });
+          setLoading(false); // Set loading to false once location is fetched
         },
         (error) => {
           console.error('Error fetching location:', error);
+          setLoading(false); // Set loading to false in case of an error
         }
       );
     } else {
       alert('Geolocation is not supported by this browser.');
+      setLoading(false); // Set loading to false if geolocation is not supported
     }
   }, []);
 
@@ -63,15 +67,17 @@ export default function MapDistanceCalculator() {
     <div>
       <h1>Map Distance Calculator</h1>
       <div style={{ height: '500px', width: '100%' }}>
-        {currentLocation ? (
-          <MapContainer center={currentLocation} zoom={13} style={{ height: '100%', width: '100%' }}>
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap contributors" />
-            <Marker position={currentLocation} />
-            <DestinationSelector setDestination={setDestination} />
-            {destination && <Marker position={destination} />}
-          </MapContainer>
-        ) : (
+        {loading ? (
           <p>Loading map...</p>
+        ) : (
+          currentLocation && (
+            <MapContainer center={currentLocation} zoom={13} style={{ height: '100%', width: '100%' }}>
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap contributors" />
+              <Marker position={currentLocation} />
+              <DestinationSelector setDestination={setDestination} />
+              {destination && <Marker position={destination} />}
+            </MapContainer>
+          )
         )}
       </div>
       <button onClick={calculateDistance} disabled={!currentLocation || !destination} style={{ marginTop: '10px' }}>
