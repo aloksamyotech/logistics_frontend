@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { IconHome } from '@tabler/icons-react';
-
 import {
   Box,
   Stack,
@@ -25,6 +23,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import AddQuotetionDetails from './AddQuotetionDetails';
+import MapWithDistanceCalculator from './googlemap.js';
 import { postApi, getApi } from 'views/services/api';
 import { Link as RouterLink } from 'react-router-dom';
 import { t } from 'i18next';
@@ -33,6 +32,7 @@ const AddQuotes = () => {
   const [openAdd, setOpenAdd] = useState(false);
   const [customers, setCustomers] = useState([]);
   const [quoteDetails, setQuoteDetails] = useState([]);
+  const [mapData, setMapData] = useState(null);
 
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -59,7 +59,10 @@ const AddQuotes = () => {
   };
 
   const handleAddQuoteDetails = (details) => {
-    setQuoteDetails((prevDetails) => [...prevDetails, details]);
+    setQuoteDetails((prevDetails) => {
+      const updatedDetails = [...prevDetails, details];
+      return updatedDetails;
+    });
   };
 
   const formik = useFormik({
@@ -79,7 +82,7 @@ const AddQuotes = () => {
         const response = await postApi('/quote/add', values);
         const quoteid = response.data.data._id;
 
-        if (quoteDetails) {
+        if (quoteDetails.length > 0) {
           const updatedQuoteDetails = quoteDetails.map((detail) => ({
             ...detail,
             created_by: user._id,
@@ -87,6 +90,8 @@ const AddQuotes = () => {
           }));
 
           await postApi('/quote/addquotedetails', updatedQuoteDetails);
+
+          setMapData({ from: quoteDetails[0].from, to: quoteDetails[0].to });
         }
 
         resetForm();
@@ -96,7 +101,6 @@ const AddQuotes = () => {
       }
 
       handleCloseAdd();
-      formik.resetForm();
     }
   });
 
@@ -252,6 +256,15 @@ const AddQuotes = () => {
           </Grid>
         </form>
       </Box>
+
+      {mapData && (
+        <Box mt={2}>
+          <Typography variant="subtitle1" sx={{ fontSize: '1.3rem' }}>
+            {t('mapPreview')}
+          </Typography>
+          <MapWithDistanceCalculator from={mapData.from} to={mapData.to} />
+        </Box>
+      )}
     </>
   );
 };

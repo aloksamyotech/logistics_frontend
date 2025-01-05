@@ -4,7 +4,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import axios from 'axios';
 import { t } from 'i18next';
 import { postApi } from 'views/services/api';
-import MapWithDistanceCalculator from './googlemap.js'; // Import the MapWithDistanceCalculator component
+import MapWithDistanceCalculator from './googlemap.js';
 
 const AddQuotationDetails = (props) => {
   const { open, handleClose, setMoreDetails } = props;
@@ -17,17 +17,16 @@ const AddQuotationDetails = (props) => {
     ETA: '',
     rate: '',
     advance: '',
-    distance: null // Add distance to form state
+    distance: ''
   });
   const [km, setKm] = useState(null);
   const [error, setError] = useState('');
   const [errors, setErrors] = useState({});
-  const [showMap, setShowMap] = useState(false); // State to control map visibility
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormValues((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: '' })); // Clear specific field error
+    setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
   const validateForm = () => {
@@ -47,12 +46,12 @@ const AddQuotationDetails = (props) => {
   const calculateDistance = async (from, to) => {
     try {
       if (!from || !to) {
-        setKm(null); // Reset distance if inputs are invalid
+        setKm(null);
         setFormValues((prev) => ({ ...prev, distance: null }));
         return;
       }
 
-      setError(''); // Clear previous errors
+      setError('');
 
       const response = await postApi('/calculate-distance', { from, to });
 
@@ -60,7 +59,6 @@ const AddQuotationDetails = (props) => {
 
       setKm(distanceInKilometers);
 
-      // Store distance in form state
       setFormValues((prev) => ({
         ...prev,
         distance: {
@@ -70,8 +68,8 @@ const AddQuotationDetails = (props) => {
       }));
     } catch (error) {
       console.log(error);
-      setKm(null); // Reset distance on error
-      setFormValues((prev) => ({ ...prev, distance: null })); // Reset distance in form state
+      setKm(null);
+      setFormValues((prev) => ({ ...prev, distance: null }));
     }
   };
 
@@ -83,8 +81,8 @@ const AddQuotationDetails = (props) => {
     e.preventDefault();
     if (validateForm()) {
       console.log('Submitted values:', formValues);
-      setMoreDetails(formValues); // Save all data including distance
-      setShowMap(true); // Show the map after form submission
+      setMoreDetails(formValues);
+
       handleClose();
     }
   };
@@ -133,7 +131,7 @@ const AddQuotationDetails = (props) => {
               {km && (
                 <Grid item xs={12}>
                   <Typography variant="body1">
-                    Distance: {km} km ({formValues.distance?.miles} miles)
+                    Distance get: {km} km ({formValues.distance?.miles} miles)
                   </Typography>
                 </Grid>
               )}
@@ -239,7 +237,7 @@ const AddQuotationDetails = (props) => {
       </DialogContent>
 
       {/* Render MapWithDistanceCalculator immediately after form submission */}
-      {showMap && <MapWithDistanceCalculator from={formValues.from} to={formValues.to} />}
+      {/* {showMap && <MapWithDistanceCalculator from={formValues.from} to={formValues.to} />} */}
     </Dialog>
   );
 };
