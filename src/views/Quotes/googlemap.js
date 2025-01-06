@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, Marker, Polyline, useLoadScript } from '@react-google-maps/api';
 import { getApi } from 'views/services/api';
+import { t } from 'i18next';
 
 const containerStyle = {
   width: '100%',
@@ -76,12 +77,18 @@ const MapWithDistanceCalculator = (props) => {
     }
   }, [currentLocation, destination]);
 
-  if (!isLoaded) return <div>Loading...</div>;
+  if (!isLoaded) return <div>{t('Loading...')}</div>;
 
   return (
     <div>
-      <h1>Map with Distance Calculator</h1>
-      <div style={{ marginBottom: '10px' }}>{distance !== null && <p>Distance: {distance?.toFixed(2)} km</p>}</div>
+      <h1>{t('Map with Distance Calculator')}</h1>
+      <div style={{ marginBottom: '10px' }}>
+        {distance !== null && (
+          <p>
+            {t('Distance:')} {distance?.toFixed(2)} km
+          </p>
+        )}
+      </div>
 
       <GoogleMap mapContainerStyle={containerStyle} center={currentLocation || { lat: 0, lng: 0 }} zoom={12}>
         {currentLocation && <Marker position={currentLocation} label="Start" />}
@@ -90,9 +97,9 @@ const MapWithDistanceCalculator = (props) => {
           <Polyline
             path={google.maps.geometry.encoding.decodePath(routePolyline)}
             options={{
-              strokeColor: 'blue',
+              strokeColor: 'red',
               strokeOpacity: 1.0,
-              strokeWeight: 3
+              strokeWeight: 5
             }}
           />
         )}

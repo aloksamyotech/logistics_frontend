@@ -11,7 +11,8 @@ import {
   IconChecklist,
   IconNotebook,
   IconPhoneCheck,
-  IconUsers
+  IconUsers,
+  IconLineHeight
 } from '@tabler/icons';
 
 // constant
@@ -26,7 +27,8 @@ const icons = {
   IconChecklist,
   IconNotebook,
   IconPhoneCheck,
-  IconUsers
+  IconUsers,
+  IconLineHeight
 };
 import i18n from 'i18n';
 
@@ -264,6 +266,14 @@ const shipment = {
       url: '/admin/price',
       icon: icons.IconMail,
       breadcrumbs: false
+    },
+    {
+      id: '08',
+      title: i18n.t('   Weight Price List'),
+      type: 'item',
+      url: '/admin/weight',
+      icon: icons.IconLineHeight,
+      breadcrumbs: false
     }
   ]
 };
@@ -273,7 +283,7 @@ const vendor = {
   type: 'group',
   children: [
     {
-      id: '08',
+      id: '09',
       title: i18n.t('Vendors List'),
       type: 'item',
       url: '/admin/vendors',
@@ -281,7 +291,7 @@ const vendor = {
       breadcrumbs: false
     },
     {
-      id: '09',
+      id: '10',
       title: i18n.t('Vendors Expenses'),
       type: 'item',
       url: '/admin/vendor/expenses',
@@ -289,7 +299,7 @@ const vendor = {
       breadcrumbs: false
     },
     {
-      id: '10',
+      id: '11',
       title: i18n.t('Vendors Payments'),
       type: 'item',
       url: '/admin/vendor/payments',
@@ -304,7 +314,7 @@ const staff = {
   type: 'group',
   children: [
     {
-      id: '11',
+      id: '12',
       title: i18n.t('Create Staff'),
       type: 'item',
       url: '/admin/staff/add',
@@ -312,7 +322,7 @@ const staff = {
       breadcrumbs: false
     },
     {
-      id: '12',
+      id: '13',
       title: i18n.t('Staff List'),
       type: 'item',
       url: '/admin/staff',
@@ -327,7 +337,7 @@ const reports = {
   type: 'group',
   children: [
     {
-      id: '13',
+      id: '14',
       title: i18n.t('Leads'),
       type: 'item',
       url: '/admin/leads',
@@ -335,7 +345,7 @@ const reports = {
       breadcrumbs: false
     },
     {
-      id: '14',
+      id: '15',
       title: i18n.t('Call Logs'),
       type: 'item',
       url: '/admin/call_logs',
@@ -343,7 +353,7 @@ const reports = {
       breadcrumbs: false
     },
     {
-      id: '15',
+      id: '16',
       title: i18n.t('Expenses'),
       type: 'item',
       url: '/admin/expenses',
@@ -351,7 +361,7 @@ const reports = {
       breadcrumbs: false
     },
     {
-      id: '16',
+      id: '17',
       title: i18n.t('General Reports'),
       type: 'item',
       url: '/admin/reports',
@@ -448,7 +458,7 @@ const employee = {
       id: '08',
       title: i18n.t('Price List'),
       type: 'item',
-      url: '/admin/price',
+      url: '/admin/weightprice',
       icon: icons.IconMail,
       breadcrumbs: false
     },

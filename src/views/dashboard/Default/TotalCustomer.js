@@ -338,6 +338,8 @@ import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import CurrencyRupeeTwoToneIcon from '@mui/icons-material/CurrencyRupeeTwoTone';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import { t } from 'i18next';
+import { getApi } from 'views/services/api';
+import { useEffect } from 'react';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: '#fff',
@@ -354,6 +356,20 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const TotalCustomer = ({ isLoading }) => {
   const theme = useTheme();
+  const [customer, setTotalcustomer] = useState([]);
+  const countCustomer = async () => {
+    try {
+      const response = await getApi('/counterCustomer');
+      if (response) {
+        setTotalcustomer(response.data.data);
+      }
+    } catch (error) {
+      throw new error(error);
+    }
+  };
+  useEffect(() => {
+    countCustomer();
+  });
 
   return (
     <>
@@ -374,7 +390,7 @@ const TotalCustomer = ({ isLoading }) => {
                     <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center' }}>
                       {/* <CurrencyRupeeIcon fontSize="small" sx={{ color: '#5D3FD3' }} /> */}
                       <Typography variant="h6" sx={{ display: 'inline-block', fontSize: '1.2rem', fontWeight: 400, color: '#5a5c69' }}>
-                        25
+                        {customer}
                       </Typography>
                     </Typography>
                   </Grid>

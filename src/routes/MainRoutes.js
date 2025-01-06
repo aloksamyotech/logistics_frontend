@@ -42,6 +42,7 @@ const ShipmentList = Loadable(lazy(() => import('views/Shipment/ShipmentList')))
 const ViewShipmentDetails = Loadable(lazy(() => import('views/Shipment/ViewShipmentDetails')));
 
 const PriceList = Loadable(lazy(() => import('views/Price/PriceList')));
+const WeightList = Loadable(lazy(() => import('views/Weight/weightList')));
 const VendorList = Loadable(lazy(() => import('views/Vendors/VendorList/ShowVendors')));
 const ShowVendorExpenses = Loadable(lazy(() => import('views/Vendors/VendorExpenses/ShowVendorExpenses')));
 const ShowVendorPayments = Loadable(lazy(() => import('views/Vendors/VendorPayments/ShowVendorPayments')));
@@ -142,6 +143,15 @@ const MainRoutes = {
         {
           path: 'price',
           element: <PriceList />
+        }
+      ]
+    },
+    {
+      path: 'admin',
+      children: [
+        {
+          path: 'weight',
+          element: <WeightList />
         }
       ]
     },

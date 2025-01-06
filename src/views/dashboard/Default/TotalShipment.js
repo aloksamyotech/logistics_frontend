@@ -194,6 +194,9 @@ import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import CurrencyRupeeTwoToneIcon from '@mui/icons-material/CurrencyRupeeTwoTone';
 import LocalShippingRoundedIcon from '@mui/icons-material/LocalShippingRounded';
 import { t } from 'i18next';
+import axios from 'axios';
+import { getApi } from 'views/services/api';
+import { useEffect } from 'react';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: '#fff',
@@ -209,7 +212,21 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 }));
 
 const TotalShipment = ({ isLoading }) => {
+  const [shipments, setTotalShipment] = useState([]);
   const theme = useTheme();
+  const TotalShipmentt = async () => {
+    try {
+      const response = await getApi('/total_shipment');
+      if (response) {
+        setTotalShipment(response.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    TotalShipmentt();
+  });
 
   return (
     <>
@@ -230,7 +247,7 @@ const TotalShipment = ({ isLoading }) => {
                     <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center' }}>
                       {/* <CurrencyRupeeIcon fontSize="small" sx={{ color: '#5D3FD3' }} /> */}
                       <Typography variant="h6" sx={{ display: 'inline-block', fontSize: '1.2rem', fontWeight: 400, color: '#5a5c69' }}>
-                        0
+                        {shipments}
                       </Typography>
                     </Typography>
                   </Grid>

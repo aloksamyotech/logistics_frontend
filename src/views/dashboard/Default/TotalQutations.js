@@ -8,6 +8,8 @@ import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import CurrencyRupeeTwoToneIcon from '@mui/icons-material/CurrencyRupeeTwoTone';
 import TextSnippetRoundedIcon from '@mui/icons-material/TextSnippetRounded';
 import { t } from 'i18next';
+import { getApi } from 'views/services/api';
+import { useEffect } from 'react';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
   backgroundColor: '#fff',
@@ -24,6 +26,21 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 const TotalQuotation = ({ isLoading }) => {
   const theme = useTheme();
+  const [quotecount, setTotalquote] = useState([]);
+
+  const TotalQuotationn = async () => {
+    try {
+      const response = await getApi('/countquote');
+      if (response) {
+        setTotalquote(response.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    TotalQuotationn();
+  });
 
   return (
     <>
@@ -44,7 +61,7 @@ const TotalQuotation = ({ isLoading }) => {
                     <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center' }}>
                       {/* <CurrencyRupeeIcon fontSize="small" sx={{ color: '#5D3FD3' }} /> */}
                       <Typography variant="h6" sx={{ display: 'inline-block', fontSize: '1.2rem', fontWeight: 400, color: '#5a5c69' }}>
-                        0
+                        {quotecount}
                       </Typography>
                     </Typography>
                   </Grid>

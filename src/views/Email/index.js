@@ -88,23 +88,11 @@
 
 // export default CustomerList;
 
-
-
 /* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from 'react';
 // @mui
-import {
-  Stack,
-  Button,
-  Container,
-  Typography,
-  Box,
-  Card,
-  IconButton,
-  Popover,
-  MenuItem
-} from '@mui/material';
+import { Stack, Button, Container, Typography, Box, Card, IconButton, Popover, MenuItem } from '@mui/material';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -179,9 +167,8 @@ const Emails = () => {
   // Columns definition for DataGrid
   const columns = [
     {
-        field: 'id',
-        headerName: 'Id',
-  
+      field: 'id',
+      headerName: 'Id'
     },
     {
       field: 'name',
@@ -228,35 +215,25 @@ const Emails = () => {
 
   return (
     <>
-    <AddEmails open={openAdd} handleClose={handleCloseAdd}/>
+      <AddEmails open={openAdd} handleClose={handleCloseAdd} />
       <Container>
-        <Stack
-          direction="row"
-          alignItems="center"
-          mb={5}
-          justifyContent="space-between"
-        >
+        <Stack direction="row" alignItems="center" mb={5} justifyContent="space-between">
           <Typography variant="subtitle1" gutterBottom sx={{ fontSize: '1.3rem' }}>
-              Price List
-            </Typography>
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="flex-end"
-            spacing={2}
-          >
+            Price List
+          </Typography>
+          <Stack direction="row" alignItems="center" justifyContent="flex-end" spacing={2}>
             <Button
               variant="contained"
               startIcon={<Iconify icon="eva:plus-fill" />}
               onClick={handleOpenAdd} // Uncomment if needed
             >
-           Add Price
+              Add Price
             </Button>
           </Stack>
         </Stack>
         <TableStyle>
           <Box width="100%">
-            <Card sx={{ height: 600,}}>
+            <Card sx={{ height: 600 }}>
               <DataGrid
                 rows={leadData}
                 columns={columns}
@@ -302,4 +279,3 @@ const Emails = () => {
 };
 
 export default Emails;
-

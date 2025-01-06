@@ -235,9 +235,6 @@ const AddQuotationDetails = (props) => {
           </DialogActions>
         </form>
       </DialogContent>
-
-      {/* Render MapWithDistanceCalculator immediately after form submission */}
-      {/* {showMap && <MapWithDistanceCalculator from={formValues.from} to={formValues.to} />} */}
     </Dialog>
   );
 };
