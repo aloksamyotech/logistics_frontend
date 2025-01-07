@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography, Grid, TextField } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
-import axios from 'axios';
 import { t } from 'i18next';
 import { postApi } from 'views/services/api';
-import MapWithDistanceCalculator from './googlemap.js';
 
 const AddQuotationDetails = (props) => {
   const { open, handleClose, setMoreDetails } = props;
+
   const [formValues, setFormValues] = useState({
     from: '',
     to: '',
@@ -17,10 +16,9 @@ const AddQuotationDetails = (props) => {
     ETA: '',
     rate: '',
     advance: '',
-    distance: ''
+    distance: null
   });
   const [km, setKm] = useState(null);
-  const [error, setError] = useState('');
   const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
@@ -51,23 +49,20 @@ const AddQuotationDetails = (props) => {
         return;
       }
 
-      setError('');
-
       const response = await postApi('/calculate-distance', { from, to });
-
-      const { distanceInKilometers, distanceInMiles } = response.data;
+      const distanceInKilometers = response.data?.distanceInKilometers ?? null;
+      const distanceInMiles = response.data?.distanceInMiles ?? null;
 
       setKm(distanceInKilometers);
-
       setFormValues((prev) => ({
         ...prev,
         distance: {
-          km: distanceInKilometers.toFixed(2),
-          miles: distanceInMiles.toFixed(2)
+          km: distanceInKilometers ? distanceInKilometers.toFixed(2) : null,
+          miles: distanceInMiles ? distanceInMiles.toFixed(2) : null
         }
       }));
     } catch (error) {
-      console.log(error);
+      console.error('Error calculating distance:', error);
       setKm(null);
       setFormValues((prev) => ({ ...prev, distance: null }));
     }
@@ -82,7 +77,6 @@ const AddQuotationDetails = (props) => {
     if (validateForm()) {
       console.log('Submitted values:', formValues);
       setMoreDetails(formValues);
-
       handleClose();
     }
   };
@@ -91,9 +85,7 @@ const AddQuotationDetails = (props) => {
     <Dialog open={open} aria-labelledby="scroll-dialog-title" maxWidth="xs">
       <DialogTitle id="scroll-dialog-title" style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Typography>{t('Add Quotation Details')}</Typography>
-        <Typography>
-          <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
-        </Typography>
+        <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
       </DialogTitle>
 
       <DialogContent dividers>
@@ -131,7 +123,7 @@ const AddQuotationDetails = (props) => {
               {km && (
                 <Grid item xs={12}>
                   <Typography variant="body1">
-                    Distance get: {km} km ({formValues.distance?.miles} miles)
+                    {t('Distance')}: {km} km ({formValues.distance?.miles || 'N/A'} miles)
                   </Typography>
                 </Grid>
               )}

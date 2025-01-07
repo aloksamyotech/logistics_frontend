@@ -361,6 +361,8 @@ const TotalCustomer = ({ isLoading }) => {
     try {
       const response = await getApi('/counterCustomer');
       if (response) {
+        console.log(response, 'response is coming or not');
+
         setTotalcustomer(response.data.data);
       }
     } catch (error) {

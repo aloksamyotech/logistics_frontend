@@ -54,10 +54,10 @@ const MapWithDistanceCalculator = (props) => {
       const data = await response.json();
 
       if (data?.routes?.length > 0) {
-        const polyline = data.routes[0]?.geometry;
+        const polyline = data?.routes[0]?.geometry;
         setRoutePolyline(polyline);
 
-        const routeDistance = data.routes[0]?.legs[0]?.distance / 1000;
+        const routeDistance = data?.routes[0]?.legs[0]?.distance / 1000;
         setDistance(routeDistance);
       } else {
         console.error('No route found.');
@@ -95,7 +95,7 @@ const MapWithDistanceCalculator = (props) => {
         {destination && <Marker position={destination} label="End" />}
         {routePolyline && (
           <Polyline
-            path={google.maps.geometry.encoding.decodePath(routePolyline)}
+            path={google?.maps?.geometry?.encoding?.decodePath(routePolyline)}
             options={{
               strokeColor: 'red',
               strokeOpacity: 1.0,

@@ -33,6 +33,7 @@ const AddQuotes = () => {
   const [customers, setCustomers] = useState([]);
   const [quoteDetails, setQuoteDetails] = useState([]);
   const [mapData, setMapData] = useState(null);
+  const [totalprice, setTotalprice] = useState(null);
 
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -58,11 +59,32 @@ const AddQuotes = () => {
     setOpenAdd(false);
   };
 
-  const handleAddQuoteDetails = (details) => {
-    setQuoteDetails((prevDetails) => {
-      const updatedDetails = [...prevDetails, details];
-      return updatedDetails;
-    });
+  const handleAddQuoteDetails = async (details) => {
+    try {
+      const { distance, weight } = details;
+      const distance1 = distance.km;
+
+      const response = await postApi('/calculate_Price', { distance1, weight });
+      const { distancePrice, weightPrice, totalPrice } = response.data.data;
+      console.log(totalPrice);
+
+      console.log(response);
+
+      if (response) {
+        setTotalprice(totalPrice);
+      }
+
+      const updatedDetails = {
+        ...details,
+        distancePrice,
+        weightPrice,
+        totalPrice
+      };
+
+      setQuoteDetails((prevDetails) => [...prevDetails, updatedDetails]);
+    } catch (error) {
+      console.error('Error calculating price:', error);
+    }
   };
 
   const formik = useFormik({
