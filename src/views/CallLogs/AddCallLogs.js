@@ -88,10 +88,11 @@ const AddCallLog = (props) => {
         } else {
           postApi('/call/add', values)
             .then((response) => {
-              console.log('response ============>', response);
+              toast.success('call added Succesfully');
             })
             .catch((error) => {
               console.log('error ', error);
+              toast.error('call added failed');
             });
         }
       } catch (error) {

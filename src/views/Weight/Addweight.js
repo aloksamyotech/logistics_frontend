@@ -79,6 +79,7 @@ const AddWeightPrice = (props) => {
             })
             .catch((error) => {
               console.log('error ', error);
+              toast.error('something is incorrect');
             });
         }
       } catch (error) {

@@ -8,26 +8,25 @@ import { toast } from 'react-toastify';
 import { deleteApi } from 'views/services/api';
 
 const DeleteCallLog = (props) => {
-    const { open, handleClose, callid} = props;
+  const { open, handleClose, callid } = props;
   console.log('props ==>', props);
 
-  //handle delete function-------------
-    const handleDelete = async () => {
-      try {
-        console.log(`/call/deletecall/${callid}`);
-        let result = await deleteApi(`/call/deletecall/${callid}`);
-        console.log("result ===>",result);
-        if (result) {
-          toast.success('Deleted Successfully');
-          handleClose();
-        } else {
-          toast.error('Cannot delete call');
-        }
-      } catch (error) {
-        console.log(error);
+  const handleDelete = async () => {
+    try {
+      console.log(`/call/deletecall/${callid}`);
+      let result = await deleteApi(`/call/deletecall/${callid}`);
+      console.log('result ===>', result);
+      if (result) {
+        toast.success('Deleted Successfully');
+        handleClose();
+      } else {
         toast.error('Cannot delete call');
       }
-    };
+    } catch (error) {
+      console.log(error);
+      toast.error('Cannot delete call');
+    }
+  };
 
   return (
     <Dialog open={open} onClose={handleClose}>

@@ -18,9 +18,6 @@ const DeleteCustomer = (props) => {
       if (result) {
         toast.success('Deleted Successfully');
         handleClose();
-        //   setTimeout(() => {
-        //     navigate('/dashboard/lead');
-        //   }, 500);
       } else {
         toast.error('Cannot delete lead');
       }

@@ -16,19 +16,11 @@ import { FormControl, FormHelperText, FormLabel, Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import { toast } from 'react-toastify';
 import { postApi } from 'views/services/api';
-
-
+import { t } from 'i18next';
 const AddCalls = (props) => {
   const { open, handleClose } = props;
-  //   const [leadData, setLeadData] = useState([]);
-  //   const [contactData, setContactData] = useState([]);
-  //   const userRole = localStorage.getItem('userRole');
-
-  //   const userid = localStorage.getItem('user_id');
-
-  // -----------  validationSchema
   const validationSchema = yup.object({
-    subject: yup.string().required('Subject is required'),
+    subject: yup.string().required(t('Subject is required')),
     status: yup.string().required('Status is required'),
     startDateTime: yup.string().required('Start Date & Time is required'),
     duration: yup.string().required('Duration is required'),
@@ -42,46 +34,9 @@ const AddCalls = (props) => {
     status: '',
     startDateTime: '',
     duration: '',
-    relatedTo: '',
-    
-
-
-
-
-
-   
+    relatedTo: ''
   };
 
-  // add call api
-  //   const addCall = async (values) => {
-  //     const data = values;
-  //     const result = await apipost('call/add', data);
-  //     setUserAction(result);
-
-  //     if (result && result.status === 201) {
-  //       formik.resetForm();
-  //       handleClose();
-  //       toast.success(result.data.message);
-  //     }
-  //   };
-
-  // lead api
-  //   const fetchLeadData = async () => {
-  //     const result = await apiget(userRole === 'admin' ? `lead/list` : `lead/list/?createdBy=${userid}`);
-  //     if (result && result.status === 200) {
-  //       setLeadData(result?.data?.result);
-  //     }
-  //   };
-
-  // contact api
-  //   const fetchContactData = async () => {
-  //     const result = await apiget(userRole === 'admin' ? `contact/list` : `contact/list/?createdBy=${userid}`);
-  //     if (result && result.status === 200) {
-  //       setContactData(result?.data?.result);
-  //     }
-  //   };
-
-  // formik
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -93,11 +48,6 @@ const AddCalls = (props) => {
       resetForm();
     }
   });
-
-  //   useEffect(() => {
-  //     fetchLeadData();
-  //     fetchContactData();
-  //   }, []);
 
   return (
     <div>

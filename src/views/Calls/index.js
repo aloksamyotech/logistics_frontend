@@ -1,22 +1,8 @@
-
-
-
-
 /* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from 'react';
 // @mui
-import {
-  Stack,
-  Button,
-  Container,
-  Typography,
-  Box,
-  Card,
-  IconButton,
-  Popover,
-  MenuItem
-} from '@mui/material';
+import { Stack, Button, Container, Typography, Box, Card, IconButton, Popover, MenuItem } from '@mui/material';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -27,8 +13,7 @@ import TableStyle from '../../ui-component/TableStyle';
 
 // ----------------------------------------------------------------------
 
-const leadData = [  
-];
+const leadData = [];
 
 const Call = () => {
   // State to manage the popover
@@ -71,7 +56,7 @@ const Call = () => {
     {
       field: 'id',
       headerName: 'Id',
-      flex: 1,
+      flex: 1
     },
     {
       field: 'sender',
@@ -96,9 +81,9 @@ const Call = () => {
       flex: 1
     },
     {
-        field: 'deliveryAddress',
-        headerName: 'Delivery Address',
-        flex: 1
+      field: 'deliveryAddress',
+      headerName: 'Delivery Address',
+      flex: 1
     },
     {
       field: 'action',
@@ -124,19 +109,14 @@ const Call = () => {
   return (
     <>
       <Container>
-        <Stack
-          direction="row"
-          alignItems="center"
-          mb={5}
-          justifyContent="space-between"
-        >
+        <Stack direction="row" alignItems="center" mb={5} justifyContent="space-between">
           <Typography variant="subtitle1" gutterBottom sx={{ fontSize: '1.3rem' }}>
-         Shipment List
-            </Typography>
+            Shipment List
+          </Typography>
         </Stack>
         <TableStyle>
           <Box width="100%">
-            <Card sx={{ height: 600,}}>
+            <Card sx={{ height: 600 }}>
               <DataGrid
                 rows={''}
                 columns={columns}
@@ -181,4 +161,3 @@ const Call = () => {
 };
 
 export default Call;
-

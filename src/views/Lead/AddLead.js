@@ -24,15 +24,15 @@ const AddLead = () => {
       pickupAddress: ''
     },
     validationSchema: Yup.object({
-      shipmentdate: Yup.string().required('Required'),
-      expecteddate: Yup.string().required('Required'),
-      senderInfo: Yup.string().required('Required'),
-      receiverInfo: Yup.string().required('Required'),
-      deliveryAddress: Yup.string().required('Required'),
-      contactPerson: Yup.string().required('Required'),
-      phone: Yup.string().required('Required'),
-      fullLoad: Yup.string().required('Required'),
-      pickupAddress: Yup.string().required('Required')
+      shipmentdate: Yup.string().required(t('Required')),
+      expecteddate: Yup.string().required(t('Required')),
+      senderInfo: Yup.string().required(t('Required')),
+      receiverInfo: Yup.string().required(t('Required')),
+      deliveryAddress: Yup.string().required(t('Required')),
+      contactPersonName: Yup.string().required(t('Required')),
+      phone: Yup.string().required(t('Required')),
+      fullLoad: Yup.string().required(t('Required')),
+      pickupAddress: Yup.string().required(t('Required'))
     }),
     onSubmit: (values) => {
       console.log(values);
@@ -47,7 +47,7 @@ const AddLead = () => {
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
-            <FormLabel>Shipment Date</FormLabel>
+            <FormLabel>{t('Shipment Date')}</FormLabel>
             <TextField
               type="date"
               name="shipmentdate"
@@ -62,7 +62,7 @@ const AddLead = () => {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <FormLabel>Expected Delivery Date</FormLabel>
+            <FormLabel>{t('Expected Delivery Date')}</FormLabel>
             <TextField
               type="date"
               name="expecteddate"
@@ -77,7 +77,7 @@ const AddLead = () => {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <FormLabel>Sender Info</FormLabel>
+            <FormLabel>{t('Sender Info')}</FormLabel>
             <TextField
               select
               name="senderInfo"
@@ -88,12 +88,12 @@ const AddLead = () => {
               error={formik.touched.senderInfo && Boolean(formik.errors.senderInfo)}
               helperText={formik.touched.senderInfo && formik.errors.senderInfo}
             >
-              <MenuItem value="sender1">Sender 1</MenuItem>
-              <MenuItem value="sender2">Sender 2</MenuItem>
+              <MenuItem value="sender1">{t('Sender 1')}</MenuItem>
+              <MenuItem value="sender2">{t('Sender 2')}</MenuItem>
             </TextField>
           </Grid>
           <Grid item xs={12} md={6}>
-            <FormLabel>Receiver Info</FormLabel>
+            <FormLabel>{t('Receiver Info')}</FormLabel>
             <TextField
               select
               name="receiverInfo"
@@ -104,23 +104,23 @@ const AddLead = () => {
               error={formik.touched.receiverInfo && Boolean(formik.errors.receiverInfo)}
               helperText={formik.touched.receiverInfo && formik.errors.receiverInfo}
             >
-              <MenuItem value="receiver1">Receiver 1</MenuItem>
-              <MenuItem value="receiver2">Receiver 2</MenuItem>
+              <MenuItem value="receiver1">{t('Receiver 1')}</MenuItem>
+              <MenuItem value="receiver2">{t('Receiver 2')}</MenuItem>
             </TextField>
           </Grid>
           <Grid item xs={12} md={6}>
             <Button variant="contained" color="primary">
-              Add Sender
+              {t('Add Sender')}
             </Button>
           </Grid>
           <Grid item xs={12} md={6}>
             <Button variant="contained" color="primary">
-              Add Receiver
+              {t('Add Receiver')}
             </Button>
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
-              label="Delivery Address"
+              label={t('Delivery Address')}
               name="deliveryAddress"
               multiline
               rows={4}
@@ -139,13 +139,13 @@ const AddLead = () => {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Typography variant="subtitle1" gutterBottom sx={{ fontSize: '1.3rem' }}>
-              Package Pickup Location
+              {t('Package Pickup Location')}
             </Typography>
           </Grid>
 
           <Grid item xs={12} md={4}>
             <TextField
-              label="Contact Person Name"
+              label={t('Contact Person Name')}
               name="contactPersonName"
               fullWidth
               variant="outlined"
@@ -157,7 +157,7 @@ const AddLead = () => {
           </Grid>
           <Grid item xs={12} md={4}>
             <TextField
-              label="Contact Number"
+              label={t('Contact Number')}
               name="contactPersonName"
               fullWidth
               variant="outlined"
@@ -170,7 +170,7 @@ const AddLead = () => {
           <Grid item xs={12} md={4}>
             <TextField
               select
-              label="Full Load"
+              label={t('Full Load')}
               name="fullLoad"
               fullWidth
               variant="outlined"
@@ -179,13 +179,13 @@ const AddLead = () => {
               error={formik.touched.fullLoad && Boolean(formik.errors.fullLoad)}
               helperText={formik.touched.fullLoad && formik.errors.fullLoad}
             >
-              <MenuItem value="FullLoad">Full Load</MenuItem>
-              <MenuItem value="PartLoad">Part Load</MenuItem>
+              <MenuItem value="FullLoad">{t('Full Load')}</MenuItem>
+              <MenuItem value="PartLoad">{t('Part Load')}</MenuItem>
             </TextField>
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
-              label="Pickup Address"
+              label={t('Pickup Address')}
               name="pickupAddress"
               multiline
               rows={4}
@@ -198,13 +198,12 @@ const AddLead = () => {
             />
           </Grid>
         </Grid>
-
         <Divider sx={{ my: 4 }} />
 
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Typography variant="subtitle1" gutterBottom sx={{ fontSize: '1.3rem' }}>
-              Transport Details
+              {t('Transport Details')}
             </Typography>
           </Grid>
 

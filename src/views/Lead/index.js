@@ -66,30 +66,6 @@ const Lead = () => {
   return (
     <>
       <AddLead open={openAdd} handleClose={handleCloseAdd} />
-      {/* <Container>
-        <Stack direction="row" alignItems="center" mb={5} justifyContent={'space-between'}>
-          <Typography variant="h4">Shipment Management</Typography>
-          <Stack direction="row" alignItems="center" justifyContent={'flex-end'} spacing={2}>
-            <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={handleOpenAdd}>
-              Add Shipment
-            </Button>
-          </Stack>
-        </Stack>
-        <TableStyle>
-          <Box width="100%">
-            <Card style={{ height: '600px', paddingTop: '15px' }}>
-              <DataGrid
-                rows={leadData}
-                columns={columns}
-                checkboxSelection
-                getRowId={(row) => row.id}
-                slots={{ toolbar: GridToolbar }}
-                slotProps={{ toolbar: { showQuickFilter: true } }}
-              />
-            </Card>
-          </Box>
-        </TableStyle>
-      </Container> */}
     </>
   );
 };

@@ -3,6 +3,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import ClearIcon from '@mui/icons-material/Clear';
 import { t } from 'i18next';
 import { postApi } from 'views/services/api';
+import { display } from '@mui/system';
 
 const AddQuotationDetails = (props) => {
   const { open, handleClose, setMoreDetails } = props;
@@ -41,36 +42,53 @@ const AddQuotationDetails = (props) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const calculateDistance = async (from, to) => {
-    try {
-      if (!from || !to) {
-        setKm(null);
-        setFormValues((prev) => ({ ...prev, distance: null }));
-        return;
-      }
+  const calculateDistance = async () => {
+    const { from, to } = formValues;
 
+    if (!from || !to) {
+      setKm(null);
+      setFormValues((prev) => ({ ...prev, distance: null }));
+      setErrors((prev) => ({
+        ...prev,
+        from: !from ? t('Please enter a valid From location') : '',
+        to: !to ? t('Please enter a valid To location') : ''
+      }));
+      return;
+    }
+
+    try {
       const response = await postApi('/calculate-distance', { from, to });
+
       const distanceInKilometers = response.data?.distanceInKilometers ?? null;
       const distanceInMiles = response.data?.distanceInMiles ?? null;
+
+      if (!distanceInKilometers) {
+        throw new Error('Invalid address');
+      }
 
       setKm(distanceInKilometers);
       setFormValues((prev) => ({
         ...prev,
         distance: {
-          km: distanceInKilometers ? distanceInKilometers.toFixed(2) : null,
-          miles: distanceInMiles ? distanceInMiles.toFixed(2) : null
+          km: distanceInKilometers.toFixed(2),
+          miles: distanceInMiles ? distanceInMiles.toFixed(2) : 'N/A'
         }
       }));
+      setErrors((prev) => ({
+        ...prev,
+        from: '',
+        to: ''
+      }));
     } catch (error) {
-      console.error('Error calculating distance:', error);
       setKm(null);
       setFormValues((prev) => ({ ...prev, distance: null }));
+      setErrors((prev) => ({
+        ...prev,
+        from: t('Please provide a valid From location'),
+        to: t('Please provide a valid To location')
+      }));
     }
   };
-
-  useEffect(() => {
-    calculateDistance(formValues.from, formValues.to);
-  }, [formValues.from, formValues.to]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -127,6 +145,9 @@ const AddQuotationDetails = (props) => {
                   </Typography>
                 </Grid>
               )}
+              <Button onClick={calculateDistance} size="small" sx={{ marginLeft: 'auto', height: 20, marginTop: 2 }}>
+                {t('Calculate Distance')}
+              </Button>
 
               <Grid item xs={12} md={12}>
                 <TextField
@@ -221,6 +242,7 @@ const AddQuotationDetails = (props) => {
 
           <DialogActions>
             <Button onClick={handleClose}>{t('Cancel')}</Button>
+
             <Button type="submit" variant="contained">
               {t('Save')}
             </Button>

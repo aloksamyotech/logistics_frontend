@@ -91,6 +91,7 @@ const AddExpenses = (props) => {
               .then((response) => {
                 if (response) {
                   console.log('response ==>', response);
+                  toast.success('cattegory added successfully');
                 }
               })
               .catch((error) => {
@@ -102,6 +103,7 @@ const AddExpenses = (props) => {
             patchApi(`/expense/updateexpense/${editData._id}`, values)
               .then((response) => {
                 if (response) {
+                  toast.success('expensess added successfully');
                   console.log('response for edit ==>', response);
                 }
               })
@@ -112,6 +114,7 @@ const AddExpenses = (props) => {
             postApi(`/expense/addexpense`, values)
               .then((response) => {
                 if (response) {
+                  toast.success('expense added successfully');
                   console.log('response ==>', response);
                 }
               })

@@ -21,13 +21,7 @@ import dayjs from 'dayjs';
 
 const AddMeetings = (props) => {
   const { open, handleClose } = props;
-  //   const [leadData, setLeadData] = useState([]);
-  //   const [contactData, setContactData] = useState([]);
 
-  //   const userid = localStorage.getItem('user_id');
-  //   const userRole = localStorage.getItem('userRole');
-
-  // -----------  validationSchema
   const validationSchema = yup.object({
     subject: yup.string().required('Subject is required'),
     status: yup.string().required('Status is required'),
@@ -54,20 +48,6 @@ const AddMeetings = (props) => {
     // contact_id: _id
   };
 
-  // add meeting api
-  //   const addMeeting = async (values) => {
-  //     const data = values;
-  //     const result = await apipost('meeting/add', data);
-  //     setUserAction(result);
-
-  //     if (result && result.status === 201) {
-  //       formik.resetForm();
-  //       handleClose();
-  //       toast.success(result.data.message);
-  //     }
-  //   };
-
-  // formik
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -80,27 +60,6 @@ const AddMeetings = (props) => {
     }
   });
 
-  // lead api
-  //   const fetchLeadData = async () => {
-  //     const result = await apiget(userRole === 'admin' ? `lead/list` : `lead/list/?createdBy=${userid}`);
-  //     if (result && result.status === 200) {
-  //       setLeadData(result?.data?.result);
-  //     }
-  //   };
-
-  // contact api
-  //   const fetchContactData = async () => {
-  //     const result = await apiget(userRole === 'admin' ? `contact/list` : `contact/list/?createdBy=${userid}`);
-  //     if (result && result.status === 200) {
-  //       setContactData(result?.data?.result);
-  //     }
-  //   };
-
-  //   useEffect(() => {
-  //     fetchLeadData();
-  //     fetchContactData();
-  //     // formik.values.meetingAttendes = data?.emailAddress
-  //   }, [open, data]);
   return (
     <div>
       <Dialog open={open} aria-labelledby="scroll-dialog-title" aria-describedby="scroll-dialog-description">
@@ -248,51 +207,6 @@ const AddMeetings = (props) => {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                {/* {formik.values.relatedTo === 'Lead' && (
-                  <Grid item xs={12} sm={6}>
-                    <FormLabel>Lead</FormLabel>
-                    <Autocomplete
-                      id="lead-autocomplete"
-                      options={leadData}
-                      getOptionLabel={(lead) => `${lead.firstName} ${lead.lastName}`}
-                      value={leadData.find((lead) => lead._id === formik.values.lead_id) || null}
-                      onChange={(event, newValue) => {
-                        formik.setFieldValue('lead_id', newValue ? newValue._id : '');
-                      }}
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          size="small"
-                          error={formik.touched.lead_id && Boolean(formik.errors.lead_id)}
-                          helperText={formik.touched.lead_id && formik.errors.lead_id}
-                        />
-                      )}
-                    />
-                  </Grid>
-                )}
-
-                {formik.values.relatedTo === 'Contact' && (
-                  <Grid item xs={12} sm={6}>
-                    <FormLabel>Contact</FormLabel>
-                    <Autocomplete
-                      id="contact-autocomplete"
-                      options={contactData}
-                      getOptionLabel={(contact) => `${contact.firstName} ${contact.lastName}`}
-                      value={contactData.find((contact) => contact._id === formik.values.contact_id) || null}
-                      onChange={(event, newValue) => {
-                        formik.setFieldValue('contact_id', newValue ? newValue._id : '');
-                      }}
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          size="small"
-                          error={formik.touched.contact_id && Boolean(formik.errors.contact_id)}
-                          helperText={formik.touched.contact_id && formik.errors.contact_id}
-                        />
-                      )}
-                    />
-                  </Grid>
-                )} */}
 
                 <Grid item xs={12} sm={12}>
                   <FormLabel>Note</FormLabel>

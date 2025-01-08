@@ -3,8 +3,6 @@ import { constant } from 'views/constant.js';
 
 export const postApi = async (path, data) => {
   try {
-    console.log('in try');
-
     let result = await axios.post(constant.baseurl + path, data);
 
     if (result) {
@@ -13,14 +11,11 @@ export const postApi = async (path, data) => {
       return false;
     }
   } catch (error) {
-    console.error(error);
     return error;
   }
 };
 
 export const getApi = async (path, id) => {
-  console.log('getApi id ==>', id);
-
   try {
     if (id) {
       let result = await axios.get(constant.baseurl + path + id);
@@ -34,10 +29,6 @@ export const getApi = async (path, id) => {
     return error;
   }
 };
-// export const getapi = async (path, id) => {
-
-// }
-
 export const patchApi = async (path, data) => {
   try {
     let result = await axios.patch(constant.baseurl + path, data);

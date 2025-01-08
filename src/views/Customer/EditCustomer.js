@@ -94,33 +94,6 @@ const EditCustomer = (props) => {
           <form>
             <DialogContentText id="scroll-dialog-description" tabIndex={-1}>
               <Grid container rowSpacing={2} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
-                {/* <Grid item xs={12} sm={12} md={6}>
-                  <TextField
-                    id="email"
-                    name="email"
-                    label="Email"
-                    size="small"
-                    fullWidth
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    error={formik.touched.email && Boolean(formik.errors.email)}
-                    helperText={formik.touched.email && formik.errors.email}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={12} md={6}>
-                  <TextField
-                    id="password"
-                    name="password"
-                    label="Password"
-                    size="small"
-                    fullWidth
-                    value={formik.values.password}
-                    onChange={formik.handleChange}
-                    error={formik.touched.password && Boolean(formik.errors.password)}
-                    helperText={formik.touched.password && formik.errors.password}
-                  />
-                </Grid> */}
-
                 <Grid item xs={12} md={6}>
                   <TextField
                     id="name"
@@ -176,11 +149,6 @@ const EditCustomer = (props) => {
                 </Grid>
 
                 <Divider sx={{ my: 4 }} />
-
-                {/* <Grid item xs={12} md={6}>
-            <TextField label="Enter pincode to fetch address automatically" fullWidth variant="outlined" />
-          </Grid>
-          <Grid item xs={12} md={6} /> */}
 
                 <Grid item xs={12} md={6}>
                   <TextField

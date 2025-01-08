@@ -5,7 +5,6 @@ import SentQuotes from './sentQuotes';
 import ApprovedQuotes from './approvedQuotes';
 import RejectedQuotes from './rejectedQuotes';
 
-
 const Quotes = () => {
   const leadData = [
     {
@@ -72,14 +71,7 @@ const Quotes = () => {
             Quotes Details
           </Typography>
           <Card sx={{ height: 'auto' }}>
-            <DataGrid
-              rows={leadData}
-              columns={columns}
-              // checkboxSelection
-              // getRowId={(row) => row.id}
-              // components={{ Toolbar: GridToolbar }}
-              // componentsProps={{ toolbar: { showQuickFilter: true } }}
-            />
+            <DataGrid rows={leadData} columns={columns} />
           </Card>
         </Box>
       </Box>
