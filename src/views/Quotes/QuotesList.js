@@ -95,7 +95,6 @@ const QuotesList = () => {
     fetchQuotesData();
   }, [openEdit, openDelete]);
 
-  // Columns definition for DataGrid
   const columns = [
     {
       field: 'quotationNo',

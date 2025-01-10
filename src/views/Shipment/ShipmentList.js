@@ -29,7 +29,7 @@ const ShipmentList = () => {
   const [shipments, setShipments] = useState([]);
   const [editOpen, setEditOpen] = useState(false);
   const [openDelete, setDeleteOpen] = useState(false);
-  // Function to handle opening the popover
+
   const handlePopoverOpen = (event, row) => {
     setAnchorEl(event.currentTarget);
     setSelectedRow(row);
@@ -85,9 +85,8 @@ const ShipmentList = () => {
 
   useEffect(() => {
     fetchShipmentData();
-  }, []);
+  }, [openDelete, editOpen]);
 
-  // Columns definition for DataGrid
   const columns = [
     { field: 'sender_name', headerName: 'Sender Name', flex: 1 },
     { field: 'receiver_name', headerName: 'Receiver Name', flex: 1 },
@@ -161,7 +160,6 @@ const ShipmentList = () => {
           </Box>
         </TableStyle>
 
-        {/* Popover for Action Menu */}
         <Popover
           open={Boolean(anchorEl)}
           anchorEl={anchorEl}
