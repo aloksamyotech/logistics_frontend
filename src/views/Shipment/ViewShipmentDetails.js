@@ -338,7 +338,7 @@ export default function ViewShipmentDetails() {
               </Item>
             </Grid>
 
-            <Grid item xs={12} md={6}>
+            {/* <Grid item xs={12} md={6}>
               <Item>
                 <Typography variant="h5" fontWeight="bold">
                   {t('Package Details')}
@@ -389,13 +389,13 @@ export default function ViewShipmentDetails() {
                   </Grid>
                 </Grid>
               </Item>
-            </Grid>
+            </Grid>*/}
           </Grid>
         </Box>
 
         <Box sx={{ flexGrow: 1, marginTop: '10px', overflowX: 'auto' }}>
           <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
+            {/* <Grid item xs={12} md={6}>
               <Item>
                 <Typography variant="h5" fontWeight="bold">
                   {t('Insurance Details')}
@@ -422,7 +422,7 @@ export default function ViewShipmentDetails() {
                   </Grid>
                 </Grid>
               </Item>
-            </Grid>
+            </Grid> */}
 
             <Grid item xs={12} md={6}>
               <Item>

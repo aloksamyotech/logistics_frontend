@@ -38,6 +38,7 @@ const AddQuotationDetails = (props) => {
     if (!formValues.ETA) newErrors.ETA = t('ETA is Required');
     if (!formValues.rate) newErrors.rate = t('Rate is Required');
     if (!formValues.advance) newErrors.advance = t('Advance is Required');
+    if (!km) newErrors.distance = t('Please calculate the distance first');
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -238,6 +239,11 @@ const AddQuotationDetails = (props) => {
                 />
               </Grid>
             </Grid>
+            {errors.distance && (
+              <Typography color="error" variant="body2" style={{ marginTop: '8px' }}>
+                {errors.distance}
+              </Typography>
+            )}
           </DialogContentText>
 
           <DialogActions>

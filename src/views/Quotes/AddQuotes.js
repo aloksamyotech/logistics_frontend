@@ -27,6 +27,7 @@ import MapWithDistanceCalculator from './googlemap.js';
 import { postApi, getApi } from 'views/services/api';
 import { Link as RouterLink } from 'react-router-dom';
 import { t } from 'i18next';
+import { toast } from 'react-toastify';
 
 const AddQuotes = () => {
   const [openAdd, setOpenAdd] = useState(false);
@@ -68,8 +69,6 @@ const AddQuotes = () => {
       const { distancePrice, weightPrice, totalPrice } = response.data.data;
       console.log(totalPrice);
 
-      console.log(response);
-
       if (response) {
         setTotalprice(totalPrice);
       }
@@ -82,6 +81,7 @@ const AddQuotes = () => {
       };
 
       setQuoteDetails((prevDetails) => [...prevDetails, updatedDetails]);
+      resetForm();
     } catch (error) {
       console.error('Error calculating price:', error);
     }
@@ -103,6 +103,9 @@ const AddQuotes = () => {
         values.created_by = user._id;
         const response = await postApi('/quote/add', values);
         const quoteid = response.data.data._id;
+        if (response) {
+          toast.success('quote created successefully');
+        }
 
         if (quoteDetails.length > 0) {
           const updatedQuoteDetails = quoteDetails.map((detail) => ({

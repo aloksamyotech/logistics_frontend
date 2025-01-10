@@ -38,12 +38,13 @@ const AddCustomer = () => {
     validationSchema: Yup.object({
       email: Yup.string().email(t('email')).required(t('email')),
       password: Yup.string().required(t('password')),
-      name: Yup.string().required(t('name')),
+      name: Yup.string().required(t('name')).max(30, t('plase enter less than or equal to 30 words')),
       companyname: Yup.string().required(t('companyName')),
       gstno: Yup.string().required(t('gstNo')),
       phoneno: Yup.string()
         .matches(/^[0-9]+$/, t('phoneNo'))
         .min(10, t('phoneNo'))
+        .max(10, t('phoneNo'))
         .required(t('phoneNo')),
       address: Yup.string().required(t('address')),
       usernote: Yup.string()
@@ -51,11 +52,16 @@ const AddCustomer = () => {
     onSubmit: async (values, { resetForm }) => {
       try {
         values.created_by = JSON.parse(localStorage.getItem('user'))._id;
-        await postApi('/user/add', values);
-        toast.success('user added Successfully');
+        const response = await postApi('/user/add', values);
+        if (response.status === 201) {
+          toast.success('User added successfully');
+        } else {
+          toast.error('Email already exists');
+        }
+
         resetForm();
       } catch (error) {
-        console.error(error);
+        toast.error('An unexpected error occurred');
       }
     }
   });
@@ -102,6 +108,7 @@ const AddCustomer = () => {
 
             <Grid item xs={12} md={6}>
               <TextField
+                inputProps={{ maxlength: 30 }}
                 id="email"
                 name="email"
                 label={t('email')}
@@ -115,6 +122,7 @@ const AddCustomer = () => {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
+                inputProps={{ maxlength: 8 }}
                 id="password"
                 name="password"
                 label={t('password')}
@@ -129,6 +137,7 @@ const AddCustomer = () => {
 
             <Grid item xs={12} md={6}>
               <TextField
+                inputProps={{ maxlength: 30 }}
                 id="name"
                 name="name"
                 label={t('name')}
@@ -142,6 +151,7 @@ const AddCustomer = () => {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
+                inputProps={{ maxlength: 20 }}
                 id="companyname"
                 name="companyname"
                 label={t('company Name')}
@@ -156,6 +166,7 @@ const AddCustomer = () => {
 
             <Grid item xs={12} md={6}>
               <TextField
+                inputProps={{ maxlength: 15 }}
                 id="gstno"
                 name="gstno"
                 label={t('gst No')}
@@ -169,6 +180,7 @@ const AddCustomer = () => {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
+                inputProps={{ maxlength: 12 }}
                 id="phoneno"
                 name="phoneno"
                 label={t('phone No')}
@@ -185,6 +197,7 @@ const AddCustomer = () => {
 
             <Grid item xs={12} md={6}>
               <TextField
+                inputProps={{ maxlength: 30 }}
                 multiline
                 rows={3}
                 id="address"
@@ -200,6 +213,7 @@ const AddCustomer = () => {
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
+                inputProps={{ maxlength: 20 }}
                 id="usernote"
                 name="usernote"
                 label={t('user Notes')}

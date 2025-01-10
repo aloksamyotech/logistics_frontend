@@ -53,7 +53,7 @@ const EditShipmentDialog = ({ open, onClose, shipmentData, onUpdate }) => {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Edit Shipment</DialogTitle>
-      <DialogContent>
+      <DialogContent sx={{ width: 600 }}>
         <Box mb={2}>
           <TextField
             name="shipmentdate"
