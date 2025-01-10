@@ -22,24 +22,22 @@ import { Divider } from '@mui/material';
 import moment from 'moment';
 import { useEffect } from 'react';
 import { getApi } from 'views/services/api.js';
-
+import { t } from 'i18next';
 const EditQuote = (props) => {
   const { open, handleClose, data } = props;
   console.log('props here ==============>', props);
 
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log("user",user);
-  
+  console.log('user', user);
 
   const [customers, setCustomers] = useState([]);
 
   const fetchCustomers = async () => {
     try {
       const response = await getApi(`/user/getalluser_byId/${user._id}`);
-      console.log("response",response);
-      
+      console.log('response', response);
+
       const filterCustomer = response.data.data.filter((item) => item.role === 'Customer');
-      console.log('this is filterCustomer ==>', filterCustomer);
       setCustomers(filterCustomer);
     } catch (error) {
       console.log(error);
@@ -86,7 +84,6 @@ const EditQuote = (props) => {
       console.log('values on edit time =========>', values);
 
       try {
-       
         patchApi(`/quote/updatequotedetails/${data?._id}`, values)
           .then((response) => {
             console.log('response ====>', response);
@@ -114,7 +111,7 @@ const EditQuote = (props) => {
             justifyContent: 'space-between'
           }}
         >
-          <Typography variant="h6">Edit Quote Details</Typography>
+          <Typography variant="h6">{t('Edit Quote Details')}</Typography>
           <Typography>
             <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
           </Typography>
@@ -125,13 +122,13 @@ const EditQuote = (props) => {
             <DialogContentText id="scroll-dialog-description" tabIndex={-1}>
               <Grid container rowSpacing={2} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
                 <Grid item xs={12} md={6}>
-                  <FormLabel>Select Customer</FormLabel>
+                  <FormLabel>{t('Select Customer')}</FormLabel>
                   <TextField
                     select
                     name="customer"
                     fullWidth
                     variant="outlined"
-                    size='small'
+                    size="small"
                     value={formik.values.customer}
                     onChange={formik.handleChange}
                     error={formik.touched.customer && Boolean(formik.errors.customer)}
@@ -145,7 +142,7 @@ const EditQuote = (props) => {
                   </TextField>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  <FormLabel>Date</FormLabel>
+                  <FormLabel>{t('Date')}</FormLabel>
                   <TextField
                     type="date"
                     name="date"
@@ -188,8 +185,6 @@ const EditQuote = (props) => {
                     helperText={formik.touched.from && formik.errors.from}
                   />
                 </Grid>
-
-                {/* <Divider sx={{ my: 4 }} /> */}
 
                 <Grid item xs={12} md={6}>
                   <TextField

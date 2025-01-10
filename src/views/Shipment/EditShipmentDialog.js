@@ -37,6 +37,7 @@ const EditShipmentDialog = ({ open, onClose, shipmentData, onUpdate }) => {
       if (response.status === 200) {
         toast.success('Shipment updated successfully');
         onUpdate(formData);
+
         onClose();
       }
     } catch (error) {
@@ -49,11 +50,12 @@ const EditShipmentDialog = ({ open, onClose, shipmentData, onUpdate }) => {
     if (!date) return '';
     return new Date(date).toISOString().split('T')[0];
   };
+  useEffect(() => {});
 
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Edit Shipment</DialogTitle>
-      <DialogContent sx={{ width: 600 }}>
+      <DialogContent sx={{ width: 500 }}>
         <Box mb={2}>
           <TextField
             name="shipmentdate"

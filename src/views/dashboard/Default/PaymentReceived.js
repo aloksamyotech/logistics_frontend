@@ -44,7 +44,7 @@ export default function PaymentReceived() {
             <Grid item xs={6} sm={4} md={3} key={item.label}>
               <Box display="flex" alignItems="center">
                 <Box width={20} height={20} bgcolor={item.color} mr={1} borderRadius="50%" />
-                <Typography variant="body2">{item.label}</Typography>
+                <Typography variant="body2">{t(item.label)}</Typography>
               </Box>
             </Grid>
           ))}

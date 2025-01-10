@@ -13,7 +13,6 @@ const Deleteshipment = (props) => {
   const { open, handleClose, shipmentid } = props;
   console.log('props ==>', props);
 
-  //handle delete function-------------
   const handleDelete = async () => {
     try {
       console.log(`/shipment_delete/${shipmentid}`);

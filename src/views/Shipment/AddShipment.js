@@ -36,7 +36,8 @@ import moment from 'moment';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
+import { toast } from 'react-toastify';
+import { t } from 'i18next';
 const AddShipment = () => {
   const { t } = useTranslation();
   const [open, setOpenAdd] = useState(false);
@@ -210,39 +211,39 @@ const AddShipment = () => {
       billToOption: ''
     },
     validationSchema: Yup.object({
-      shipmentdate: Yup.string().required('Shipment Date is Required'),
-      expecteddate: Yup.string().required('Expected Date is Required'),
-      senderInfo: Yup.string().required('Sender Info is Required'),
-      receiverInfo: Yup.string().required('Receiver Info is Required'),
-      deliveryAddress: Yup.string().required('Delivery Address is Required'),
+      shipmentdate: Yup.string().required(t('Shipment Date is Required')),
+      expecteddate: Yup.string().required(t('Expected Date is Required')),
+      senderInfo: Yup.string().required(t('Sender Info is Required')),
+      receiverInfo: Yup.string().required(t('Receiver Info is Required')),
+      deliveryAddress: Yup.string().required(t('Delivery Address is Required')),
 
-      contactPersonName: Yup.string().required('Contact Person Name is Required'),
-      contactPersonNumber: Yup.string().required('Contact Person Number is Required'),
-      fullLoad: Yup.string().required('Load Type is Required'),
-      pickupAddress: Yup.string().required('Pickup Address is Required'),
+      contactPersonName: Yup.string().required(t('Contact Person Name is Required')),
+      contactPersonNumber: Yup.string().required(t('Contact Person Number is Required')),
+      fullLoad: Yup.string().required(t('Load Type is Required')),
+      pickupAddress: Yup.string().required(t('Pickup Address is Required')),
 
-      driverName: Yup.string().required('Driver Name is Required'),
-      driverNumber: Yup.string().required('Driver Number is Required'),
-      vehicleDetails: Yup.string().required('Vehicle Details is Required'),
-      userNotes: Yup.string().required('User Notes is Required'),
+      driverName: Yup.string().required(t('Driver Name is Required')),
+      driverNumber: Yup.string().required(t('Driver Number is Required')),
+      vehicleDetails: Yup.string().required(t('Vehicle Details is Required')),
+      userNotes: Yup.string().required(t('User Notes is Required')),
 
-      vendor: Yup.string().required('Vendor is Required'),
-      memoNumber: Yup.string().required('Memo Number is Required'),
-      commission: Yup.string().required('Commission is Required'),
-      cash: Yup.string().required('Cash is Required'),
-      total: Yup.string().required('Total is Required'),
-      advance: Yup.string().required('Advance is Required'),
+      vendor: Yup.string().required(t('Vendor is Required')),
+      memoNumber: Yup.string().required(t('Memo Number is Required')),
+      commission: Yup.string().required(t('Commission is Required')),
+      cash: Yup.string().required(t('Cash is Required')),
+      total: Yup.string().required(t('Total is Required')),
+      advance: Yup.string().required(t('Advance is Required')),
 
-      transportation: Yup.string().required('Transportation is Required'),
-      handling: Yup.string().required('Handling is Required'),
-      halting: Yup.string().required('Halting is Required'),
-      insurance: Yup.string().required('Insurance is Required'),
-      cartage: Yup.string().required('Cartage is Required'),
-      overweight: Yup.string().required('Over Weight Charges is Required'),
-      odcCharges: Yup.string().required('ODC Charges is Required'),
-      taxPercent: Yup.string().required('Tax Percent is Required'),
-      advancePaid: Yup.string().required('Advance Paid Amount is Required'),
-      discount: Yup.string().required('Discount is Required')
+      transportation: Yup.string().required(t('Transportation is Required')),
+      handling: Yup.string().required(t('Handling is Required')),
+      halting: Yup.string().required(t('Halting is Required')),
+      insurance: Yup.string().required(t('Insurance is Required')),
+      cartage: Yup.string().required(t('Cartage is Required')),
+      overweight: Yup.string().required(t('Over Weight Charges is Required')),
+      odcCharges: Yup.string().required(t('ODC Charges is Required')),
+      taxPercent: Yup.string().required(t('Tax Percent is Required')),
+      advancePaid: Yup.string().required(t('Advance Paid Amount is Required')),
+      discount: Yup.string().required(t('Discount is Required'))
     }),
 
     onSubmit: async (values, { resetForm }) => {
@@ -259,6 +260,7 @@ const AddShipment = () => {
             .then((response) => {
               console.log('response ====>', response);
               resetForm();
+              toast.success('shipment added successecfully');
             })
             .catch((error) => {
               console.log('error ', error);
@@ -269,7 +271,6 @@ const AddShipment = () => {
       }
 
       resetForm();
-      toast.success('Shipment added successfully!!');
     }
   });
 
@@ -278,27 +279,20 @@ const AddShipment = () => {
     formik.setFieldValue(name, value);
 
     const values = { ...formik.values, [name]: value };
-    console.log('set values :', values);
 
     // Calculate total
     const total =
       values.transportation + values.handling + values.halting + values.insurance + values.cartage + values.overweight + values.odcCharges;
-    console.log('total : ', total);
 
     // Calculate tax
     const taxPercent = (total * values.taxPercent) / 100;
-    console.log('taxPercent :', taxPercent);
     formik.setFieldValue('total_tax', taxPercent);
 
-    // Calculate total amount after tax and discount
     const totalAfterAddTax = total + taxPercent;
-    console.log('totalAfterAddTax :', totalAfterAddTax);
-    formik.setFieldValue('total_amount', totalAfterAddTax - values.discount);
-    console.log('total_amount :', totalAfterAddTax - values.discount);
 
-    // Calculate balance after advance paid
+    formik.setFieldValue('total_amount', totalAfterAddTax - values.discount);
+
     formik.setFieldValue('total_balance', totalAfterAddTax - values.discount - values.advancePaid);
-    console.log('total_balance :', totalAfterAddTax - values.discount - values.advancePaid);
   };
 
   const handleEditClickForPackage = () => {
@@ -310,7 +304,6 @@ const AddShipment = () => {
   };
 
   const handleEditClickForInsurance = () => {
-    console.log('Edit button clicked for insurance');
     if (shipment && mode) {
       setOpenAddForInsurance(true);
       setInsuranceDetails(shipment.insurancedata);
